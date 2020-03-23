@@ -21,8 +21,8 @@ class YearlyData {
   }
 }
 let expenseData = new YearlyData(); 
-export const loadExpenses = (user, year, updateExpData) => {
-  let expenses = db.collection("Users").doc(user.uid).collection("expenses");
+export const loadExpenses = (user, year, updateExpData, updateExpHis) => {
+  let expenses = db.collection("Users").doc(user.uid).collection("expense");
   expenseData.year = year;
   monthlyData.map(month =>
   expenses.where('year','==',year).where('month','==',month).get()
@@ -32,15 +32,18 @@ export const loadExpenses = (user, year, updateExpData) => {
             expenseData[month].push(report.data());   
           }
       })
-      updateExpData(expenseData);
+      if(month == 'DECEMBER') {
+        updateExpData(expenseData);
+        updateExpHis(expenseData);
+      }
     })
     .catch(error => console.log(error))
     )
 }
 
 let incomeData = new YearlyData(); 
-export const loadIncomes = (user, year, updateIncData) => {
-  let incomes = db.collection("Users").doc(user.uid).collection("incomes");
+export const loadIncomes = (user, year, updateIncData, updateIncHis) => {
+  let incomes = db.collection("Users").doc(user.uid).collection("income");
   incomeData.year = year;
   
   monthlyData.map(month =>{
@@ -51,9 +54,13 @@ export const loadIncomes = (user, year, updateIncData) => {
             incomeData[month].push(report.data());   
           }
       })
-      updateIncData(incomeData);
+      if(month == 'DECEMBER') {
+        updateIncData(incomeData);
+        updateIncHis(incomeData);
+      };
     })
     .catch(error => console.log("could not find data",error))
+    return null;
   })
 }
 

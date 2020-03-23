@@ -23,12 +23,17 @@ import Documents from '../Documents'
 import FAQ from "../FAQ";
 import Security from '../Security';
 import Help from '../Help';
-
+import DocPdf from '../Popup/docPdf'
+import {HideCard} from '../Popup/configureCards'
+import ExpenseHis from '../History/expHistory';
+import IncomeHis from '../History/incHistory';
 
 class Home extends Component {
-
+  componentDidMount(){
+    HideCard('docPdf');
+  }
   render() {
-    var {isAuthenticated, userInfo, expData,incData, contacts, uploadDoc} = this.props;
+    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc} = this.props;
     return (
     <div style={styleBox.main}>
       <div className="container-fluid">
@@ -44,12 +49,17 @@ class Home extends Component {
               <Header  isAuthenticated={isAuthenticated} userInfo={userInfo}/>
               <div className="row">
                 <div className="col s12 m12 l12">
+                <DocPdf url=''/>
                 <Switch>
+
                   <Route path="/Home/"  exact ><Graphs /> </Route>
                   <Route path="/Home/myGestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
                   <Route path="/Home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
+                  <Route path="/Home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
+
                   <Route path="/Home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
+                  <Route path="/Home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
                   <Route path="/Home/contacts" exact ><Contacts contacts={contacts}/></Route>
                   <Route path="/Home/contacts/newContact" exact><NewContact /></Route>
 

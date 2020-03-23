@@ -9,13 +9,23 @@ import ForgetPassWord from "../Screens/Authentication/ForgetPass";
 import NewPass from "../Screens/Authentication/NewPass";
 
 const AppRouter = (props) => {
-  var {isAuthenticated, userInfo, expData,incData, contacts, uploadDoc} = props;
-  // console.log("Router Checking for prop incData",incData);
+  var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/"  render={() => <SignIn isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
-        <Route path="/Home" render={() => <Home isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} incData={incData} contacts={contacts} uploadDoc={uploadDoc} /> }  />
+        <Route path="/Home" render={() => <Home 
+          isAuthenticated={isAuthenticated} 
+          userInfo={userInfo} 
+          expData={expData}
+          expHis={expHis} 
+          updateExpHis={updateExpHis} 
+          incData={incData} 
+          incHis={incHis}
+          updateIncHis={updateIncHis}
+          contacts={contacts} 
+          uploadDoc={uploadDoc}
+           /> }  />
         <Route path="/SignUp"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
         <Route path="/passReset" render={() => <ForgetPassWord /> } />
         <Route path="/newPass/:mode&:oobCode&:apiKey&:lang" component={NewPass} exact />

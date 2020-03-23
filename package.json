@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.9.3",
-    "firebase-tools": "^7.14.0",
+    "firebase-tools": "^7.15.1",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

@@ -1,4 +1,5 @@
 import firebase from "./firebase"
+import M from 'materialize-css'
 export const auth = firebase.auth();
 
 // user Sign Up 
@@ -43,7 +44,7 @@ export const SignUpCall = () => {
             // })
 
     } else {
-        alert('field is empty!!')
+            M.toast({html: 'Every Field is Mandatory!'})
     }
 }
 
@@ -58,28 +59,9 @@ export const SignInCall = () => {
             if (res) {
                 window.location.replace("/Home");
                 console.log(auth.currentUser);
-            //     await db.collection(text).doc(auth.currentUser.uid).get()
-            //         .then(doc => {
-            //             if (doc.exists) {
-            //                 if (text === 'seller') {
-            //                     window.location.replace("./Field_Wise_Pages/seller_page.html");
-            //                 }
-            //                 else if (text === 'buyer') {
-            //                     window.location.replace("./Field_Wise_Pages/moderate_panel.html");
-            //                 }
-
-            //             } else {
-            //                 alert('User Doesnt Exist!!!')
-            //                 return Loading('none')
-            //             }
-            //         })
-            //         .catch(err => {
-            //             alert(err.message);
-            //             return Loading('none')
-            //         })
             }
         }).catch(err => {
-            alert(err.message);
+                M.toast({html: err.message})
         });
 }
 // User Pass Reset

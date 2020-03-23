@@ -23,17 +23,16 @@ export const loadDoc = (e) => {
 
 }
 export const uploadDoc = (file, userID) => {
-    let refDoc = storageRef.child(`documents/${userID}.pdf`);
-    // console.log(file)
-    // console.log(userID);
-    let blob = new Blob(file, { type: "image/jpeg" });
-    refDoc.put(blob).then(function(snapshot) {
+    let refDoc = storageRef.child(`documents/${userID}`);
+     console.log(file);
+    refDoc.put(file).then(function(snapshot) {
         console.log('Uploaded Your Document!', snapshot);
 
 
-        storageRef.child(`documents/${userID}.pdf`).getDownloadURL()
+        refDoc.getDownloadURL()
         .then(function(url) {
-            console.log(url);
+            document.getElementById('docIframe').src = url;
+            // console.log(url);
         })
         .catch((error)=>console.log("Error from getting url however doc is uploaded",error))
     })

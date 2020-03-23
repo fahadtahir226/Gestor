@@ -24,8 +24,18 @@ render() {
             <ul className="collapsible" style={styleBox.Ul}>
                 {DocData.map((contact, key) => <Doc data={contact} key={key}/>)}
             </ul>
+
         </div>
       </div>
+      {/* <div className='row'> */}
+        {/* <center>
+            <iframe title='docTitle' id="docIframe" src="https://docs.google.com/viewerng/viewer?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" 
+            style={{
+              overflow: "hidden"
+            }}
+            frameborder="0" height="640" width="500"></iframe>
+        </center> */}
+      {/* </div> */}
     </div>
     <div className="container-fluid" style={{margin:30  }}>
       <a style={{float: "right", marginLeft:10}} href="#!" 
@@ -44,7 +54,7 @@ render() {
 
 
 const Doc = (props) => {
-  console.log(props.data.numbersList);
+  // console.log(props.data.numbersList);
     return (
         <li >
           <div className="collapsible-header">
