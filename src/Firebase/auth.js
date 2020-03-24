@@ -19,30 +19,6 @@ export const SignUpCall = () => {
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
             })
 
-            // .then(async (user) => {
-            //     await db.collection(DBName).doc(auth.currentUser.uid).set({
-            //         name: name.value,
-            //         email: email.value,
-            //         id: auth.currentUser.uid
-            //     })
-            //         .then(res => {
-            //             auth.currentUser.updateProfile({
-            //                 displayName: name.value,
-            //             }).then(function () {
-            //                 console.log('User Name Added to authentication')
-            //             }).catch(function (error) {
-            //                 console.log('User Name Added to authentication')
-            //             });
-            //             alert(`Your Account Has Been Created Successfully !!`)
-            //             SignOut(event);
-            //             return Loading('none') && ClearField()
-            //         })
-            // })
-            // .catch(err => {
-            //     console.log(err.message)
-            //     return Loading('none')
-            // })
-
     } else {
             M.toast({html: 'Every Field is Mandatory!'})
     }
@@ -75,13 +51,11 @@ auth.sendPasswordResetEmail(emailAddress).then(function() {
 });
 }
 export const NewPassword = (oobCode) => {
-    var actionCode = document.getParameterByName('oobCode');
-    // let code = this.props.match.params.oobCode;
-    let newPassword = document.getElementById("newPass");
-    let confirmPassword = document.getElementById("newPass");
+    let newPassword = document.getElementById("newPass").value;
+    let confirmPassword = document.getElementById("confirmPass").value;
     if(newPassword === confirmPassword){
 
-        auth().confirmPasswordReset(actionCode, newPassword)
+        auth.confirmPasswordReset(oobCode, newPassword)
             .then(function() {
               window.location.replace("/home");
             })

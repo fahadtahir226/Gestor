@@ -29,10 +29,10 @@ export const loadDocument = (user, updateDocData) => {
                 // All the prefixes under listRef.
                 // You may call listAll() recursively on them.
                 // console.log(folderRef);
-                folderRef.listAll()
-                .then(res => console.log("Items",res.items));
+                // folderRef.listAll()
+                // .then(res => console.log("Items",res.items));
               });
-            console.log(res.items);
+            // console.log(res.items);
         })
 
 }
