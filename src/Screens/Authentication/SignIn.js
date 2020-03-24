@@ -4,10 +4,11 @@ import {Link} from 'react-router-dom';
 
 import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Component5-1.png";
-import fb from "../../images/Social Icons/fb.png";
-import gplus from "../../images/Social Icons/googlePlus.png";
-import twitr from "../../images/Social Icons/twitter.png";
-import { SignInCall } from "../../Firebase/auth";
+// import fb from "../../images/Social Icons/fb.png";
+import fb from "../../images/facebook.png";
+import gplus from "../../images/google-plus.png";
+import twitr from "../../images/twitter.png";
+import { SignInCall } from "../../Auth/auth";
 
 
 class SignIn extends Component {
@@ -23,7 +24,7 @@ class SignIn extends Component {
               <div className="row">
               <div className="col s12 m7 "><img style={styleBox.posterImg} src={signInPoster} alt="" /></div>
               <div className="col s12 m5 ">
-                <h5 style={{textAlign: "left"}}>SignIn </h5>
+                <h5 style={{textAlign: "left", paddingLeft : "35px"}}>SignIn </h5>
                 <div style={{ textAlign: "left", height: 45, background: '#F2F0EC', maxWidth: 340, border: "0px solid ", borderRadius: 10 }}>
                     <label style={{ display: 'inline-block'  }} className="label-icon" htmlFor="login-email">
                         <i className="material-icons" 
@@ -40,13 +41,13 @@ class SignIn extends Component {
                 </div>
                 <a href="#!" class="waves-effect waves-light blue darken-1 btn-small" onClick={()=>{SignInCall()}} style={styleBox.loginBtn}>Sign In</a>
                 <p style={styleBox.contnt}><Link to='/passReset'>Forget Password ?</Link></p>
-                <p style={{color: "grey", marginTop: 10}}>OR</p>
+                <p style={{color: "grey", marginTop: 10,width:"100%", textAlign:"center", borderBottom: "1px solid lightgrey", lineHeight:"0.1em", margin:"10px 0 20px"}}> <span style={{ background:"#fff", padding:"0 10px" }}>OR</span></p>
                 <div>
                     <img style={styleBox.socialIcons} src={fb} alt="" />
-                    <img style={styleBox.socialIcons} src={gplus} alt="" />
                     <img style={styleBox.socialIcons} src={twitr} alt="" />
+                    <img style={styleBox.socialIcons} src={gplus} alt="" />
                 </div>
-                <p style={{color: "grey", marginTop: 10}}>Not member yet? <Link to="/SignUp" ><b>Sign UP here</b></Link></p>
+                <p style={{color: "grey", marginTop: 10}}>Not member yet? <Link to="/SignUp" ><b>Signup here</b></Link></p>
               </div>
             </div>
             </div>

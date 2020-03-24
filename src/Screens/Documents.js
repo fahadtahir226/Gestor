@@ -14,38 +14,25 @@ componentDidMount(){
     M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
 }
 render() {
-    var {userInfo, uploadDoc} = this.props;
+    // var {isAuthenticated, userInfo} = this.props;
   return(
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
-      <h4 className="col s12 m12 l12 " style={{marginBottom: 0}}>Document</h4>
+      <h5 className="col s12 m12 l12 " style={{marginBottom: 0, fontWeight: "bold"}}>Document</h5>
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
             <ul className="collapsible" style={styleBox.Ul}>
                 {DocData.map((contact, key) => <Doc data={contact} key={key}/>)}
             </ul>
-
         </div>
       </div>
-      {/* <div className='row'> */}
-        {/* <center>
-            <iframe title='docTitle' id="docIframe" src="https://docs.google.com/viewerng/viewer?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" 
-            style={{
-              overflow: "hidden"
-            }}
-            frameborder="0" height="640" width="500"></iframe>
-        </center> */}
-      {/* </div> */}
     </div>
     <div className="container-fluid" style={{margin:30  }}>
       <a style={{float: "right", marginLeft:10}} href="#!" 
         className="btn-floating btn-large waves-effect waves-light white">
       <i className="material-icons" style={{color: "#1e88e5"}}>folder</i></a>
-
-      <input id="uploadDoc" onChange={(event) => uploadDoc(event, userInfo.uid)} 
-      className="hide" type="file" />
-      <a style={{float: "right"}} onClick={()=>document.getElementById('uploadDoc').click()}
-        className="btn-floating btn-large waves-effect waves-light white" href="#!">
+      <a style={{float: "right"}} href="#!" 
+        className="btn-floating btn-large waves-effect waves-light white">
       <i className="material-icons" style={{color: "#1e88e5"}}>arrow_upward</i></a>
     </div>
     </>
@@ -54,16 +41,19 @@ render() {
 
 
 const Doc = (props) => {
-  // console.log(props.data.numbersList);
+  console.log(props.data.numbersList);
     return (
         <li >
           <div className="collapsible-header">
             <img alt="" 
               style={props.data.childs? styleBox.folderStyle : styleBox.pdfStyle }
               src={props.data.childs? folderIcon : pdfIcon} />
+            <div style={{ width:"80%" }}>
             {props.data.name}
+            </div>
+
             {props.data.childs ? 
-            <i style={{textAlign: "right"}} 
+            <i style={{textAlign: "right", width: "20%"}} 
               className="material-icons secondary-content">chevron_right</i>
               : null
             }

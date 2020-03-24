@@ -3,91 +3,68 @@ import M from 'materialize-css';
 import '../App.css'
 
 import history from '../images/drawable/history.png';
-// import mail from '../images/drawable/mail.png'
-import AddExpense from '../Screens/Popup/AddExpense'
-import {HideCard, PopupCard} from '../Screens/Popup/configureCards';
-import { Link } from 'react-router-dom';
-
+import mail from '../images/drawable/mail.png'
 
 class Expense extends Component {
-  constructor(props){
-    super(props);
-    let now = new Date().getMonth(), toShow;
-    if(now < 3) toShow = '1T'
-    else if(now < 6) toShow = '2T'
-    else if(now < 9) toShow = '3T'
-    else if(now < 12) toShow = '4T'
-
-    this.state = {qtr: toShow }
-  }
-
-  componentDidMount(){
-    var elems = document.querySelectorAll('.collapsible'),
-      fixdbtn = document.querySelectorAll('.fixed-action-btn'),
-      select = document.querySelectorAll('select');
-
-      M.Collapsible.init(elems);
-      M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
-      M.FormSelect.init(select);
-      HideCard('addExpense');
+    componentDidMount(){
+        var elems = document.querySelectorAll('.collapsible'),
+          fixdbtn = document.querySelectorAll('.fixed-action-btn'),
+           select = document.querySelectorAll('select');
+           
+          M.Collapsible.init(elems);
+          M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
+          M.FormSelect.init(select);
     }
-  handleClick(e,select){
-    this.setState({qtr: select.value});
-  }
 render() {
-    var {userInfo} = this.props;
-    var expenseData = this.props.expData;
+    // var {isAuthenticated, userInfo} = this.props;
   return (
-    <>
-    <center>
-    <AddExpense userInfo={userInfo} />
-    </center>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row" style={{marginBottom: 0}}>
-      <h5 className="col s12 m12 l4 " style={styleBox.mainHeading}> NET EXPENSE 600€<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
+      <h5 className="col s12 m12 l4 " style={styleBox.mainHeading}>NET EXPENSE 600€<br /><span style={{color: "grey", fontSize: 20}}>4T 2020</span></h5>
+      <div className="col s6 m5 l2" style={{paddingLeft: 30,paddingRight: 0,margin: 0,marginLeft: 80}}>
+      <div className="input-field" style={styleBox.inputDiv}>
+        <select style={{boxShadow: "none", outline: "none", borderBottom: "none"}}>
+          <option defaultValue="ALL">ALL</option>
+          <option defaultValue="1">1T</option>
+          <option defaultValue="2">2T</option>
+          <option defaultValue="3">3T</option>
+          <option defaultValue="4">4T</option>
+        </select>
+      </div>
+      </div>
       <div className="col s6 m5 l3 right" style={{textAlign: "right" ,padding: 30, paddingBottom: 0,paddingLeft: 0}}>
-          {/* <img alt="" src={history} style={styleBox.HeaderIcons}/> */}
-          <Link to='expense/history'><img alt="" src={history} style={styleBox.HeaderIcons}/></Link>
+          <img alt="" src={history} style={styleBox.HeaderIcons}/>
+          <img alt="" src={mail} style={styleBox.HeaderIcons}/>
       </div>
       </div>
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
-          {
-            this.state.qtr === "1T" ?
-            <QTR1 expenseData={expenseData} />:
-            this.state.qtr === "2T" ?
-            <QTR2 expenseData={expenseData} />:
-            this.state.qtr === "3T" ?
-            <QTR3 expenseData={expenseData} />:
-            this.state.qtr === "4T" ?
-            <QTR4 expenseData={expenseData} />:
-            null
-          }
+          <QTR1 year="2019" />
         </div>
       </div>
+      <a style={{float: "right"}} href="#!" className="btn-floating btn-large waves-effect waves-light white">
+            <i style={{ color: "#1e88e5"}} className="material-icons">add</i></a>
     </div>
-      <a onClick={()=>PopupCard('addExpense', false)} style={{float: "right", marginRight: 30}} href="#addExpense" className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
-            <i style={{ color: "#1e88e5"}} className="material-icons">file_upload</i></a>
-    </>
 );
   }
 }
 
 
 const Entry = (props) => {
-    var {concept, day, date, status, docAddr} = props;
+    var {title, day, date, amount, status} = props;
     
     return (
 
       <li className="collection-item avatar" style={{borderRight: "none",borderLeft: "none", borderBottom: "1px solid #e0e0e0", paddingLeft: 30}}>
-        <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}</h5>
+        <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{title}</h5>
         <p style={{color: "dimgrey", padding: 3, fontSize: 12}}> {day} , {date}</p>
-        <a href="#!" className="secondary-content"><i onClick={()=>PopupCard('docPdf', docAddr)} className='material-icons' style={{color: "grey"}}>picture_as_pdf</i>
+        <a href="#!" className="secondary-content">{amount}€
             <i className="material-icons right" style={{color: "grey"}}>chevron_right</i>
             <br />
             {status ? 
                 <span className=
-                {status==="PENDING"? "badge blue": status==='reviced'? "badge red" : null}
+                {status==="PENDING"?
+                 "badge blue": "badge red"}
                   style={{color: "white", borderRadius: 4, fontSize: 9, width: 70, marginLeft: 0, }} >
                     {status}</span>
             : null}
@@ -96,16 +73,17 @@ const Entry = (props) => {
     )
 }
 const Month = (props) => {
-  if(props.expenseData==null) return null;
-  if(props.expenseData[props.mon].length === 0) return null;
-  let usrs = props.expenseData[props.mon];
+  let usrs = Data["Y" + props.year];
+  usrs = usrs[props.mon];
+  if(!usrs) return null;
   usrs.sort((i,iPlus) => i.date - iPlus.date);
   return (
     <>
-      <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.expenseData.year}</div>
+      <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.year}</div>
       <ul className="collection" style={{margin: 0}}>
-        {usrs.map((entry, key) => 
-            <Entry key={key} concept = {entry.concept} day={entry.day} date={entry.date} status={entry.status} docAddr={entry.docAddr} />
+          {usrs
+          .map((entry, key) => 
+            <Entry key={key} title = {entry.title} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status}/>
         )}
       </ul>
     </>
@@ -113,42 +91,11 @@ const Month = (props) => {
 }
 
 const QTR1 = (props) => {
-
   return (
     <>
-    <Month expenseData={props.expenseData} mon="JANUARY"/>
-    <Month expenseData={props.expenseData} mon="FEBRUARY"/>
-    <Month expenseData={props.expenseData} mon="MARCH"/>
-    </>
-  )
-}
-const QTR2 = (props) => {
-
-  return (
-    <>
-    <Month expenseData={props.expenseData} mon="APRIL"/>
-    <Month expenseData={props.expenseData} mon="MAY"/>
-    <Month expenseData={props.expenseData} mon="JUNE"/>
-    </>
-  )
-}
-const QTR3 = (props) => {
-
-  return (
-    <>
-    <Month expenseData={props.expenseData} mon="JULY"/>
-    <Month expenseData={props.expenseData} mon="AUGUST"/>
-    <Month expenseData={props.expenseData} mon="SEPTEMBER"/>
-    </>
-  )
-}
-const QTR4 = (props) => {
-
-  return (
-    <>
-    <Month expenseData={props.expenseData} mon="OCTUBER"/>
-    <Month expenseData={props.expenseData} mon="NOVEMBER"/>
-    <Month expenseData={props.expenseData} mon="DECEMBER"/>
+    <Month year = {props.year} mon="JANUARY"/>
+    <Month year = {props.year} mon="FEBURARY"/>
+    <Month year = {props.year} mon="MARCH"/>
     </>
   )
 }
@@ -157,7 +104,7 @@ const styleBox = {
     main: {
       margin: 30,
       borderRadius: 10,
-      minHeight: 450,
+      minHeight: 500,
       color: "#1e88e5",
       boxShadow:"0px 1px 2px 2px #ceeef2"
     },
@@ -167,6 +114,7 @@ const styleBox = {
       padding: 30,
       paddingBottom: 0,
       color: "#1e88e5",
+      fontWeight :"bold"
     },
     HeaderIcons: {
       width: 30,
@@ -183,10 +131,24 @@ const styleBox = {
       padding: 10,
     },
     Ul: {
-      borderRight: "none",
-      borderLeft: "none",
-      boxShadow: "none"
+        borderRight: "none",
+        borderLeft: "none",
+        boxShadow: "none"
     }
+  }
+
+  let Data = 
+  {
+    Y2019: {
+        JANUARY: [
+            {title : "StemLabs SI", day: "Monday", date: "14", amount: "152", status: "PENDING"},
+            {title : "StemLabs SI", day: "WEDNESDAY", date: "5", amount: "175", status: ""}
+        ],
+        FEBURARY: [
+          {title : "StemLabs SI", day: "FRIDAY", date: "27", amount: "652", status: "REVISE"},
+          {title : "StemLabs SI", day: "WEDNESDAY", date: "5", amount: "175", status: ""},
+        ]
+    },
   }
 
 export default Expense;

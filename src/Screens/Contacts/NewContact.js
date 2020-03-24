@@ -1,51 +1,22 @@
 import React, { Component } from 'react';
-import M from 'materialize-css';
+
 import savBtn from "../../images/Rectangle 267@2x.png"
-import {db} from '../../Firebase/firestore'
 
-class NewContact extends Component {
-
-  addContact = (user) => {
-      let contact ={};
-      contact.address = document.getElementById('addrContact').value;
-      contact.name = document.getElementById("nameContact").value;
-      contact.nif = document.getElementById("nifContact").value;
-      contact.pCode = document.getElementById('postalCodeContact').value;
-      contact.city = document.getElementById('cityContact').value;
-      contact.province = document.getElementById('provContact').value;
-      contact.country = document.getElementById('countryContact').value;
-      contact.mail = document.getElementById('mailContact').value;
-      contact.saveAs = document.getElementById('saveAsContact').value;
-
-    if(!contact.address || !contact.name || !contact.nif   || !contact.pCode || 
-          !contact.city || !contact.province  ||!contact.country|| !contact.mail){
-            M.toast({html: "Please Fill All required Fields!"})
-            return;
-          }
-
-
-      db.collection("Users").doc(user).collection("contacts").add(contact)
-      .then(res =>{
-        window.location.replace('/Home/contacts');
-      })
-      .catch(err => console.log(err))
-        // M.toast({html: err.message}))
-     
-  }
+class Security extends Component {
 render() {
-    var {userInfo} = this.props;
+    // var {isAuthenticated, userInfo} = this.props;
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className='row'>
       <h5 className="col s10 m7 l10 " style={styleBox.mainHeading}>NEW CONTACT</h5>
 
-      <a onClick={() => this.addContact(userInfo.uid)} href="#!" style={styleBox.savebtn} 
-         className="btn waves-effect  col hide-on-small-only m3 l1" id="saveBtn">
+      <a onClick={()=>this.handleClick()} href="#!" style={styleBox.savebtn} 
+         className="btn waves-effect waves-light col hide-on-small-only m3 l1" id="saveBtn">
         <span className="hide-on-small-only">SAVE</span>
       </a>
 
-      <a onClick={() => this.addContact(userInfo)} href="#!" style={styleBox.saveBtnResponsive} 
-         className="btn waves-effect waves-light col s1 hide-on-med-and-up" id="saveBtnIcon">
+      <a onClick={()=>this.handleClick()} href="#!" style={styleBox.saveBtnResponsive} 
+         className="btn waves-effect waves-light col s1 hide-on-med-and-up" id="saveBtn">
         <i className="material-icons show-on-small-only">save</i>
       </a>
       </div>
@@ -132,14 +103,14 @@ const styleBox = {
 
   }
   let forms = [
-    {val:"NAME",    val2: " OF CLIENT", id: "nameContact"},
-    {val:"NIF",     val2: "",           id: "nifContact"},
-    {val:"ADDRESS", val2: "",           id: "addrContact"},
-    {val:"POSTAL",  val2: " CODE",      id: "postalCodeContact"},
-    {val:"CITY",    val2: "",           id: "cityContact"},
-    {val:"PROVINCE",val2: "",           id: "provContact"},
-    {val:"COUNTRY", val2: "",           id: "countryContact"},
-    {val:"EMAIL",   val2: "",           id: "mailContact"},
-    {val:"SAVE",    val2: " AS",        id: "saveAsContact"},
+    {val:"NAME",    val2: " OF CLIENT", id: "name"},
+    {val:"NIF",     val2: "",           id: "nif"},
+    {val:"ADDRESS", val2: "",           id: "addr"},
+    {val:"POSTAL",  val2: " CODE",      id: "postalCode"},
+    {val:"CITY",    val2: "",           id: "city"},
+    {val:"PROVINCE",val2: "",           id: "prov"},
+    {val:"COUNTRY", val2: "",           id: "country"},
+    {val:"EMAIL",   val2: "",           id: "mail"},
+    {val:"SAVE",    val2: " AS",        id: "saveAs"},
   ]
-export default NewContact;
+export default Security;

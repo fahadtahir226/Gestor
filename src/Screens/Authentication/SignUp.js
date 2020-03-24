@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 
 import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Group762.png";
-import fb from "../../images/Social Icons/fb.png";
-import gplus from "../../images/Social Icons/googlePlus.png"
-import twitr from "../../images/Social Icons/twitter.png"
-import {SignUpCall} from "../../Firebase/auth";
+import fb from "../../images/facebook.png";
+import gplus from "../../images/google-plus.png";
+import twitr from "../../images/twitter.png";
+import {SignUpCall} from "../../Auth/auth";
 
 class SignUp extends Component {
   render() {
@@ -33,6 +33,7 @@ class SignUp extends Component {
                         </label>
                     <input id='reg-fname' placeholder='First Name' style={styleBox.inputsNam} type="email" />
                 </div>
+                
                 </div>
                 {/* Last Name */}
                 <div className=" col s12 m12 l6" style={{padding: "0px !important" }}>

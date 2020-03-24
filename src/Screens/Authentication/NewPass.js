@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Component5-1.png";
-import {NewPassword} from "../../Firebase/auth"
+import {NewPassword} from "../../Auth/auth"
 
 
 class NewPass extends Component {

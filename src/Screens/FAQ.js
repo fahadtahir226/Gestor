@@ -53,7 +53,9 @@ const styleBox = {
       boxShadow:"0px 1px 2px 2px #ceeef2"
     },
     mainHeading: {
-      marginBottom: 0
+      marginBottom: 0,
+      fontWeight: "bold"
+
     },
     listheader: {
       border: "1px solid transparent ",

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Component5-1.png";
-import {PassReset} from "../../Firebase/auth"
+import {PassReset} from "../../Auth/auth"
 
 
 class ForgetPassWord extends Component {
