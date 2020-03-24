@@ -19,7 +19,7 @@ import NewContact from '../Contacts/NewContact';
 
 import Subscription from '../Subscription';
 import Configuration from '../Configuration';
-import Documents from '../Documents'
+import Documents from '../Documents/Documents'
 import FAQ from "../FAQ";
 import Security from '../Security';
 import Help from '../Help';
@@ -119,9 +119,9 @@ const Header = (props) =>{
   var {isAuthenticated, userInfo} = props;
   return (
     <div className="row" style={styleBox.header}>
-      <div className="col s12 m8 l9"></div>
-        <div className="col hide-on-small-only m2 l2" style={styleBox.name}>{userInfo.displayName}</div>
-        <div  className="col hide-on-small-only m l1">
+      <div className="col s5 m7 l9"></div>
+        <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
+        <div  className="col s2 m2 l1">
           <img style={styleBox.profile} alt="" src={isAuthenticated ? userInfo.photoURL : null} />
         </div>
     </div>

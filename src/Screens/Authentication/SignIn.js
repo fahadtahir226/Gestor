@@ -8,7 +8,8 @@ import fb from "../../images/Social Icons/fb.png";
 import gplus from "../../images/Social Icons/googlePlus.png";
 import twitr from "../../images/Social Icons/twitter.png";
 import { SignInCall } from "../../Firebase/auth";
-
+import { facebookLogin }from '../../Firebase/facebookAuth'
+import { googleLogin } from '../../Firebase/google'
 
 class SignIn extends Component {
   render() {
@@ -42,8 +43,8 @@ class SignIn extends Component {
                 <p style={styleBox.contnt}><Link to='/passReset'>Forget Password ?</Link></p>
                 <p style={{color: "grey", marginTop: 10}}>OR</p>
                 <div>
-                    <img style={styleBox.socialIcons} src={fb} alt="" />
-                    <img style={styleBox.socialIcons} src={gplus} alt="" />
+                    <img onClick={(event)=>facebookLogin(event)} style={styleBox.socialIcons} src={fb} alt="" />
+                    <img onClick={(event) =>googleLogin(event) } style={styleBox.socialIcons} src={gplus} alt="" />
                     <img style={styleBox.socialIcons} src={twitr} alt="" />
                 </div>
                 <p style={{color: "grey", marginTop: 10}}>Not member yet? <Link to="/SignUp" ><b>Sign UP here</b></Link></p>

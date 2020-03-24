@@ -10,15 +10,15 @@ class NewContact extends Component {
       contact.address = document.getElementById('addrContact').value;
       contact.name = document.getElementById("nameContact").value;
       contact.nif = document.getElementById("nifContact").value;
-      contact.pCode = document.getElementById('postalCodeContact').value;
+      contact.pcode = document.getElementById('postalCodeContact').value;
       contact.city = document.getElementById('cityContact').value;
       contact.province = document.getElementById('provContact').value;
       contact.country = document.getElementById('countryContact').value;
-      contact.mail = document.getElementById('mailContact').value;
+      contact.email = document.getElementById('mailContact').value;
       contact.saveAs = document.getElementById('saveAsContact').value;
 
-    if(!contact.address || !contact.name || !contact.nif   || !contact.pCode || 
-          !contact.city || !contact.province  ||!contact.country|| !contact.mail){
+    if(!contact.address || !contact.name || !contact.nif   || !contact.pcode || 
+          !contact.city || !contact.province  ||!contact.country|| !contact.email){
             M.toast({html: "Please Fill All required Fields!"})
             return;
           }
