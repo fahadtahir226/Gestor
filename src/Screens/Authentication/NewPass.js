@@ -8,11 +8,11 @@ import {NewPassword} from "../../Firebase/auth"
 
 class NewPass extends Component {
     componentDidMount(){
-        console.log(this.props);
+        console.log(this.props.location.search.split('=')[2].split('&')[0]);
         console.log("Params here: ",this.props.match.params);
     }
   render() {
-      let { oobCode } = this.props.match.params;
+      let { oobCode } = this.props.location.search.split('=')[2].split('&')[0];
 
     // var {isAuthenticated, userInfo} = this.props;
     return (
