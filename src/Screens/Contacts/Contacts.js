@@ -16,7 +16,7 @@ render() {
   return (
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
-      <h4 className="col s12 m12 l12 " style={styleBox.mainHeading}>Contact Us!</h4>
+    <h4 className="col s12 m12 l12 " style={styleBox.mainHeading}>Contacts</h4>
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
           <ul className="collapsible" style={styleBox.Ul}>
@@ -44,19 +44,19 @@ const Contact = (props) => {
   var contact = props.data;
     return (
         <li key={props.key}>
-          <div className="collapsible-header"><div>
-            {contact.name}</div>
-            <div>
-              <i className="material-icons right" style={{float: "right", textAlign: "right"}}>chevron_right</i>
-             </div>
-            </div>
+          <div className="collapsible-header" style={{ width:"100%" }}>
+              <div style={{ width : "90%" }}>
+              {props.data.name}
+              </div>
+              <i className="material-icons right" style={{alignContent : "center"}}>chevron_right</i>
+          </div>
           <div className="container-fluid collapsible-body">
             <div className='row'>
               <div className='col s6 m6 l3' style={{color: "dimgrey"}}>
-                <p>Name: </p>
-                <p>NIF: </p>
-                <p>Email: </p>
-                <p>Address: </p>
+                <p style={{ fontWeight : "bold" }}>Name : </p>
+                <p style={{ fontWeight : "bold" }}>NIF : </p>
+                <p style={{ fontWeight : "bold" }}>Email : </p>
+                <p style={{ fontWeight : "bold" }}>Address : </p>
               </div>
               <div className='col s6 m6 l3' >
                 <p>{contact.name}</p>
@@ -65,10 +65,10 @@ const Contact = (props) => {
                 <p>{contact.address}</p>
               </div>
               <div className='col s6 m6 l3' style={{color: "dimgrey"}}>
-                <p>CITY: </p>
-                <p>PROVINCE: </p>
-                <p>COUNTRY: </p>
-                <p>POSTAL CODE:</p>
+                <p style={{ fontWeight : "bold" }}>City : </p>
+                <p style={{ fontWeight : "bold" }}>Province : </p>
+                <p style={{ fontWeight : "bold" }}>Country : </p>
+                <p style={{ fontWeight : "bold" }}>Postal Code :</p>
               </div>
               <div className='col s6 m6 l3' >
                 <p>{contact.city}</p>
@@ -83,25 +83,25 @@ const Contact = (props) => {
 }
 
 const styleBox = {
-    main: {
-      margin: 30,
-      borderRadius: 10,
-      minHeight: 500,
-      padding: 30,
-      color: "#1e88e5",
-      boxShadow:"0px 1px 2px 2px #ceeef2"
-    },
-    mainHeading: {
-      // marginBottom: 0
-    },
-    content: {
-      padding: 10,
-    },
-    Ul: {
-        borderRight: "none",
-        borderLeft: "none",
-        boxShadow: "none"
-    }
+  main: {
+    margin: 30,
+    borderRadius: 10,
+    minHeight: 500,
+    padding: 30,
+    color: "#1e88e5",
+    boxShadow:"0px 1px 2px 2px #ceeef2"
+  },
+  mainHeading: {
+    marginBottom: 0,
+    fontWeight: "bold"
+  },
+  content: {
+    padding: 10,
+  },
+  Ul: {
+      borderRight: "none",
+      borderLeft: "none",
+      boxShadow: "none"
   }
-
+}
 export default Contacts;

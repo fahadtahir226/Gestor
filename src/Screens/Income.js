@@ -173,39 +173,40 @@ const QTR4 = (props) => {
 }
 
 const styleBox = {
-    main: {
-      margin: 30,
-      borderRadius: 10,
-      minHeight: 450,
-      color: "#1e88e5",
-      boxShadow:"0px 1px 2px 2px #ceeef2"
-    },
-    mainHeading: {
-      marginBottom: 0,
-      marginTop: 0,
-      padding: 30,
-      paddingBottom: 0,
-      color: "#1e88e5",
-    },
-    HeaderIcons: {
-      width: 30,
-      height: 30,
-      marginRight: 20
+  main: {
+    margin: 30,
+    borderRadius: 10,
+    minHeight: 500,
+    color: "#1e88e5",
+    boxShadow:"0px 1px 2px 2px #ceeef2"
   },
-    inputDiv: {
-      background: "#F2F0EC",
-      borderRadius: 200,
-      paddingLeft: 15,
-      marginTop: 30,
-    },
-    content: {
-      padding: 10,
-    },
-    Ul: {
-        borderRight: "none",
-        borderLeft: "none",
-        boxShadow: "none"
-    }
+  mainHeading: {
+    marginBottom: 0,
+    marginTop: 0,
+    padding: 30,
+    paddingBottom: 0,
+    color: "#1e88e5",
+    fontWeight :"bold"
+  },
+  HeaderIcons: {
+    width: 30,
+    height: 30,
+    marginRight: 20
+},
+  inputDiv: {
+    background: "#F2F0EC",
+    borderRadius: 200,
+    paddingLeft: 15,
+    marginTop: 30,
+  },
+  content: {
+    padding: 10,
+  },
+  Ul: {
+      borderRight: "none",
+      borderLeft: "none",
+      boxShadow: "none"
+  }
   }
 
 export default Income;
