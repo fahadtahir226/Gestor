@@ -53,7 +53,7 @@ class Home extends Component {
                 <Switch>
 
                   <Route path="/home/"  exact ><Graphs /> </Route>
-                  <Route path="/home/myGestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
+                  <Route path="/home/mygestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
                   <Route path="/home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
                   <Route path="/home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
@@ -63,7 +63,7 @@ class Home extends Component {
                   <Route path="/home/contacts" exact ><Contacts contacts={contacts}/></Route>
                   <Route path="/home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
 
-                  <Route path="/home/subscr" exact><Subscription /></Route>
+                  <Route path="/home/subscription" exact><Subscription /></Route>
                   <Route path="/home/configure" exact ><Configuration /></Route>
                   <Route path="/home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc}/></Route>
                   <Route path="/home/faq" exact ><FAQ/> </Route>

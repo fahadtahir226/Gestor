@@ -15,19 +15,21 @@ class Subscription extends Component {
 
         <div className="col s12 m12 l6">
             <div className="card" style={styleBox.PlanBox}>
-            <div style={styleBox.bluishHeading} >Basic Plan (Free)</div>
-            <div className="container" >
-                {basicPlan.map(plan=><Plan discription={plan}></Plan>)}
-            </div>
+              <div style={styleBox.bluishHeading} >
+                Basic Plan (Free)
+              </div>
+              <div className="container" >
+                  {basicPlan.map(plan=><Plan discription={plan}></Plan>)}
+              </div>
             </div>
         </div>
         <div className="col s12 m12 l6 right" >
-        <div className="card" style={styleBox.PlanBox}>
-            <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
-            <div className="container">
-            {premiumPlan.map(plan=><Plan discription={plan}></Plan>)}
-            </div>
-        </div>
+          <div className="card" style={styleBox.PlanBox}>
+              <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
+              <div className="container">
+              {premiumPlan.map(plan=><Plan discription={plan}></Plan>)}
+              </div>
+          </div>
         </div>
       </div>
     </div>

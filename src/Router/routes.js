@@ -26,8 +26,8 @@ const AppRouter = (props) => {
           contacts={contacts} 
           uploadDoc={uploadDoc}
            /> }  />
-        <Route path="/SignUp"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
-        <Route path="/passReset" render={() => <ForgetPassWord /> } />
+        <Route path="/signup"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
+        <Route path="/resetpasword" render={() => <ForgetPassWord /> } />
         <Route path="/newPass/?:mode&:oobCode&:apiKey&:lang" component={NewPass} exact />
       </Switch>
     </BrowserRouter>

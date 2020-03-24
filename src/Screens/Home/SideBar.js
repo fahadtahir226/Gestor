@@ -14,7 +14,7 @@ class SideBar extends React.Component {
         {/* Top 3 */}
         <li style={styleBox.Li} className="collection-item wave-effect"><Link to="/home" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons ">home</i>Home</Link></li>
-        <li style={styleBox.Li} className="collection-item"><Link to="/home/myGestor" style={{color: "dimgray"}}>
+        <li style={styleBox.Li} className="collection-item"><Link to="/home/mygestor" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons">person</i>My Gestor</Link></li>
         <li style={styleBox.Li} className="collection-item"><Link to="/home/" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons">account_balance</i>Bank Account</Link></li>
@@ -32,7 +32,7 @@ class SideBar extends React.Component {
         {/* Bottom */}
         <li style={styleBox.LiHeadings} >Settings {"&"} help</li>
 
-        <li style={styleBox.Li} className="collection-item"><Link to="/home/subscr" style={{color: "dimgray"}}>
+        <li style={styleBox.Li} className="collection-item"><Link to="/home/subscription" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons">local_atm</i>Subscription</Link></li>
         <li style={styleBox.Li} className="collection-item"><Link to="/home/configure" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons">settings</i>Configurations</Link></li>

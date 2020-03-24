@@ -66,7 +66,7 @@ class SignUp extends Component {
 
                 <a href="#!" class="col s12 m12 l12 waves-effect waves-light blue darken-1 btn-small" onClick={()=>SignUpCall()} style={styleBox.loginBtn}>Sign Up</a>
                 </div>
-                <p  style={styleBox.contnt}><Link to='/passReset'>Forget Password ?</Link></p>
+                <p  style={styleBox.contnt}><Link to='/resetpasword'>Forget Password ?</Link></p>
                 </div>
                 <p style={{color: "grey", marginTop: 10,width:"100%", textAlign:"center", borderBottom: "1px solid lightgrey", lineHeight:"0.1em", margin:"10px 0 20px"}}> <span style={{ background:"#fff", padding:"0 10px" }}>OR</span></p>
                 <div>
