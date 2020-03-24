@@ -28,7 +28,7 @@ const AppRouter = (props) => {
            /> }  />
         <Route path="/SignUp"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
         <Route path="/passReset" render={() => <ForgetPassWord /> } />
-        <Route path="/newPass/:mode&:oobCode&:apiKey&:lang" component={NewPass} exact />
+        <Route path="/newPass/?:mode&:oobCode&:apiKey&:lang" component={NewPass} exact />
       </Switch>
     </BrowserRouter>
   );

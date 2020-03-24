@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import AppRouter from './Router/routes';
 import { auth }  from './Firebase/auth';
 import { loadExpenses, loadIncomes, loadContact } from './Firebase/firestore';
-import { uploadDoc, loadDoc } from './Firebase/storage';
+import { uploadDoc, loadDocument } from './Firebase/storage';
 
 class App extends Component {
   constructor(props){
@@ -48,7 +48,6 @@ class App extends Component {
     this.setState({expData})
   }
   updateExpHis = (expHis) => {
-    console.log("History Changed")
     this.setState({expHis})
   }
 
@@ -85,7 +84,8 @@ class App extends Component {
         })
         loadExpenses(user, new Date().getFullYear(), (exp) => this.updateExpData(exp), (expHis) => this.updateExpHis(expHis));
         loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));
-        loadContact(user,(contacts) => this.updateContactData(contacts));
+        loadContact (user, (contacts) => this.updateContactData(contacts));
+        loadDocument(user,(document) => this.updateDocData(document) );
         // loadDoc(user, (doc) => this.updateDocData(doc));
       }else {
         this.setState({

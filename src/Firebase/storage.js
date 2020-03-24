@@ -19,10 +19,42 @@ export const profileUpload = (e) => {
     .catch((error) => console.log(error))
 }
 
-export const loadDoc = (e) => {
+export const loadDocument = (user, updateDocData) => {
+
+
+    let refDoc = storageRef.child(`documents/${user.uid}`);
+    refDoc.listAll()
+        .then(res => { 
+            res.prefixes.forEach(folderRef => {
+                // All the prefixes under listRef.
+                // You may call listAll() recursively on them.
+                // console.log(folderRef);
+                folderRef.listAll()
+                .then(res => console.log("Items",res.items));
+              });
+            console.log(res.items);
+        })
 
 }
-export const uploadDoc = (file, userID) => {
+let doc = {}
+const searchNested = (ref, doc) => {
+    ref.listAll()
+    .then(ref => {
+
+        doc.items = ref.itmes
+        doc.prefixes = ref.prefixes;
+        ref.prefixes.forEach(folderRef => {
+            searchNested(folderRef, folderRef.prefixes);
+        })
+    })
+}
+
+
+
+
+
+
+export const uploadDoc = (file, userID, updateDocData) => {
     let refDoc = storageRef.child(`documents/${userID}`);
      console.log(file);
     refDoc.put(file).then(function(snapshot) {
