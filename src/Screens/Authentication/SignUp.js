@@ -6,7 +6,8 @@ import signInPoster from "../../images/drawable/Group762.png";
 import fb from "../../images/facebook.png";
 import gplus from "../../images/google-plus.png";
 import twitr from "../../images/twitter.png";
-import {SignUpCall} from "../../Auth/auth";
+
+import {SignUpCall} from "../../Firebase/auth";
 
 class SignUp extends Component {
   render() {
@@ -33,7 +34,6 @@ class SignUp extends Component {
                         </label>
                     <input id='reg-fname' placeholder='First Name' style={styleBox.inputsNam} type="email" />
                 </div>
-                
                 </div>
                 {/* Last Name */}
                 <div className=" col s12 m12 l6" style={{padding: "0px !important" }}>
@@ -66,7 +66,7 @@ class SignUp extends Component {
                 </div>
                 <p  style={styleBox.contnt}><Link to='/passReset'>Forget Password ?</Link></p>
                 </div>
-                <p style={{color: "grey", marginTop: 10}}>OR</p>
+                <p style={{color: "grey", marginTop: 10,width:"100%", textAlign:"center", borderBottom: "1px solid lightgrey", lineHeight:"0.1em", margin:"10px 0 20px"}}> <span style={{ background:"#fff", padding:"0 10px" }}>OR</span></p>
                 <div>
                     <img style={styleBox.socialIcons} src={fb} alt="" />
                     <img style={styleBox.socialIcons} src={gplus} alt="" />

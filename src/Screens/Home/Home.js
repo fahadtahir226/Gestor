@@ -1,150 +1,130 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+
 
 import { Switch, Route } from "react-router-dom";
 
 // Photos
 import bkground from "../../images/maskgroup.png";
 
-import ava from "../../images/avatar/avatar-10.png";
 
 // side Bar Component
-import SideBar from "./SideBar";
+import SideBar from "./SideBar"
 import Graphs from "../Graphs";
 import Gestor from "../Gestor";
 
-import Expense from "../Expense";
-import Income from "../Income";
-import Contacts from "../Contacts/Contacts";
-import NewContact from "../Contacts/NewContact";
+import Expense from '../Expense';
+import Income from '../Income';
+import Contacts from '../Contacts/Contacts';
+import NewContact from '../Contacts/NewContact';
 
-import Subscription from "../Subscription";
-import Configuration from "../Configuration";
-import Documents from "../Documents";
+import Subscription from '../Subscription';
+import Configuration from '../Configuration';
+import Documents from '../Documents'
 import FAQ from "../FAQ";
-import Security from "../Security";
-import Help from "../Help";
+import Security from '../Security';
+import Help from '../Help';
+import DocPdf from '../Popup/docPdf'
+import {HideCard} from '../Popup/configureCards'
+import ExpenseHis from '../History/expHistory';
+import IncomeHis from '../History/incHistory';
 
 class Home extends Component {
+  componentDidMount(){
+    HideCard('docPdf');
+  }
   render() {
-    var { isAuthenticated, userInfo } = this.props;
+    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc} = this.props;
     return (
-      <div style={styleBox.main}>
-        <div className="container-fluid">
-          <div className="row " style={{ marginBottom: 0 }}>
-            <div
-              className="col hide-on-small-only m3 l2"
-              style={{
-                boxShadow: "2px 0px 0px 0px #ceeef2",
-                height: "auto",
-                margin: 0,
-                padding: 0
-              }}
-            >
-              <SideBar isAuthenticated={isAuthenticated} userInfo={userInfo} />
-            </div>
-            <div className="col s12 m9 l10">
-              <div className="container-fluid">
-                <Header isAuthenticated={isAuthenticated} userInfo={userInfo} />
-                <div className="row">
-                  <div className="col s12 m12 l12">
-                    <Switch>
-                      <Route path="/Home/" exact>
-                        <Graphs />{" "}
-                      </Route>
-                      <Route path="/Home/myGestor" exact>
-                        <Gestor
-                          isAuthenticated={isAuthenticated}
-                          userInfo={userInfo}
-                        />{" "}
-                      </Route>
+    <div style={styleBox.main}>
+      <div className="container-fluid">
+        <div className="row " style={{marginBottom: 0}}>
 
-                      <Route path="/Home/expense" exact>
-                        <Expense />
-                      </Route>
-                      <Route path="/Home/income" exact>
-                        <Income />
-                      </Route>
-                      <Route path="/Home/contacts" exact>
-                        <Contacts />
-                      </Route>
-                      <Route path="/Home/contacts/newContact" exact>
-                        <NewContact />
-                      </Route>
+          <div className="col hide-on-small-only m3 l2" style={{boxShadow:"2px 0px 0px 0px #ceeef2",height: 1200, margin: 0,padding: 0}}>
+              <SideBar isAuthenticated={isAuthenticated} userInfo={userInfo}/>
+          </div>
+          <div className="col s12 m9 l10">
+            
+            <div className="container-fluid">
+            
+              <Header  isAuthenticated={isAuthenticated} userInfo={userInfo}/>
+              <div className="row">
+                <div className="col s12 m12 l12">
+                <DocPdf url=''/>
+                <Switch>
 
-                      <Route path="/Home/subscr" exact>
-                        <Subscription />
-                      </Route>
-                      <Route path="/Home/configure" exact>
-                        <Configuration />
-                      </Route>
-                      <Route path="/Home/doc" exact>
-                        <Documents
-                          isAuthenticated={isAuthenticated}
-                          userInfo={userInfo}
-                        />
-                      </Route>
-                      <Route path="/Home/faq" exact>
-                        <FAQ />{" "}
-                      </Route>
-                      <Route path="/Home/security" exact>
-                        <Security />
-                      </Route>
-                      <Route path="/Home/help" exact>
-                        <Help />{" "}
-                      </Route>
-                    </Switch>
-                  </div>
+                  <Route path="/Home/"  exact ><Graphs /> </Route>
+                  <Route path="/Home/myGestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
+
+                  <Route path="/Home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
+                  <Route path="/Home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
+
+                  <Route path="/Home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
+                  <Route path="/Home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
+                  <Route path="/Home/contacts" exact ><Contacts contacts={contacts}/></Route>
+                  <Route path="/Home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
+
+                  <Route path="/Home/subscr" exact><Subscription /></Route>
+                  <Route path="/Home/configure" exact ><Configuration /></Route>
+                  <Route path="/Home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc}/></Route>
+                  <Route path="/Home/faq" exact ><FAQ/> </Route>
+                  <Route path="/Home/security" exact ><Security/></Route>
+                  <Route path="/Home/help" exact ><Help /> </Route>
+
+                </Switch>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }
 
+
 const styleBox = {
-  main: {
-    backgroundImage: `url(${bkground})`,
-    width: "100%",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
-    minHeight: 500
-    // paddingTop: 130,
-  },
+    main: {
+        backgroundImage : `url(${bkground})`,
+        width: "100%",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        minHeight: 500,
+        // paddingTop: 130,
+    },
 
-  //Header
-  header: {
-    color: "white",
-    padding: 30,
-    paddingBottom: 0,
-    marginBottom: 0
-  },
-  profile: {
-    width: 50,
-    height: 50,
-    border: "2px solid white",
-    borderRadius: "100%"
-  },
-  name: {
-    textAlign: "right",
-    marginTop: 12
-  }
-};
+    //Header
+    header: {
+      color: "white",
+      padding: 30,
+      paddingBottom: 0,
+      marginBottom: 0
+    },
+    profile: {
+      width: 50,
+      height: 50,
+      border: "2px solid white",
+      borderRadius: "100%"
+    },
+    name: {
+      textAlign: "right",
+      marginTop: 12,
+    }
 
-const Header = data => {
+}
+
+
+
+const Header = (props) =>{
+  var {isAuthenticated, userInfo} = props;
   return (
     <div className="row" style={styleBox.header}>
       <div className="col s12 m8 l9"></div>
-      <div className="col hide-on-small-only m2 l2" style={styleBox.name}>
-        {data.userInfo.displayName}
-      </div>
-      {/* <img alt="" src={data.userInfo.photoURL} /> */}
-      <div className="col hide-on-small-only m l1">
-        <img style={styleBox.profile} alt="" src={ava} />
-      </div>
+        <div className="col hide-on-small-only m2 l2" style={styleBox.name}>{userInfo.displayName}</div>
+        <div  className="col hide-on-small-only m l1">
+          <img style={styleBox.profile} alt="" src={isAuthenticated ? userInfo.photoURL : null} />
+        </div>
     </div>
-  );
-};
+   )
+}
 export default Home;

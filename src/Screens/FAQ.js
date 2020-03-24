@@ -43,29 +43,28 @@ const QuestionList = (data) =>{
     )
 }
 const styleBox = {
-    main: {
-      marginTop: "50px !important",
-      margin: 30,
-      borderRadius: 10,
-      minHeight: 500,
-      padding: 30,
-      color: "#1e88e5",
-      boxShadow:"0px 1px 2px 2px #ceeef2"
-    },
-    mainHeading: {
-      marginBottom: 0,
-      fontWeight: "bold"
+  main: {
+    marginTop: "50px !important",
+    margin: 30,
+    borderRadius: 10,
+    minHeight: 500,
+    padding: 30,
+    color: "#1e88e5",
+    boxShadow:"0px 1px 2px 2px #ceeef2"
+  },
+  mainHeading: {
+    marginBottom: 0,
+    fontWeight: "bold"
+  },
+  listheader: {
+    border: "1px solid transparent ",
 
-    },
-    listheader: {
-      border: "1px solid transparent ",
-
-    },
-    listItem: {
-        borderTop: "1px solid transparent ",
-        borderRight: "1px solid transparent ",
-        borderLeft: "1px solid transparent "
-    }
+  },
+  listItem: {
+      borderTop: "1px solid transparent ",
+      borderRight: "1px solid transparent ",
+      borderLeft: "1px solid transparent "
+  }
 }
 
 export default FAQ;

@@ -1,8 +1,6 @@
-import firebase from 'firebase';
-import { firebaseConfig } from "./firebase";
-firebase.initializeApp(firebaseConfig);
+import firebase from "./firebase"
+import M from 'materialize-css'
 export const auth = firebase.auth();
-// const db = firebase.firestore();
 
 // user Sign Up 
 export const SignUpCall = () => {
@@ -17,7 +15,7 @@ export const SignUpCall = () => {
             auth.createUserWithEmailAndPassword(email, pass)
             .then(async () => {
                 console.log(auth.currentUser.email);
-                alert('UserAdded');
+                M.toast({html: "User Added!"})
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
             })
 
@@ -46,7 +44,7 @@ export const SignUpCall = () => {
             // })
 
     } else {
-        alert('field is empty!!')
+            M.toast({html: 'Every Field is Mandatory!'})
     }
 }
 
@@ -61,28 +59,9 @@ export const SignInCall = () => {
             if (res) {
                 window.location.replace("/Home");
                 console.log(auth.currentUser);
-            //     await db.collection(text).doc(auth.currentUser.uid).get()
-            //         .then(doc => {
-            //             if (doc.exists) {
-            //                 if (text === 'seller') {
-            //                     window.location.replace("./Field_Wise_Pages/seller_page.html");
-            //                 }
-            //                 else if (text === 'buyer') {
-            //                     window.location.replace("./Field_Wise_Pages/moderate_panel.html");
-            //                 }
-
-            //             } else {
-            //                 alert('User Doesnt Exist!!!')
-            //                 return Loading('none')
-            //             }
-            //         })
-            //         .catch(err => {
-            //             alert(err.message);
-            //             return Loading('none')
-            //         })
             }
         }).catch(err => {
-            alert(err.message);
+                M.toast({html: err.message})
         });
 }
 // User Pass Reset
@@ -102,7 +81,7 @@ export const NewPassword = (oobCode) => {
     let confirmPassword = document.getElementById("newPass");
     if(newPassword === confirmPassword){
 
-        firebase.auth().confirmPasswordReset(actionCode, newPassword)
+        auth().confirmPasswordReset(actionCode, newPassword)
             .then(function() {
               window.location.replace("/Home");
             })

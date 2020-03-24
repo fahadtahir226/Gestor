@@ -11,16 +11,20 @@ componentDidMount(){
     M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
 }
 render() {
-    // var {isAuthenticated, userInfo} = this.props;
+    var {contacts} = this.props;
+    console.log(contacts);
   return (
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
-      <h4 className="col s12 m12 l12 " style={styleBox.mainHeading}>Contacts</h4>
+      <h4 className="col s12 m12 l12 " style={styleBox.mainHeading}>Contact Us!</h4>
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
-            <ul className="collapsible" style={styleBox.Ul}>
-                {ContactsData.map((contact,key) => <Contact data={contact} key={key}/>)}
-            </ul>
+          <ul className="collapsible" style={styleBox.Ul}>
+            {
+              contacts?
+              contacts.map((contact,key) => <Contact data={contact} key={key}/>): null
+            }
+          </ul>
         </div>
       </div>
     </div>
@@ -37,16 +41,42 @@ render() {
 
 
 const Contact = (props) => {
+  var contact = props.data;
     return (
-        <li >
-          <div className="collapsible-header" style={{ width:"100%" }}>
-              <div style={{ width : "90%" }}>
-              {props.data.name}
+        <li key={props.key}>
+          <div className="collapsible-header"><div>
+            {contact.name}</div>
+            <div>
+              <i className="material-icons right" style={{float: "right", textAlign: "right"}}>chevron_right</i>
+             </div>
+            </div>
+          <div className="container-fluid collapsible-body">
+            <div className='row'>
+              <div className='col s6 m6 l3' style={{color: "dimgrey"}}>
+                <p>Name: </p>
+                <p>NIF: </p>
+                <p>Email: </p>
+                <p>Address: </p>
               </div>
-              <i className="material-icons right" style={{alignContent : "center"}}>chevron_right</i>
-          </div>
-          <div className="collapsible-body">
-              {props.data.numbersList.map((item,key)=><><span key={key}>{item}</span><br /></>)}
+              <div className='col s6 m6 l3' >
+                <p>{contact.name}</p>
+                <p>{contact.nif}</p>
+                <p>{contact.mail}</p>
+                <p>{contact.address}</p>
+              </div>
+              <div className='col s6 m6 l3' style={{color: "dimgrey"}}>
+                <p>CITY: </p>
+                <p>PROVINCE: </p>
+                <p>COUNTRY: </p>
+                <p>POSTAL CODE:</p>
+              </div>
+              <div className='col s6 m6 l3' >
+                <p>{contact.city}</p>
+                <p>{contact.province}</p>
+                <p>{contact.country}</p>
+                <p>{contact.pCode}</p>
+              </div>
+            </div>
           </div>
         </li>
     )
@@ -62,8 +92,7 @@ const styleBox = {
       boxShadow:"0px 1px 2px 2px #ceeef2"
     },
     mainHeading: {
-      marginBottom: 0,
-      fontWeight: "bold"
+      // marginBottom: 0
     },
     content: {
       padding: 10,
@@ -74,15 +103,5 @@ const styleBox = {
         boxShadow: "none"
     }
   }
-let ContactsData = [
-{
-    name: "Mamu", numbersList: ["XXXX-XXX-XYXY","XXXX-XXX-XYXY","XXXX-XXX-XYXY"]
-},
-{
-    name: "Stemslabs SI.", numbersList: ["WWWW-WWW-XYXY","VVVV-XXX-XYXY","AAAA-XXX-XYXY"]
-},
-{
-    name: "LLC Group", numbersList: ["YYYY-QQQQ-XYXY","CCCC-XXX-XYXY","AAAA-XXX-XYXY"]
-}
-]
+
 export default Contacts;
