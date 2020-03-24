@@ -14,7 +14,7 @@ const AppRouter = (props) => {
     <BrowserRouter>
       <Switch>
         <Route path="/"  render={() => <SignIn isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
-        <Route path="/Home" render={() => <Home 
+        <Route path="/home" render={() => <Home 
           isAuthenticated={isAuthenticated} 
           userInfo={userInfo} 
           expData={expData}

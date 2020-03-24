@@ -29,7 +29,7 @@ render() {
       </div>
     </div>
     <div className="container-fluid" style={{margin:30  }}>
-      <Link to="/Home/contacts/newContact">
+      <Link to="/home/contacts/newContact">
         <a style={{float: "right"}} href="#!" className="btn-floating btn-large waves-effect waves-light blue">
           <i className="material-icons">add</i></a>
       </Link>

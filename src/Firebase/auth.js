@@ -57,7 +57,7 @@ export const SignInCall = () => {
     auth.signInWithEmailAndPassword(email, pass)
         .then(async res => {
             if (res) {
-                window.location.replace("/Home");
+                window.location.replace("/home");
                 console.log(auth.currentUser);
             }
         }).catch(err => {
@@ -83,7 +83,7 @@ export const NewPassword = (oobCode) => {
 
         auth().confirmPasswordReset(actionCode, newPassword)
             .then(function() {
-              window.location.replace("/Home");
+              window.location.replace("/home");
             })
             .catch(function(error) {
                 console.log(error);

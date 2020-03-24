@@ -52,23 +52,23 @@ class Home extends Component {
                 <DocPdf url=''/>
                 <Switch>
 
-                  <Route path="/Home/"  exact ><Graphs /> </Route>
-                  <Route path="/Home/myGestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
+                  <Route path="/home/"  exact ><Graphs /> </Route>
+                  <Route path="/home/myGestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
-                  <Route path="/Home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
-                  <Route path="/Home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
+                  <Route path="/home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
+                  <Route path="/home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
 
-                  <Route path="/Home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
-                  <Route path="/Home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
-                  <Route path="/Home/contacts" exact ><Contacts contacts={contacts}/></Route>
-                  <Route path="/Home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
+                  <Route path="/home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
+                  <Route path="/home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
+                  <Route path="/home/contacts" exact ><Contacts contacts={contacts}/></Route>
+                  <Route path="/home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
 
-                  <Route path="/Home/subscr" exact><Subscription /></Route>
-                  <Route path="/Home/configure" exact ><Configuration /></Route>
-                  <Route path="/Home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc}/></Route>
-                  <Route path="/Home/faq" exact ><FAQ/> </Route>
-                  <Route path="/Home/security" exact ><Security/></Route>
-                  <Route path="/Home/help" exact ><Help /> </Route>
+                  <Route path="/home/subscr" exact><Subscription /></Route>
+                  <Route path="/home/configure" exact ><Configuration /></Route>
+                  <Route path="/home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc}/></Route>
+                  <Route path="/home/faq" exact ><FAQ/> </Route>
+                  <Route path="/home/security" exact ><Security/></Route>
+                  <Route path="/home/help" exact ><Help /> </Route>
 
                 </Switch>
                 </div>
