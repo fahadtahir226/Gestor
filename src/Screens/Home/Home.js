@@ -39,7 +39,7 @@ class Home extends Component {
       <div className="container-fluid">
         <div className="row " style={{marginBottom: 0}}>
 
-          <div className="col hide-on-small-only m3 l2" style={{boxShadow:"2px 0px 0px 0px #ceeef2",height: 1200, margin: 0,padding: 0}}>
+          <div className="col hide-on-small-only m3 l2" style={{boxShadow:"2px 0px 0px 0px #ceeef2",height: "auto", margin: 0,padding: 0}}>
               <SideBar isAuthenticated={isAuthenticated} userInfo={userInfo}/>
           </div>
           <div className="col s12 m9 l10">
