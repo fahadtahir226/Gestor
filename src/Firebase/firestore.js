@@ -32,7 +32,7 @@ export const loadExpenses = (user, year, updateExpData, updateExpHis) => {
             expenseData[month].push(report.data());   
           }
       })
-      if(month == 'DECEMBER') {
+      if(month === 'DECEMBER') {
         updateExpData(expenseData);
         updateExpHis(expenseData);
       }
@@ -54,7 +54,7 @@ export const loadIncomes = (user, year, updateIncData, updateIncHis) => {
             incomeData[month].push(report.data());   
           }
       })
-      if(month == 'DECEMBER') {
+      if(month === 'DECEMBER') {
         updateIncData(incomeData);
         updateIncHis(incomeData);
       };
@@ -74,22 +74,4 @@ export const loadContact = (user, updateContactState) => {
     updateContactState(contacts);
   })
   .catch((error) => console.log("Error: ", error) )
-}
-
-export const addContact = (user, addContact) => {
-  let contact ={};
-  contact.address = document.getElementById('adderinput');
-  contact.nameInput = document.getElementById("nameInput");
-  contact.nif = document.getElementById("nifInput");
-  contact.address = document.getElementById('addrInput');
-  contact.pCode = document.getElementById('postalCodeInput');
-  contact.city = document.getElementById('cityInput');
-  contact.province = document.getElementById('provInput');
-  contact.mail = document.getElementById('mailInput');
-  contact.saveAs = document.getElementById('saveAsInput');
-
-  db.collection("Users").doc(user.uid).collection("contacts").set({
-      
-
-  })
 }

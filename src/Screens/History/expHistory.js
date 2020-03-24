@@ -21,7 +21,7 @@ componentDidMount(){
 
 }
 loadExpHis = (user, year) => {
-  if(year == this.state.year) return;
+  if(year === this.state.year) return;
   let monthlyData = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST','SEPTEMBER','OCTUBER','NOVEMBER','DECEMBER'],
   expHis = { JANUARY : [], FEBRUARY : [], MARCH : [], APRIL : [], MAY : [], JUNE : [], JULY : [], AUGUST : [], SEPTEMBER :[], OCTUBER : [], NOVEMBER : [], DECEMBER : []}, 
   expenses = db.collection("Users").doc(user.uid).collection("expense");
@@ -34,7 +34,7 @@ loadExpHis = (user, year) => {
             expHis[month].push(report.data());   
           }
       })
-      if(month == 'DECEMBER') {
+      if(month === 'DECEMBER') {
           console.log("Setting data for year: ", year, expHis);
           this.props.updateExpHis(expHis)
           this.setState({year: year})

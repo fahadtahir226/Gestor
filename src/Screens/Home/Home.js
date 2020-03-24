@@ -61,7 +61,7 @@ class Home extends Component {
                   <Route path="/Home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
                   <Route path="/Home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
                   <Route path="/Home/contacts" exact ><Contacts contacts={contacts}/></Route>
-                  <Route path="/Home/contacts/newContact" exact><NewContact /></Route>
+                  <Route path="/Home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
 
                   <Route path="/Home/subscr" exact><Subscription /></Route>
                   <Route path="/Home/configure" exact ><Configuration /></Route>

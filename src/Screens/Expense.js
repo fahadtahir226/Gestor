@@ -67,7 +67,7 @@ render() {
       </div>
     </div>
       <a onClick={()=>PopupCard('addExpense', false)} style={{float: "right", marginRight: 30}} href="#addExpense" className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
-            <i style={{ color: "#1e88e5"}} className="material-icons">add</i></a>
+            <i style={{ color: "#1e88e5"}} className="material-icons">file_upload</i></a>
     </>
 );
   }

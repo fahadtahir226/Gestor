@@ -15,7 +15,7 @@ export const SignUpCall = () => {
             auth.createUserWithEmailAndPassword(email, pass)
             .then(async () => {
                 console.log(auth.currentUser.email);
-                alert('UserAdded');
+                M.toast({html: "User Added!"})
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
             })
 

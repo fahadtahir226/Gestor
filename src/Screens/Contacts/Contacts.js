@@ -61,7 +61,7 @@ const Contact = (props) => {
               <div className='col s6 m6 l3' >
                 <p>{contact.name}</p>
                 <p>{contact.nif}</p>
-                <p>{contact.email}</p>
+                <p>{contact.mail}</p>
                 <p>{contact.address}</p>
               </div>
               <div className='col s6 m6 l3' style={{color: "dimgrey"}}>
@@ -74,7 +74,7 @@ const Contact = (props) => {
                 <p>{contact.city}</p>
                 <p>{contact.province}</p>
                 <p>{contact.country}</p>
-                <p> {contact.pcode}</p>
+                <p>{contact.pCode}</p>
               </div>
             </div>
           </div>

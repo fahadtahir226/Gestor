@@ -15,13 +15,10 @@ constructor(props){
 componentDidMount(){
     let select = document.querySelectorAll('select');
     M.FormSelect.init(select);
-    console.log(this.props);
-    // loadExpHis(user)
-    // this.setState = {incHis: props.expData, year: new Date().getFullYear()}
 
 }
 loadIncHis = (user, year) => {
-  if(year == this.state.year) return;
+  if(year === this.state.year) return;
   let monthlyData = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST','SEPTEMBER','OCTUBER','NOVEMBER','DECEMBER'],
   incHis = { JANUARY : [], FEBRUARY : [], MARCH : [], APRIL : [], MAY : [], JUNE : [], JULY : [], AUGUST : [], SEPTEMBER :[], OCTUBER : [], NOVEMBER : [], DECEMBER : []}, 
   expenses = db.collection("Users").doc(user.uid).collection("income");
@@ -34,7 +31,7 @@ loadIncHis = (user, year) => {
             incHis[month].push(report.data());   
           }
       })
-      if(month == 'DECEMBER') {
+      if(month === 'DECEMBER') {
           console.log("Setting data for year: ", year, incHis);
           this.props.updateIncHis(incHis)
           this.setState({year: year})
