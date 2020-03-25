@@ -33,7 +33,7 @@ class Home extends Component {
     HideCard('docPdf');
   }
   render() {
-    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc} = this.props;
+    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc} = this.props;
     return (
     <div style={styleBox.main}>
       <div className="container-fluid">
@@ -65,7 +65,7 @@ class Home extends Component {
 
                   <Route path="/home/subscription" exact><Subscription /></Route>
                   <Route path="/home/configure" exact ><Configuration /></Route>
-                  <Route path="/home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc}/></Route>
+                  <Route path="/home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc} doc={doc}/></Route>
                   <Route path="/home/faq" exact ><FAQ/> </Route>
                   <Route path="/home/security" exact ><Security/></Route>
                   <Route path="/home/help" exact ><Help /> </Route>

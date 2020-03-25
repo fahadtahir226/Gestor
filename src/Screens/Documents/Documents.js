@@ -3,18 +3,21 @@ import M from 'materialize-css';
 
 import folderIcon from '../../images/drawable/folderIcon.png'
 import pdfIcon from '../../images/drawable/pdfIcon.png'
-
+// import { doc } from '../../Firebase/storage'
+import { PopupCard, HideCard } from '../Popup/configureCards';
 
 class Documents extends Component {
 componentDidMount(){
     var elems = document.querySelectorAll('.collapsible');
     var fixdbtn = document.querySelectorAll('.fixed-action-btn');
-    
+    HideCard('docPdf');
     M.Collapsible.init(elems);
     M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
 }
+
 render() {
-    var {userInfo, uploadDoc} = this.props;
+    var {userInfo, uploadDoc, doc} = this.props;
+      console.log("Doc Reached UI",doc);
   return(
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
@@ -22,20 +25,25 @@ render() {
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
             <ul className="collapsible" style={styleBox.Ul}>
-                {DocData.map((contact, key) => <Doc data={contact} key={key}/>)}
+
+              {/*  ****************************** Show Root Folders & Files  */}
+                {doc ?
+                  doc.items || doc.subChilds ?
+                    <>
+                      <>{
+                        doc.paths.map((path, key) => <Folder name={path.name} subChilds={path.subChilds} key={key} />)}
+                      </>
+                      <>{
+                        doc.items.map((item, key) => <Pdf name={item.name} path={item.path} key={key} />)}
+                      </>
+                    </>
+                    : <PreLoader color='spinner-blue'/>
+                  : <PreLoader color='spinner-red' />
+                }
             </ul>
 
         </div>
       </div>
-      {/* <div className='row'> */}
-        {/* <center>
-            <iframe title='docTitle' id="docIframe" src="https://docs.google.com/viewerng/viewer?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" 
-            style={{
-              overflow: "hidden"
-            }}
-            frameborder="0" height="640" width="500"></iframe>
-        </center> */}
-      {/* </div> */}
     </div>
     <div className="container-fluid" style={{margin:30  }}>
       <a style={{float: "right", marginLeft:10}} href="#!" 
@@ -53,28 +61,98 @@ render() {
 }
 
 
-const Doc = (props) => {
+
+const Pdf = (props) => {
   // console.log(props.data.numbersList);
     return (
-        <li >
-          <div className="collapsible-header">
-            <img alt="" 
-              style={props.data.childs? styleBox.folderStyle : styleBox.pdfStyle }
-              src={props.data.childs? folderIcon : pdfIcon} />
-            {props.data.name}
-            {props.data.childs ? 
-            <i style={{textAlign: "right"}} 
-              className="material-icons secondary-content">chevron_right</i>
-              : null
-            }
-          </div>
-          <div className="collapsible-body">
-              {props.data.numbersList.map((item)=><>
-              <span>{item}</span><br /></>)}
+        <li key={props.key}>
+          <div className="collapsible-header" onClick={() => PopupCard('docPdf', props.path)}>
+            <img alt="" style={styleBox.pdfStyle} src={pdfIcon} />
+            {props.name}
           </div>
         </li>
     )
 }
+
+const Folder = (props) => {
+  // console.log(props.data.numbersList);
+    let doc = props.subChilds;
+    console.log("Pick a child: ",doc);
+    return (
+        <li key={props.key}>
+          <div className="collapsible-header">
+            <img alt="" style={styleBox.folderStyle} src={folderIcon} />
+            {props.name}
+            <i style={{textAlign: "right"}} className="material-icons secondary-content">chevron_right</i>
+          </div>
+          <div className="collapsible-body" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}}>
+          <div className="row">
+          <div className="col s12 m12 l12" style={styleBox.content}>
+            <ul className="collapsible" style={styleBox.Ul}>
+
+              {/*  ****************************** Show Further Folders & Files  */}
+              {doc ?
+                (doc.items || doc.subChilds) ?
+                    <>
+                      <>{
+                        doc.items.map((item, key) => <Pdf name={item.name} path={item.path} key={key} />)}
+                      </>
+                      <>{
+                        doc.paths.map((path, key) => <Folder name={path.name} subChilds={path.subChilds} key={key} />)}
+                      </>
+                    </>
+                    : null
+                  : null
+                }
+            </ul>
+          </div>
+
+          </div>
+          </div>
+        </li>
+    )
+}
+
+const PreLoader = (props) => {
+  return (
+    <center style={{marginTop: 70, color: "dimgrey", padding: 70}}>
+      <p>PLEASE WAIT, DATA LOADING</p> 
+      <div class="preloader-wrapper active">
+        <div class={"spinner-layer " + props.color}>
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+        </div>
+      </center>
+  )
+}
+// const Pdf = (props) => {
+//   // console.log(props.data.numbersList);
+//     return (
+//         <li key={props.key}>
+//           <div className="collapsible-header">
+//             <img alt="" 
+//               style={props.data.childs? styleBox.folderStyle : styleBox.pdfStyle }
+//               src={props.data.childs? folderIcon : pdfIcon} />
+//             {props.data.name}
+//             {props.data.childs ? 
+//             <i style={{textAlign: "right"}} 
+//               className="material-icons secondary-content">chevron_right</i>
+//               : null
+//             }
+//           </div>
+//           <div className="collapsible-body">
+//               {props.data.numbersList.map((item)=><>
+//               <span>{item}</span><br /></>)}
+//           </div>
+//         </li>
+//     )
+// }
 
 const styleBox = {
     main: {
@@ -89,6 +167,8 @@ const styleBox = {
       padding: 10,
     },
     Ul: {
+      // borderTop: "none",
+      borderBottom: "none",
       borderRight: "none",
       borderLeft: "none",
       boxShadow: "none"
@@ -105,15 +185,30 @@ const styleBox = {
       marginRight: 25,
     },
   }
-let DocData = [
-{
-    name: "TAX Docs 2020", numbersList: ["Doc A","Doc B","Doc C"], links: [], childs: 3
-},
-{
-    name: "TAX Docs 2019", numbersList: ["Doc E","Doc V","Doc F"], childs: 3
-},
-{
-    name: "LLC Group", numbersList: [], childs: 0
-}
-]
+
 export default Documents;
+
+
+// 
+// items: Array(1)
+//    0: Pdf {name: "DS_Lab_01.pdf", path: "https://firebasestorage.googleapis.com/v0/b/the-ge…=media&token=2e66533a-5a69-4e0d-af91-983cbdfc61d6"}
+// 
+// paths: Array(1)
+//    0: Folders
+//      name: "DS_LAB"
+//      subChilds:
+
+
+//          items: Array(2)
+//            0: Pdf {name: "DS_Lab_02.pdf", path: "https://firebasestorage.googleapis.com/v0/b/the-ge…=media&token=5b852dfc-8209-4999-8416-ebabb79a70d4"}
+//            1: Pdf {name: "DS_Lab_03.pdf", path: "https://firebasestorage.googleapis.com/v0/b/the-ge…=media&token=0203f834-fa0f-416e-bbb4-684690b202f0"}
+//          paths: Array(2)
+//            0: Folders {
+//                name: "DS_LAB_MID_1",
+//                subChilds: {…}}
+
+//            1: Folders {
+//                name: "DS_LAB_MID_2", 
+//                subChilds: {…}}
+
+

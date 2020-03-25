@@ -13,14 +13,14 @@ render() {
             <div className="row" style={styleBox.headins}>LANGUAGE:</div>
             
             <div className="row" style={styleBox.options}>SPANISH</div>
-            <div class="divider" style={{marginBottom: 10}}></div>
+            <div className="divider" style={{marginBottom: 10}}></div>
             <div className="row" style={styleBox.options}>ENGLISH<i className="material-icons right" style={{color: "green"}} >check</i></div>
 
 
             <div className="row" style={styleBox.headins}>INVOICE:</div>
             
             <div className="row" style={styleBox.options}>ADD LOGOX</div>
-            <div class="divider" style={{marginBottom: 10}}></div>
+            <div className="divider" style={{marginBottom: 10}}></div>
             <div className="row" style={styleBox.options}>CHOOSE TEMPLATE</div>
           </div>
         </div>
@@ -29,7 +29,7 @@ render() {
             <div className="row" style={styleBox.headins}>TAXES:</div>
                 
             <div className="row" style={styleBox.options}>MODEL 115</div>
-            <div class="divider" style={{marginBottom: 10}}></div>
+            <div className="divider" style={{marginBottom: 10}}></div>
             <div className="row" style={styleBox.options}>MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="row" style={styleBox.options}>MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
 

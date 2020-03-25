@@ -33,6 +33,7 @@ export const SignInCall = () => {
     auth.signInWithEmailAndPassword(email, pass)
         .then(async res => {
             if (res) {
+                
                 window.location.replace("/home");
                 console.log(auth.currentUser);
             }
@@ -46,6 +47,7 @@ var emailAddress = document.getElementById("reset-email").value;
 
 auth.sendPasswordResetEmail(emailAddress).then(function() {
   window.location.replace("/");
+  SignOut();
 }).catch(function(error) {
   console.log(error);
 });
@@ -72,9 +74,9 @@ export const NewPassword = (oobCode) => {
 // User Sign Out
 export const SignOut = () => {
     auth.signOut().then(res => {
-        alert('You\'re Logged Out Successfully');
+        M.toast({html: 'You\'re Logged Out Successfully'})
     }).catch(err => {
-        alert(err.message);
+        M.toast({html: err.message})
     })
 }
 

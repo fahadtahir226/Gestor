@@ -5,11 +5,10 @@ import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Component5-1.png";
 import {NewPassword} from "../../Firebase/auth"
 
-
 class NewPass extends Component {
     componentDidMount(){
+      console.log("Params here: ",this.props.location.search);
         console.log(this.props.location.search.split('=')[2].split('&')[0]);
-        console.log("Params here: ",this.props.match.params);
     }
   render() {
       let { oobCode } = this.props.location.search.split('=')[2].split('&')[0];
