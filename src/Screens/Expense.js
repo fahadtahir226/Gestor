@@ -29,11 +29,11 @@ class Expense extends Component {
       M.Collapsible.init(elems);
       M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
       M.FormSelect.init(select);
-      HideCard('addExpense');
+      document.getElementById('addExpense').style.display = 'none';      
     }
-  handleClick(e,select){
-    this.setState({qtr: select.value});
-  }
+  // handleClick(e,select){
+  //   this.setState({qtr: select.value});
+  // }
 render() {
     var {userInfo} = this.props;
     var expenseData = this.props.expData;
@@ -154,12 +154,12 @@ const QTR4 = (props) => {
 }
 
 const styleBox = {
-    main: {
-      margin: 30,
-      borderRadius: 10,
-      minHeight: 450,
-      color: "#1e88e5",
-      boxShadow:"0px 1px 2px 2px #ceeef2"
+  main: {
+    margin: 30,
+    borderRadius: 10,
+    minHeight: 500,
+    color: "#1e88e5",
+    boxShadow:"0px 1px 2px 2px #ceeef2"
     },
     mainHeading: {
       marginBottom: 0,
@@ -167,12 +167,13 @@ const styleBox = {
       padding: 30,
       paddingBottom: 0,
       color: "#1e88e5",
+      fontWeight :"bold"
     },
     HeaderIcons: {
       width: 30,
       height: 30,
       marginRight: 20
-  },
+    },
     inputDiv: {
       background: "#F2F0EC",
       borderRadius: 200,
@@ -183,9 +184,9 @@ const styleBox = {
       padding: 10,
     },
     Ul: {
-      borderRight: "none",
-      borderLeft: "none",
-      boxShadow: "none"
+        borderRight: "none",
+        borderLeft: "none",
+        boxShadow: "none"
     }
   }
 

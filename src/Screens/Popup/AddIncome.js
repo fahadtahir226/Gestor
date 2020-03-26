@@ -1,20 +1,26 @@
 import React from 'react';
-import M from 'materialize-css';
+import M from 'materialize-css'
 import { HideCard } from './configureCards';
 import { db } from '../../Firebase/firestore';
 
+import savBtn from "../../images/Rectangle 267@2x.png"
+import sbmtbtn from "../../images/text-background.png"
+import '../../index.css'
+
 class AddIncome extends React.Component {
     componentDidMount(){
-        var modal = document.querySelectorAll('.modal');
-        M.Modal.init(modal);
+      var modal = document.querySelectorAll('.modal');
+      this.instance = M.Modal.init(modal);
     }
-
     render(){
-    var {userInfo} = this.props;
+      var ins = this.instance;
+      var {userInfo} = this.props;
     return(
-    <div id="addIncome" style={styleBox.main}>
-      <div className="modal-content" style={{padding: 20}}>
-        <h5>ADD INCOME</h5>
+    <div id="addIncome" style={styleBox.main} className='modal z-depth-5' >
+      <div className="modal-content" style={styleBox.content} >
+        <div className="row" style={styleBox.bluishHeading} >
+          ADD INCOME
+        </div>
         <div className="row">
           <form className="col s12 m6 l6">
             {
@@ -31,10 +37,8 @@ class AddIncome extends React.Component {
             }
           </form>
         </div>
-      </div>
-      <div className="modal-footer">
-        <a href="#!" onClick={()=>addNewIncome(userInfo)} className="btn-flat">Add</a>
-        <a href="#!" onClick={()=>HideCard('addIncome')} className="btn-flat">Cancel</a>
+        <a href="#!" onClick={()=>addNewIncome(userInfo)} style={styleBox.savebtn}  className="btn-flat">Add</a>
+        <a href="#!" onClick={()=>HideCard(ins, 'addIncome')} datatarget='model-close' style={styleBox.savebtn} className="btn-flat">Cancel</a>
       </div>
     </div>
     );
@@ -110,17 +114,43 @@ const items1 = [
 
 const styleBox = {
     main: {
-        position: "absolute",
-        top: 50,
-        display: "block",
-        zIndex: 1000,
-        minWidth: '60%',
-        // margin: '0px auto',
-        background: 'white',
-        color: "#1e88e5", 
-        boxShadow:"0px 1px 2px 2px #ceeef2",
-        borderRadius: 10,
-    }
+      padding: 20,
+      position: "absolute",
+      display: "block",
+      zIndex: 1000,
+      background: 'white',
+      color: "#1e88e5", 
+    },
+    content: {
+      paddingBottom: 0,
+      overflow: 'visible'
+    },
+    savebtn: {
+      background: `url(${savBtn})`,
+      backgroundSize: "contain",
+      border: "none",
+      backgroundRepeat:"no-repeat",
+      width:130,
+      fontWeight:"bold",
+      boxShadow: "none",
+      color: "white",
+      margin: 10,
+    },
+    bluishHeading: {
+      width: "100%",
+      color: "white",
+      padding: 7,
+      paddingLeft: 15,
+      background: `url(${sbmtbtn}) no-repeat center/cover`,
+      height: 35,
+      display: "block",
+      marginLeft: -25,
+      marginBottom: 10,
+      textAlign: 'center',
+      fontWeight: 'bolder',
+      float: "left"
+
+  },
 }
 
 

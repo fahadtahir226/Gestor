@@ -10,7 +10,9 @@
     "firebase-tools": "^7.15.1",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.0",
+    "react-charts": "^2.0.0-beta.6",
     "react-dom": "^16.13.0",
+    "react-google-charts": "^3.0.15",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },

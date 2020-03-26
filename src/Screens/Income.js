@@ -28,9 +28,9 @@ class Income extends Component {
       M.Collapsible.init(elems);
       M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
       M.FormSelect.init(select);
-      HideCard('addIncome');
-      HideCard('addDocIncome')
 
+      document.getElementById('addIncome').style.display = 'none';      
+      document.getElementById('addDocIncome').style.display = 'none';      
     }
   handleClick(e,select){
     this.setState({qtr: select.value});
@@ -42,13 +42,13 @@ render() {
 
   return (
     <>
+    <div className="container-fluid card z-depth-1" style={styleBox.main}>
     <center>
     <AddDocIncome userInfo={userInfo} />
     <AddIncome userInfo={userInfo} />
     </center>
-    <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row" style={{marginBottom: 0}}>
-      <h5 className="col s12 m12 l4 " style={styleBox.mainHeading}>NET INCOME 1500€<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
+      <h5 className="col s12 m8 l4 " style={styleBox.mainHeading}>NET INCOME 1500€<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
       <div className="col s6 m5 l3 right" style={{textAlign: "right" ,padding: 30, paddingBottom: 0,paddingLeft: 0}}>
       <Link to='income/history'><img alt="" src={history} style={styleBox.HeaderIcons}/></Link>
           {/* <img alt="" src={mail} style={styleBox.HeaderIcons}/> */}
@@ -70,9 +70,9 @@ render() {
         </div>
       </div>
     </div>
-      <a onClick={()=>PopupCard('addIncome', false)} style={{float: "right", marginRight: 30}} href="#!" className="container-fluid btn-floating btn-large waves-effect waves-light white">
+      <a onClick={()=>PopupCard('addIncome', false)} style={{float: "right", marginRight: 30}} href="#addIncome" className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
         <i style={{ color: "#1e88e5"}} className="material-icons">add</i></a>
-      <a onClick={()=>PopupCard('addDocIncome', false)} style={{float: "right", marginRight: 30}} href="#!" className="container-fluid btn-floating btn-large waves-effect waves-light white">
+      <a onClick={()=>PopupCard('addDocIncome', false)} style={{float: "right", marginRight: 30}} href="#addDocIncome" className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
         <i style={{ color: "#1e88e5"}} className="material-icons">file_upload</i></a>
     </>
 );
@@ -122,11 +122,14 @@ const Month = (props) => {
   return (
     <>
       <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.incomeData.year}</div>
-      <ul className="collection" style={{margin: 0}}>
+      <div>
+
+      <ul className="collection" style={{margin: 0, zIndex: -1}}>
         {usrs.map((entry, key) => 
             <Entry key={key} concept={entry.concept} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status} isDoc={entry.isDoc} docAddr={entry.docAddr}/>
         )}
       </ul>
+      </div>
     </>
   )
 }
@@ -173,39 +176,42 @@ const QTR4 = (props) => {
 }
 
 const styleBox = {
-    main: {
-      margin: 30,
-      borderRadius: 10,
-      minHeight: 450,
-      color: "#1e88e5",
-      boxShadow:"0px 1px 2px 2px #ceeef2"
-    },
-    mainHeading: {
-      marginBottom: 0,
-      marginTop: 0,
-      padding: 30,
-      paddingBottom: 0,
-      color: "#1e88e5",
-    },
-    HeaderIcons: {
-      width: 30,
-      height: 30,
-      marginRight: 20
+  main: {
+    margin: 30,
+    borderRadius: 10,
+    minHeight: 500,
+    color: "#1e88e5",
+    boxShadow:"0px 1px 2px 2px #ceeef2",
+    zIndex: 0,
+
   },
-    inputDiv: {
-      background: "#F2F0EC",
-      borderRadius: 200,
-      paddingLeft: 15,
-      marginTop: 30,
-    },
-    content: {
-      padding: 10,
-    },
-    Ul: {
-        borderRight: "none",
-        borderLeft: "none",
-        boxShadow: "none"
-    }
+  mainHeading: {
+    marginBottom: 0,
+    marginTop: 0,
+    padding: 30,
+    paddingBottom: 0,
+    color: "#1e88e5",
+    fontWeight :"bold"
+  },
+  HeaderIcons: {
+    width: 30,
+    height: 30,
+    marginRight: 20
+},
+  inputDiv: {
+    background: "#F2F0EC",
+    borderRadius: 200,
+    paddingLeft: 15,
+    marginTop: 30,
+  },
+  content: {
+    // padding: 10,
+  },
+  Ul: {
+      borderRight: "none",
+      borderLeft: "none",
+      boxShadow: "none"
+  }
   }
 
 export default Income;

@@ -24,22 +24,21 @@ import FAQ from "../FAQ";
 import Security from '../Security';
 import Help from '../Help';
 import DocPdf from '../Popup/docPdf'
-import {HideCard} from '../Popup/configureCards'
 import ExpenseHis from '../History/expHistory';
 import IncomeHis from '../History/incHistory';
 
 class Home extends Component {
   componentDidMount(){
-    HideCard('docPdf');
+    document.getElementById('docPdf').style.display = 'none';      
   }
   render() {
-    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc} = this.props;
+    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc} = this.props;
     return (
     <div style={styleBox.main}>
       <div className="container-fluid">
         <div className="row " style={{marginBottom: 0}}>
 
-          <div className="col hide-on-small-only m3 l2" style={{boxShadow:"2px 0px 0px 0px #ceeef2",height: 1200, margin: 0,padding: 0}}>
+          <div className="col hide-on-small-only m3 l2" style={{boxShadow:"2px 0px 0px 0px #ceeef2",height: "auto", margin: 0,padding: 0}}>
               <SideBar isAuthenticated={isAuthenticated} userInfo={userInfo}/>
           </div>
           <div className="col s12 m9 l10">
@@ -52,23 +51,23 @@ class Home extends Component {
                 <DocPdf url=''/>
                 <Switch>
 
-                  <Route path="/Home/"  exact ><Graphs /> </Route>
-                  <Route path="/Home/myGestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
+                  <Route path="/home/"  exact ><Graphs /> </Route>
+                  <Route path="/home/mygestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
-                  <Route path="/Home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
-                  <Route path="/Home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
+                  <Route path="/home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
+                  <Route path="/home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
 
-                  <Route path="/Home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
-                  <Route path="/Home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
-                  <Route path="/Home/contacts" exact ><Contacts contacts={contacts}/></Route>
-                  <Route path="/Home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
+                  <Route path="/home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
+                  <Route path="/home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
+                  <Route path="/home/contacts" exact ><Contacts contacts={contacts}/></Route>
+                  <Route path="/home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
 
-                  <Route path="/Home/subscr" exact><Subscription /></Route>
-                  <Route path="/Home/configure" exact ><Configuration /></Route>
-                  <Route path="/Home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc}/></Route>
-                  <Route path="/Home/faq" exact ><FAQ/> </Route>
-                  <Route path="/Home/security" exact ><Security/></Route>
-                  <Route path="/Home/help" exact ><Help /> </Route>
+                  <Route path="/home/subscription" exact><Subscription /></Route>
+                  <Route path="/home/configure" exact ><Configuration /></Route>
+                  <Route path="/home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc} doc={doc}/></Route>
+                  <Route path="/home/faq" exact ><FAQ/> </Route>
+                  <Route path="/home/security" exact ><Security/></Route>
+                  <Route path="/home/help" exact ><Help /> </Route>
 
                 </Switch>
                 </div>
@@ -87,6 +86,7 @@ const styleBox = {
     main: {
         backgroundImage : `url(${bkground})`,
         width: "100%",
+        zIndex: -1000,
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
         minHeight: 500,

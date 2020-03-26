@@ -9,6 +9,6 @@ export const facebookLogin = (event) => {
         // The signed-in user info.
         var user = result.user;
         // ...
-        window.location.replace('/Home');
+        window.location.replace('/home');
     });
 }

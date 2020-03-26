@@ -20,32 +20,49 @@ export const profileUpload = (e) => {
 }
 
 export const loadDocument = (user, updateDocData) => {
-
-
     let refDoc = storageRef.child(`documents/${user.uid}`);
-    refDoc.listAll()
-        .then(res => { 
-            res.prefixes.forEach(folderRef => {
-                // All the prefixes under listRef.
-                // You may call listAll() recursively on them.
-                // console.log(folderRef);
-                folderRef.listAll()
-                .then(res => console.log("Items",res.items));
-              });
-            console.log(res.items);
-        })
-
+    searchNested(refDoc, doc, updateDocData);
+    updateDocData(doc);
 }
-let doc = {}
-const searchNested = (ref, doc) => {
+
+class Pdf{
+  constructor() {
+    let name, path;
+  }
+}
+class Folders{
+    constructor(){
+        let name, subChilds;
+    }
+}
+
+export let doc = {}
+const searchNested = (ref, doc, updateDocData) => {
     ref.listAll()
     .then(ref => {
-
-        doc.items = ref.itmes
-        doc.prefixes = ref.prefixes;
-        ref.prefixes.forEach(folderRef => {
-            searchNested(folderRef, folderRef.prefixes);
-        })
+        if(ref.items){
+        doc.items = ref.items.map((item)=> {
+            let pdf = new Pdf()
+            pdf.name = item.name;
+            item.getDownloadURL()
+            .then(url => pdf.path = url);
+            return pdf;
+        });
+        }
+        if(ref.prefixes) {
+          doc.paths = ref.prefixes.map((prefix)=>{
+            let folder = new Folders();
+            folder.name = prefix.name;
+            folder.subChilds = {};
+            searchNested(prefix, folder.subChilds, updateDocData);
+            // updateDocData(doc);
+            return folder;
+          })
+        }
+        else{
+            // updateDocData(doc);
+            return doc;
+        }
     })
 }
 
