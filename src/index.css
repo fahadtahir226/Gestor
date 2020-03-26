@@ -19,5 +19,8 @@ code {
 }
 #addIncome { 
   min-height: 75% !important;
+}
 
- }
+#docPdf {
+  min-height: 90%;
+}

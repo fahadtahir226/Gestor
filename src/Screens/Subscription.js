@@ -19,7 +19,7 @@ class Subscription extends Component {
                 Basic Plan (Free)
               </div>
               <div className="container" >
-                  {basicPlan.map(plan=><Plan discription={plan}></Plan>)}
+                  {basicPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
               </div>
             </div>
         </div>
@@ -27,7 +27,7 @@ class Subscription extends Component {
           <div className="card" style={styleBox.PlanBox}>
               <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
               <div className="container">
-              {premiumPlan.map(plan=><Plan discription={plan}></Plan>)}
+                  {premiumPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
               </div>
           </div>
         </div>

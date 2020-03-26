@@ -4,13 +4,13 @@ import M from 'materialize-css';
 import folderIcon from '../../images/drawable/folderIcon.png'
 import pdfIcon from '../../images/drawable/pdfIcon.png'
 // import { doc } from '../../Firebase/storage'
-import { PopupCard, HideCard } from '../Popup/configureCards';
+import { PopupCard} from '../Popup/configureCards';
 
 class Documents extends Component {
 componentDidMount(){
     var elems = document.querySelectorAll('.collapsible');
     var fixdbtn = document.querySelectorAll('.fixed-action-btn');
-    HideCard('docPdf');
+    document.getElementById('docPdf').style.display = 'none';      
     M.Collapsible.init(elems);
     M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
 }
@@ -67,7 +67,7 @@ const Pdf = (props) => {
   // console.log(props.data.numbersList);
     return (
         <li>
-          <div className="collapsible-header" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}} onClick={() => PopupCard('docPdf', props.path)}>
+          <div className="collapsible-header modal-trigger" href="#docPdf" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}} onClick={() => PopupCard('docPdf', props.path)}>
             <img alt="" style={styleBox.pdfStyle} src={pdfIcon} />
             {props.name}
           </div>
@@ -87,8 +87,6 @@ const Folder = (props) => {
             <i style={{textAlign: "right"}} className="material-icons secondary-content">chevron_right</i>
           </div>
           <div className="collapsible-body" style={{padding: 0, paddingLeft: 30, paddingTop : 0, paddingBottom: 0 }}>
-          {/* <div className="row"> */}
-          {/* <div className="col s12 m12 l12" style={styleBox.content}> */}
             <ul className="collapsible" style={styleBox.Ul}>
 
               {/*  ****************************** Show Further Folders & Files  */}
@@ -106,9 +104,6 @@ const Folder = (props) => {
                 }
             </ul>
           </div>
-
-          {/* </div> */}
-          {/* </div> */}
         </li>
     )
 }

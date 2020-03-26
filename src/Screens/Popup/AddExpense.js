@@ -49,7 +49,7 @@ class AddExpense extends React.Component {
           </form>
         </div>
         <a href="#!" onClick={()=>addNewExpense(userInfo)} style={styleBox.savebtn}  className="btn-flat">Add</a>
-        <a href="#!" onClick={()=>{HideCard(ins, 'addExpense')}} datatarget='model-close' style={styleBox.savebtn} className="btn-flat">Cancel</a>
+        <a href="#!" onClick={()=>HideCard(ins, 'addExpense')} datatarget='model-close' style={styleBox.savebtn} className="btn-flat">Cancel</a>
       </div>
     </div>
     );
@@ -106,11 +106,6 @@ const addNewExpense = (userInfo) => {
           })
           .catch((error)=>console.log("Error from getting url however Expens is uploaded",error))})
       .catch((error) => console.log("Cannot Upload Expese",error));
-
-
-        // .catch(function(error) {
-        //     console.error("Error writing document: ", error);
-        // });
 
 }
 

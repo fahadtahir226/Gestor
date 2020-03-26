@@ -11,5 +11,6 @@ export const HideCard = (instance ,card) => {
     var elem = document.getElementById(card);
     console.log("Hide ", card," Instance ",instance);
     elem.style.display = 'none';
-    instance[0].close();
+    // instance.forEach(inst => inst.close());
+    window.location.reload(true);
 }

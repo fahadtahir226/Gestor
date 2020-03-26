@@ -37,7 +37,7 @@ class AddIncome extends React.Component {
             }
           </form>
         </div>
-        <a href="#!" onClick={()=>addNewIncome(userInfo)} style={styleBox.savebtn}  className="btn-flat">Add</a>
+        <a href="#!" onClick={()=>addNewIncome(userInfo)} style={styleBox.savebtn} className="btn-flat">Add</a>
         <a href="#!" onClick={()=>HideCard(ins, 'addIncome')} datatarget='model-close' style={styleBox.savebtn} className="btn-flat">Cancel</a>
       </div>
     </div>
