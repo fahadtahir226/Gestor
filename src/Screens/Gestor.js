@@ -91,7 +91,7 @@ class Gestor extends Component {
         <div className="col s12 m12 l6"  style={styleBox.card}>
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PROFESSIONAL ACTIVITY</div>
-            <div className="container-fluid" style={{margin: 25, height : "100%"}}>
+            <div className="container-fluid" style={{margin: 25}}>
 
               <div className="row">
                 <span>PROFESSION: </span>
@@ -171,7 +171,7 @@ const styleBox = {
     DataBox: {
       padding: 20,
       borderRadius: 5,
-      minHeight: 295 
+      minHeight: 420 
     },
     dropDown : {
       color : 'darkgrey'
