@@ -75,19 +75,7 @@ class Graphs extends Component {
                                 ANNUAL:
                               </h4>
                             </div>
-                            <div className="col sm6 m6 12 right">
-                              <span className="input-field">
-                                <select
-                                  className="select2 browser-default form-control"
-                                  style={{ width: "150px", color: "black" }}
-                                >
-                                  <option> 1T 2020</option>
-                                  <option> 2T 2020</option>
-                                  <option> 3T 2020</option>
-                                  <option> 4T 2020</option>
-                                </select>
-                              </span>
-                            </div>
+
                           </div>
                           <br />
                           <div
@@ -156,17 +144,34 @@ class Graphs extends Component {
                     <div className="col s12 m6 l6">
                       <div className="card" style={{ borderRadius: "20px" }}>
                         <div className="card-content">
-                          <div className="col sm12 m12 12">
-                            <h4
-                              style={{
-                                color: "#4aa4ef",
-                                fontWeight: "700",
-                                margin: "0"
-                              }}
-                            >
-                              TAXES:
-                            </h4>
+                        <div className="row" style={{ marginBottom: "0px" }}>
+                            <div className="col sm6 m6 12">
+                              <h4
+                                style={{
+                                  color: "#4aa4ef",
+                                  fontWeight: "700",
+                                  margin: "0"
+                                }}
+                              >
+                                ANNUAL:
+                              </h4>
+                            </div>
+                            <div className="col sm6 m6 12 right">
+                              <span className="input-field">
+                                <select
+                                  className="select2 browser-default form-control"
+                                  style={{ width: "150px", color: "black" }}
+                                >
+                                  <option> 1T 2020</option>
+                                  <option> 2T 2020</option>
+                                  <option> 3T 2020</option>
+                                  <option> 4T 2020</option>
+                                </select>
+                              </span>
+                            </div>
                           </div>
+                          <br />
+                          <div>
                           <table>
                             <tbody>
                               <tr style={{ borderBottom: "0px" }}>
@@ -255,6 +260,9 @@ class Graphs extends Component {
                               </tr>
                             </tbody>
                           </table>
+
+
+                          </div>
                         </div>
                       </div>
                     </div>

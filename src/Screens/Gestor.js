@@ -28,20 +28,22 @@ class Gestor extends Component {
             <input id="profileBtn" name={userInfo.uid} onChange={(event) => profileUpload(event)} className="hide" type="file" />
         </div>
       </div>
-      <div className="row">
-        <div className="col s12 m12 l6" >
+      <div className="row" style={styleBox.row}>
+        <div className="col s12 m12 l6"  style={styleBox.card}>
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PERSONAL DATA</div>
             <div className="container" style={{marginLeft: 25}}>
-              <div className="row"><span>FIRST NAME: </span><span className="right textdata">{isAuthenticated? userInfo.displayName.split(" ")[0]: null}</span></div>
-              <div className="row"><span>LAST NAME: </span><span className="right textdata"> {isAuthenticated? userInfo.displayName.split(" ")[1]: null} </span></div>
-              <div className="row"><span>NIE/NIF: </span><span className="right textdata">____________</span></div>
-              <div className="row"><span>PHONE NUMBER: </span><span className="right textdata">____________</span></div>
-              <div className="row"><span>EMAIL</span><span className="right textdata">____________</span></div>
+            {/* {isAuthenticated? userInfo.displayName.split(" ")[0]: null} */}
+            {/* {isAuthenticated? userInfo.displayName.split(" ")[1]: null} */}
+              <div className="row"><span>FIRST NAME: </span><span className="right textdata"> <input style={{ "height" : "1rem" }} type="text" name="fname" id="fname" /> </span></div>
+              <div className="row"><span>LAST NAME: </span><span className="right textdata"> <input style={{ "height" : "1rem" }} type="text" name="lname"  id="lname" />  </span></div>
+              <div className="row"><span>NIE/NIF: </span><span className="right textdata"><input style={{ "height" : "1rem" }} type="text" name="nif" id="nif" /></span></div>
+              <div className="row"><span>PHONE NUMBER: </span><span className="right textdata"><input style={{ "height" : "1rem" }} type="text" name="pnumber" id="pnumber" /></span></div>
+              <div className="row"><span>EMAIL</span><span className="right textdata"><input style={{ "height" : "1rem" }} type="text" name="email" id="email" /></span></div>
             </div>  
           </div>
         </div>
-        <div className="col s12 m12 l6" >
+        <div className="col s12 m12 l6"  style={styleBox.card}>
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PROFESSIONAL ACTIVITY</div>
             <div className="container" style={{marginLeft: 25}}>
@@ -128,6 +130,13 @@ const styleBox = {
     },
     dropDown : {
       color : 'darkgrey'
+    },
+    row : {
+      display: "table",
+      width: "100%" 
+    },
+    card : {
+      display: "table-cell"
     }
     
     
