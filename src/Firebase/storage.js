@@ -22,6 +22,7 @@ export const profileUpload = (e) => {
 export const loadDocument = (user, updateDocData) => {
     let refDoc = storageRef.child(`documents/${user.uid}`);
     searchNested(refDoc, doc, updateDocData);
+    // console.log("Final Doc Here Again",doc)
     updateDocData(doc);
 }
 
@@ -32,7 +33,7 @@ class Pdf{
 }
 class Folders{
     constructor(){
-        let name, subChilds;
+        let name, subChilds, fulpath;
     }
 }
 
@@ -53,6 +54,7 @@ const searchNested = (ref, doc, updateDocData) => {
           doc.paths = ref.prefixes.map((prefix)=>{
             let folder = new Folders();
             folder.name = prefix.name;
+            folder.fulpath = prefix.fullPath;
             folder.subChilds = {};
             searchNested(prefix, folder.subChilds, updateDocData);
             // updateDocData(doc);

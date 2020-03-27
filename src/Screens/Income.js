@@ -35,6 +35,9 @@ class Income extends Component {
   handleClick(e,select){
     this.setState({qtr: select.value});
   }
+  handleDate(){
+    console.log(document.getElementById('datePicker').value);
+  }
 render() {
     var { userInfo} = this.props;
     var incomeData = this.props.incData;

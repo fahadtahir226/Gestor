@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-
+import M from 'materialize-css'
 import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
+import {profileUpload} from "../Firebase/storage"
+
 
 class Gestor extends Component {
+  componentDidMount(){
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems);
+  }
 
   render() {
     var {isAuthenticated ,userInfo} = this.props;
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
-        <div className="col s12 m12 l12" style={styleBox.content}>
-            <img alt="" style={{width: 120}} src={keyIcon} />
+      <div className="col s12 m12 l12" style={styleBox.content}>
+            <div style={{height: 120,backgroundImage: `url(${keyIcon})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}}>
+              {/* <img alt="" style={{width: 120}} src={keyIcon} /> */}
+            <img alt="" style={{width:  80, borderRadius: "100%", marginTop: 20}} src={userInfo.photoURL} />
+            </div>
             <br />
-            <a href="#!" style={styleBox.submitbtn} className="btn waves-effect waves-light">UPLOAD PHOTO</a>
+            <label htmlFor="profileBtn" >
+            <a onClick={()=>document.getElementById("profileBtn").click()} href="#!" style={styleBox.submitbtn} className="btn waves-effect waves-light">UPLOAD PHOTO</a>
+            </label>
+            <input id="profileBtn" name={userInfo.uid} onChange={(event) => profileUpload(event)} className="hide" type="file" />
         </div>
       </div>
       <div className="row">
@@ -33,12 +45,28 @@ class Gestor extends Component {
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PROFESSIONAL ACTIVITY</div>
             <div className="container" style={{marginLeft: 25}}>
-              <div className="row"><span>ACTIVITY CODE(CNAE): </span><span className="right textdata">____________</span></div>
-              <div className="row"><span>DESCRIBE YOUR ACTIVITY: </span><span className="right textdata"> ____________ </span></div>
+
+              <div className="row">
+                <span>PROFESSION: </span>
+                <div className="right">
+                  {/* {isAuthenticated? */}
+                {/* <> */}
+                  <a  style={styleBox.dropDown} className='dropdown-trigger' href='#' data-target='dropdown1'><span style={{visibility: 'hidden'}}>......</span>DESIGNER<span style={{visibility: 'hidden'}}>......</span></a>
+                  <ul id='dropdown1' className='dropdown-content'>
+                    <li><a href="#!">DEVELOPER</a></li>
+                    <li><a href="#!">MANAGER</a></li>
+                    <li><a href="#!">DESIGNER</a></li>
+                    <li><a href="#!">ARCHITECT</a></li>
+                  </ul>
+                {/* </>: null */}
+              {/* } */}
+              </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div><button>Hey</button></div>
     </div>
     );
   }
@@ -91,12 +119,18 @@ const styleBox = {
         display: "inline-block",
         marginLeft: -20,
         marginBottom: 10,
-        fontWeight: "bold"
+        fontSize: 14
+        // fontWeight: "bold"
     },
-    DataBox:{
+    DataBox: {
       padding: 20,
       borderRadius: 5,
       minHeight: 295 
+    },
+    dropDown : {
+      color : 'darkgrey'
     }
+    
+    
   }
 export default Gestor;

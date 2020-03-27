@@ -48,7 +48,7 @@ const Contact = (props) => {
               <div style={{ width : "90%" }}>
               {props.data.name}
               </div>
-              <i className="material-icons right" style={{alignContent : "center"}}>chevron_right</i>
+              <i className="material-icons" style={{alignContent : "center"}}>chevron_right</i>
           </div>
           <div className="container-fluid collapsible-body">
             <div className='row'>

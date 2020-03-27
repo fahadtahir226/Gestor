@@ -4,15 +4,20 @@ import M from 'materialize-css';
 import folderIcon from '../../images/drawable/folderIcon.png'
 import pdfIcon from '../../images/drawable/pdfIcon.png'
 // import { doc } from '../../Firebase/storage'
-import { PopupCard} from '../Popup/configureCards';
+import { PopupCard } from '../Popup/configureCards';
+import AddNewDoc from '../Popup/addDoc'
+ 
+import '../../App.css'
 
 class Documents extends Component {
 componentDidMount(){
     var elems = document.querySelectorAll('.collapsible');
     var fixdbtn = document.querySelectorAll('.fixed-action-btn');
-    document.getElementById('docPdf').style.display = 'none';      
+    document.getElementById('docPdf').style.display = 'none';
+    document.getElementById('addDoc').style.display = 'none';      
     M.Collapsible.init(elems);
     M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
+
 }
 
 render() {
@@ -20,6 +25,7 @@ render() {
       console.log("Doc Reached UI",doc);
   return(
     <>
+    <AddNewDoc />
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <h4 className="col s12 m12 l12 " style={{marginBottom: 0}}>DOCUMENTS</h4>
       
@@ -32,7 +38,7 @@ render() {
                   doc.items || doc.subChilds ?
                     <>
                       <>{
-                        doc.paths.map((path, key) => <Folder name={path.name} subChilds={path.subChilds} key={key} />)}
+                        doc.paths.map((path, key) => <Folder  name={path.name} fulpath={path.fulpath} subChilds={path.subChilds} key={key} />)}
                       </>
                       <>{
                         doc.items.map((item, key) => <Pdf name={item.name} path={item.path} key={key} />)}
@@ -47,14 +53,8 @@ render() {
       </div>
     </div>
     <div className="container-fluid" style={{margin:30  }}>
-      <a style={{float: "right", marginLeft:10}} href="#!" 
-        className="btn-floating btn-large waves-effect waves-light white">
-      <i className="material-icons" style={{color: "#1e88e5"}}>folder</i></a>
-
-      <input id="uploadDoc" onChange={(event) => uploadDoc(event, userInfo.uid)} 
-      className="hide" type="file" />
-      <a style={{float: "right"}} onClick={()=>document.getElementById('uploadDoc').click()}
-        className="btn-floating btn-large waves-effect waves-light white" href="#!">
+      <a style={{float: "right"}} href="#addDoc" onClick={()=>PopupCard('addDoc',`documents/${userInfo.uid}`)}
+        className="btn-floating btn-large waves-effect waves-light white modal-trigger" >
       <i className="material-icons" style={{color: "#1e88e5"}}>arrow_upward</i></a>
     </div>
     </>
@@ -67,7 +67,7 @@ const Pdf = (props) => {
   // console.log(props.data.numbersList);
     return (
         <li>
-          <div className="collapsible-header modal-trigger" href="#docPdf" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}} onClick={() => PopupCard('docPdf', props.path)}>
+          <div className="collapsible-header modal-trigger" href="#docPdf" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}} onClick={() => PopupCard('docPdf', props.path, null)}>
             <img alt="" style={styleBox.pdfStyle} src={pdfIcon} />
             {props.name}
           </div>
@@ -78,13 +78,16 @@ const Pdf = (props) => {
 const Folder = (props) => {
   // console.log(props.data.numbersList);
     let doc = props.subChilds;
-    // if(!doc) return;
+    if(!doc) return;
     return (
         <li>
           <div className="collapsible-header" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}}>
+            <div style={{ width: '90%', }}>
             <img alt="" style={styleBox.folderStyle} src={folderIcon} />
             {props.name}
-            <i style={{textAlign: "right"}} className="material-icons secondary-content">chevron_right</i>
+            </div>
+            <i style={{color: "dimgrey"}} onClick={()=>PopupCard('addDoc', props.fulpath)} className="material-icons secondary-content">file_upload</i>
+            <i style={{color: "dimgrey"}} className="material-icons secondary-content">chevron_right</i>
           </div>
           <div className="collapsible-body" style={{padding: 0, paddingLeft: 30, paddingTop : 0, paddingBottom: 0 }}>
             <ul className="collapsible" style={styleBox.Ul}>
@@ -92,7 +95,7 @@ const Folder = (props) => {
               {/*  ****************************** Show Further Folders & Files  */}
                 {doc ?
                   doc.paths ? 
-                  doc.paths.map((path, key) => <Folder name={path.name} subChilds={path.subChilds} key={key} />)
+                  doc.paths.map((path, key) => <Folder name={path.name} fulpath={path.fulpath} subChilds={path.subChilds} key={key} />)
                     :null
                   : null
                 }
@@ -102,6 +105,12 @@ const Folder = (props) => {
                     :null
                   : null
                 }
+                {(doc.paths <= 0 && doc.items.length <= 0)? 
+                  <li style={{padding: 13}}>
+                          <span style={{padding: 20, }}>EMPTY FOLDER</span>
+
+                </li>
+                : null}
             </ul>
           </div>
         </li>
@@ -135,7 +144,8 @@ const styleBox = {
       minHeight: 500,
       padding: 30,
       color: "#1e88e5",
-      boxShadow:"0px 1px 2px 2px #ceeef2"
+      boxShadow:"0px 1px 2px 2px #ceeef2",
+      zIndex: 0,
     },
     content: {
       padding: 10,

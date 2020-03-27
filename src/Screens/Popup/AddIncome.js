@@ -9,8 +9,11 @@ import '../../index.css'
 
 class AddIncome extends React.Component {
     componentDidMount(){
-      var modal = document.querySelectorAll('.modal');
+      var modal = document.querySelectorAll('.modal'),
+      picker = document.querySelectorAll('.datepicker');
+
       this.instance = M.Modal.init(modal);
+      M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
     }
     render(){
       var ins = this.instance;
@@ -28,6 +31,10 @@ class AddIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} key={key} />
                 })
             }
+            <div className="input-field col s12" style={{marginBottom: 0}}>
+            <label htmlFor='datePicker' >DATE PICKER</label>
+            <input type="text" id='datePickerInc' className="datepicker" />
+            </div>
           </form>
           <form className="col s12 m6 l6">
             {
@@ -35,6 +42,8 @@ class AddIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} key={key} />
                 })
             }
+
+          
           </form>
         </div>
         <a href="#!" onClick={()=>addNewIncome(userInfo)} style={styleBox.savebtn} className="btn-flat">Add</a>
@@ -58,58 +67,63 @@ const InputItem = (props) => {
 }
 
 const addNewIncome = (userInfo) => {
-    let client = document.getElementById('clientInc').value,
-        concept = document.getElementById('conceptInc').value,
-        date = document.getElementById('dateInc').value.toUpperCase(),
-        day = document.getElementById('dayInc').value.toUpperCase(),
-        month = document.getElementById('monthInc').value.toUpperCase(),
-        year = parseInt(document.getElementById('yearInc').value),
-        irpf = parseInt(document.getElementById('irpfInc').value),
-        iva = parseInt(document.getElementById('ivaInc').value),
-        taxable = parseInt(document.getElementById('taxableInc').value),
-        amount = parseInt(document.getElementById('amountInc').value);
+    // let client = document.getElementById('clientInc').value,
+    //     concept = document.getElementById('conceptInc').value,
+    //     // date = document.getElementById('dateInc').value.toUpperCase(),
+    //     // day = document.getElementById('dayInc').value.toUpperCase(),
+    //     // month = document.getElementById('monthInc').value.toUpperCase(),
+    //     // year = parseInt(document.getElementById('yearInc').value),
+    //     irpf = parseInt(document.getElementById('irpfInc').value),
+    //     iva = parseInt(document.getElementById('ivaInc').value),
+    //     taxable = parseInt(document.getElementById('taxableInc').value),
+    //     amount = parseInt(document.getElementById('amountInc').value);
 
-        if(!client || !concept || !date || !day || !month || !year || !irpf || !iva || !taxable || !amount ){
-          M.toast({html: 'Every Field is Mandatory!'})
-          return ;
-        }
-        db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
-            client : client,
-            concept : concept,
-            date : date,
-            day : day,
-            month : month,
-            year : year,
-            irpf : irpf,
-            iva : iva,
-            taxable : taxable,
+    let date = document.getElementById('datePickerInc').value.split(' ');
+    console.log('DATE:', date[0]);
+    console.log('DAY:', date[1].toUpperCase());
+    console.log('MONTH:', date[2].toUpperCase());
+    console.log('YEAR:', date[3].toUpperCase());
+
+    
+
+        // if(!client || !concept || !date || !day || !month || !year || !irpf || !iva || !taxable || !amount ){
+          // M.toast({html: 'Every Field is Mandatory!'})
+          // return ;
+        // }
+        // db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
+            // client : client,
+            // concept : concept,
+            // date : date,
+            // day : day,
+            // month : month,
+            // year : year,
+            // irpf : irpf,
+            // iva : iva,
+            // taxable : taxable,
             // total : total,                   need formula for it
-            amount : amount,
-            status : "PENDING",
-            isDoc: false
-        })
-        .then(function() {
-            window.location.replace('income');
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
+            // amount : amount,
+            // status : "PENDING",
+            // isDoc: false
+        // })
+        // .then(function() {
+        //     window.location.replace('income');
+        // })
+        // .catch(function(error) {
+        //     console.error("Error writing document: ", error);
+        // });
 
 }
 
 const items1 = [
     { title: 'CLIENT', id: 'clientInc' },
     { title: 'CONCEPT', id: 'conceptInc' },
-    { title: 'DATE', id: 'dateInc' },
-    { title: 'DAY', id: 'dayInc' },
-    { title: 'MONTH', id: 'monthInc' },
+    { title: 'TAXABLE', id: 'taxableInc' },
     ],     
     items2 = [
-    { title: 'YEAR', id: 'yearInc' },
     { title: 'IRPF', id: 'irpfInc' },
     { title: 'IVA', id: 'ivaInc' },
-    { title: 'TAXABLE', id: 'taxableInc' },
-    { title: 'AMOUNT', id: 'amountInc' }
+    { title: 'AMOUNT', id: 'amountInc' },
+    { title: 'NOTE', id: 'noteInc' }
     ]
 
 const styleBox = {

@@ -1,9 +1,12 @@
-export const PopupCard = (card, url) => {
+export const PopupCard = (card, data) => {
     var elem = document.getElementById(card);
     
     elem.style.display = 'block'
-    if(url){
-        document.getElementById('docIframe').src = url;
+    if(card === 'pdfDoc'){
+        document.getElementById('docIframe').src = data;
+    }
+    if(card === 'addDoc'){
+        document.getElementById('docAddr').value = data;
     }
 
 }
