@@ -3,6 +3,7 @@ import M from 'materialize-css'
 import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
 import {profileUpload} from "../Firebase/storage"
+import savBtn from "../images/Rectangle 267@2x.png"
 
 
 class Gestor extends Component {
@@ -32,7 +33,7 @@ class Gestor extends Component {
         <div className="col s12 m12 l6"  style={styleBox.card}>
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PERSONAL DATA</div>
-            <div className="container" style={{marginLeft: 25}}>
+            <div className="container-fluid" style={{margin: 25, marginBottom: 0}}>
             {/* {isAuthenticated? userInfo.displayName.split(" ")[0]: null} */}
             {/* {isAuthenticated? userInfo.displayName.split(" ")[1]: null} */}
               <div className="row">
@@ -80,6 +81,9 @@ class Gestor extends Component {
                     <span className="textdata"><input style={{ "height" : "1rem" }} type="text" name="email" id="email" /></span>
                   </div>
                 </div>
+                <div className='row' style={{textAlign: 'center'}}>
+                  <a href="#!" onClick={()=>console.log("implement me Please")} style={styleBox.savebtn} className="btn-flat">Submit</a>
+                </div>
 
             </div>  
           </div>
@@ -87,7 +91,7 @@ class Gestor extends Component {
         <div className="col s12 m12 l6"  style={styleBox.card}>
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PROFESSIONAL ACTIVITY</div>
-            <div className="container" style={{marginLeft: 25}}>
+            <div className="container-fluid" style={{margin: 25, height : "100%"}}>
 
               <div className="row">
                 <span>PROFESSION: </span>
@@ -179,7 +183,19 @@ const styleBox = {
     card : {
       display: "tableCell",
       height: "100%"
-    }
+    },
+    savebtn: {
+      background: `url(${savBtn})`,
+      backgroundSize: "contain",
+      border: "none",
+      backgroundRepeat:"no-repeat",
+      width:130,
+      fontWeight:"bold",
+      boxShadow: "none",
+      color: "white",
+      margin: 10,
+      float: 'center',
+    },
     
     
   }
