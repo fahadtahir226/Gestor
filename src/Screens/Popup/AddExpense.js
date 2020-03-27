@@ -28,6 +28,10 @@ class AddExpense extends React.Component {
                     return <InputItem title={item.title} id={item.id} typeName={item.typeName}  key={key} />
                 })
             }
+            <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
+              <label htmlFor='datePickerExp' >DATE</label>
+              <input type="text" id='datePickerExp' className="datepicker" />
+            </div>
           </form>
           <form className="col s12 m6 l6">
             {
@@ -61,7 +65,7 @@ const InputItem = (props) => {
     return (
       <div className="row" style={{marginBottom: 0}}>
         <div className="input-field col s12" style={{marginBottom: 0}}>
-          <input id={ props.id } type={props.typeName} className="validate" />
+          <input id={ props.id } type='text' className="validate" />
           <label htmlFor={ props.id }>{props.title}</label>
         </div>
       </div>
@@ -70,14 +74,19 @@ const InputItem = (props) => {
 
 const addNewExpense = (userInfo) => {
 
-    let concept = document.getElementById('conceptExp').value,
-        date = document.getElementById('dateExp').value.toUpperCase(),
-        day = document.getElementById('dayExp').value.toUpperCase(),
-        month = document.getElementById('monthExp').value.toUpperCase(),
-        year = parseInt(document.getElementById('yearExp').value),
-        docAddr = document.getElementById('docAddrExp').files[0];
+    let client = document.getElementById('clientExp').value,
+        concept = document.getElementById('conceptExp').value,
+        date = document.getElementById('datePickerExp').value.split(' '),
+        docAddr = document.getElementById('docAddrExp').files[0],
+        note = document.getElementById('noteExp').value,
+        amount = document.getElementById('amountExp').value,
+        iva = document.getElementById('ivaExp').value,
+        irpf = document.getElementById('irpfExp').value,
+        retentions = document.getElementById('retenExp').value;
+
         // total = document.getElementById('totalInc').value,
-        if(!concept || !date || !day || !month || !year || !docAddr ){
+        
+        if(!client || !concept || !date || !note || !amount || !docAddr || !iva || !irpf || !retentions ){
           M.toast({html: 'Every Field is Mandatory!'})
           return ;
         }
@@ -91,13 +100,18 @@ const addNewExpense = (userInfo) => {
           .then(function(url) {
               docAddr = url;
               db.collection("Users").doc(userInfo.uid).collection('expense').doc().set({
+                client: client,
                 concept : concept,
-                date : date,
-                day : day,
-                month : month,
-                year : year,
-                // total : total,                   need formula for it
+                date : date[0],
+                day : date[1].toUpperCase(),
+                month : date[2].toUpperCase(),
+                year : date[3].toUpperCase(),
                 docAddr: docAddr,
+                amount: amount,
+                iva: iva,
+                irpf: irpf,
+                retentions: retentions, 
+                note: note,
                 status : "PENDING"
             })
             .then(function() {
@@ -110,14 +124,15 @@ const addNewExpense = (userInfo) => {
 }
 
 const items1 = [
-    { title: 'CONCEPT', id: 'conceptExp', typeName: 'text' },
-    { title: 'DATE', id: 'dateExp', typeName: 'text' },
-    { title: 'DAY', id: 'dayExp', typeName: 'text' },
+    { title: 'CLIENT', id: 'clientExp'},
+    { title: 'CONCEPT', id: 'conceptExp'},
+    { title: 'IRPF', id: 'irpfExp'},
   ],     
   items2 = [
-    { title: 'MONTH', id: 'monthExp', typeName: 'text'  },
-    { title: 'YEAR', id: 'yearExp', typeName: 'text'  },
-    // { title: 'DOCUMENT', id: 'docAddrExp', typeName: 'file' }
+    { title: 'RETENTIONS', id: 'retentionExp'},
+    { title: 'IVA', id: 'ivaExp'},
+    { title: 'AMOUNT', id: 'amountExp'  },
+    { title: 'NOTE', id: 'noteExp'  },
   ]
 
 const styleBox = {
