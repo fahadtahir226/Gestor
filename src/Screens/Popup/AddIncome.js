@@ -31,9 +31,9 @@ class AddIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} key={key} />
                 })
             }
-            <div className="input-field col s12" style={{marginBottom: 0}}>
-            <label htmlFor='datePicker' >DATE PICKER</label>
-            <input type="text" id='datePickerInc' className="datepicker" />
+            <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
+              <label htmlFor='datePickerInc' >DATE</label>
+              <input type="text" id='datePickerInc' className="datepicker" />
             </div>
           </form>
           <form className="col s12 m6 l6">
@@ -43,7 +43,6 @@ class AddIncome extends React.Component {
                 })
             }
 
-          
           </form>
         </div>
         <a href="#!" onClick={()=>addNewIncome(userInfo)} style={styleBox.savebtn} className="btn-flat">Add</a>
@@ -67,50 +66,42 @@ const InputItem = (props) => {
 }
 
 const addNewIncome = (userInfo) => {
-    // let client = document.getElementById('clientInc').value,
-    //     concept = document.getElementById('conceptInc').value,
-    //     // date = document.getElementById('dateInc').value.toUpperCase(),
-    //     // day = document.getElementById('dayInc').value.toUpperCase(),
-    //     // month = document.getElementById('monthInc').value.toUpperCase(),
-    //     // year = parseInt(document.getElementById('yearInc').value),
-    //     irpf = parseInt(document.getElementById('irpfInc').value),
-    //     iva = parseInt(document.getElementById('ivaInc').value),
-    //     taxable = parseInt(document.getElementById('taxableInc').value),
-    //     amount = parseInt(document.getElementById('amountInc').value);
-
-    let date = document.getElementById('datePickerInc').value.split(' ');
-    console.log('DATE:', date[0]);
-    console.log('DAY:', date[1].toUpperCase());
-    console.log('MONTH:', date[2].toUpperCase());
-    console.log('YEAR:', date[3].toUpperCase());
-
+    let client = document.getElementById('clientInc').value,
+        concept = document.getElementById('conceptInc').value,
+        irpf = parseInt(document.getElementById('irpfInc').value),
+        iva = parseInt(document.getElementById('ivaInc').value),
+        taxable = parseInt(document.getElementById('taxableInc').value),
+        amount = parseInt(document.getElementById('amountInc').value),
+        date = document.getElementById('datePickerInc').value.split(' '),
+        note = document.getElementById('noteInc').value;
     
 
-        // if(!client || !concept || !date || !day || !month || !year || !irpf || !iva || !taxable || !amount ){
-          // M.toast({html: 'Every Field is Mandatory!'})
-          // return ;
-        // }
-        // db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
-            // client : client,
-            // concept : concept,
-            // date : date,
-            // day : day,
-            // month : month,
-            // year : year,
-            // irpf : irpf,
-            // iva : iva,
+        if(!client || !concept || !date || !irpf || !iva || !taxable || !amount || !note){
+          M.toast({html: 'Every Field is Mandatory!'})
+          return ;
+        }
+        db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
+            client : client,
+            concept : concept,
+            date : date[0],
+            day : date[1].toUpperCase(),
+            month : date[2].toUpperCase(),
+            year : date[3].toUpperCase(),
+            irpf : irpf,
+            iva : iva,
             // taxable : taxable,
             // total : total,                   need formula for it
-            // amount : amount,
-            // status : "PENDING",
-            // isDoc: false
-        // })
-        // .then(function() {
-        //     window.location.replace('income');
-        // })
-        // .catch(function(error) {
-        //     console.error("Error writing document: ", error);
-        // });
+            amount : amount,
+            status : "PENDING",
+            note: note,
+            isDoc: false
+        })
+        .then(function() {
+            window.location.replace('income');
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
 
 }
 

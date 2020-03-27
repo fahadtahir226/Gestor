@@ -29,6 +29,10 @@ class AddDocIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} key={key} />
                 })
             }
+            <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
+              <label htmlFor='datePickerExp' >DATE</label>
+              <input type="text" id='datePickerExp' className="datepicker" />
+            </div>
           </form>
           <form className="col s12 m6 l6">
             {
@@ -69,13 +73,19 @@ const InputItem = (props) => {
 }
 
 const addNewIncome = (userInfo) => {
-    let concept = document.getElementById('conceptDocInc').value,
+    let client = document.getElementById('clientDocInc').value,
+        concept = document.getElementById('conceptDocInc').value,
         date = document.getElementById('dateDocInc').value.toUpperCase(),
         day = document.getElementById('dayDocInc').value.toUpperCase(),
         month = document.getElementById('monthDocInc').value.toUpperCase(),
         year = parseInt(document.getElementById('yearDocInc').value),
-        docAddr = document.getElementById('docAddrInc').files[0];
-        if(!concept || !date || !day || !month || !year || !docAddr ){
+        docAddr = document.getElementById('docAddrInc').files[0],
+        iva = document.getElementById('ivaDocInc').value,
+        irpf = document.getElementById('irpfDocInc').value,
+        amount = document.getElementById('amountDocInc').value,
+        retentions = document.getElementById('retentionDocInc').value;
+
+        if(!client|| !concept || !date || !day || !month || !year || !docAddr ){
             M.toast({html: 'Every Field is Mandatory!'})
             return ;
         }
@@ -88,11 +98,16 @@ const addNewIncome = (userInfo) => {
           .then(function(url) {
               docAddr = url;
               db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
+                client: client,
                 concept : concept,
-                date : date,
-                day : day,
-                month : month,
-                year : year,
+                date : date[0],
+                day : date[1].toUpperCase(),
+                month : date[2].toUpperCase(),
+                year : date[3].toUpperCase(),
+                amount: amount,
+                iva: iva,
+                irpf: irpf,
+                retentions: retentions, 
                 status : "PENDING",
                 isDoc : true,
                 docAddr : url
@@ -110,13 +125,16 @@ const addNewIncome = (userInfo) => {
 
 const items1 = [
 
-    { title: 'CONCEPT', id: 'conceptDocInc' },
-    { title: 'DATE', id: 'dateDocInc' },
-    { title: 'DAY', id: 'dayDocInc' },
+  { title: 'CLIENT', id: 'clientDocInc'},
+  { title: 'CONCEPT', id: 'conceptDocInc'},
+  { title: 'IRPF', id: 'irpfDocInc'},
+
 ],     
 items2 = [
-    { title: 'MONTH', id: 'monthDocInc' },
-    { title: 'YEAR', id: 'yearDocInc' },
+  { title: 'RETENTIONS', id: 'retentionDocInc'},
+  { title: 'IVA', id: 'ivaDocInc'},
+  { title: 'AMOUNT', id: 'amountDocInc'  },
+  { title: 'NOTE', id: 'noteDocInc'  },
     ]
 
 const styleBox = {

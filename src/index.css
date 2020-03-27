@@ -14,17 +14,28 @@ code {
 }
 
 #addExpense {
-  min-height: 65%;
-
+  min-height: 85%;
+  min-width: 65%;
 }
 #addIncome { 
   min-height: 75% !important;
+  min-width: 65%;
 }
-
+#addDocIncome{
+  min-height: 75% !important;
+  min-width: 65%;
+}
 #docPdf {
   min-height: 90%;
 }
 .collapsible-body {
   padding: 0px !important;
   padding-left: 2rem !important;
+}
+.datepicker-modal{
+  min-width: '80%';
+
+}
+.datepicker-date-display {
+  background: #1e88e5
 }
