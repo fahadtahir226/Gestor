@@ -66,7 +66,6 @@ class Gestor extends Component {
           </div>
         </div>
       </div>
-      <div><button>Hey</button></div>
     </div>
     );
   }
