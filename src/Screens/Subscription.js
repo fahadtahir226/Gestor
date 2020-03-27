@@ -10,24 +10,26 @@ class Subscription extends Component {
     // var {isAuthenticated ,userInfo} = this.props;
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
-        <h4 className="row" style={styleBox.mainHeading}>SUBSCRIPTION</h4>
+        <h5 className="row" style={styleBox.mainHeading}>SUBSCRIPTION</h5>
       <div className="row">
 
         <div className="col s12 m12 l6">
             <div className="card" style={styleBox.PlanBox}>
-            <div style={styleBox.bluishHeading} >Basic Plan (Free)</div>
-            <div className="container" >
-                {basicPlan.map(plan=><Plan discription={plan}></Plan>)}
-            </div>
+              <div style={styleBox.bluishHeading} >
+                Basic Plan (Free)
+              </div>
+              <div className="container" >
+                  {basicPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
+              </div>
             </div>
         </div>
         <div className="col s12 m12 l6 right" >
-        <div className="card" style={styleBox.PlanBox}>
-            <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
-            <div className="container">
-            {premiumPlan.map(plan=><Plan discription={plan}></Plan>)}
-            </div>
-        </div>
+          <div className="card" style={styleBox.PlanBox}>
+              <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
+              <div className="container">
+                  {premiumPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -75,11 +77,17 @@ const styleBox = {
         marginLeft: -20,
         marginBottom: 10
     },
+    mainHeading: {
+      marginBottom: 0,
+      fontWeight: "bold",
+      color : "rgb(76,177,233)",
+      paddingLeft: "15px"
+    },
     PlanBox:{
       padding: 20,
       borderRadius: 5,
-      border: "2px solid rgb(76,177,233)"
-
+      border: "2px solid rgb(76,177,233)",
+      paddingBottom: "45px !important"
     },
     plan: {
         display: "flex"

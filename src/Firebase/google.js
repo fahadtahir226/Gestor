@@ -9,6 +9,6 @@ export const googleLogin = (event) => {
         var user = result.user;
         // ...
         console.log(token, user);
-        window.location.replace("/Home")
+        window.location.replace("/home")
         })
 }

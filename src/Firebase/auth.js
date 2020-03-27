@@ -19,30 +19,6 @@ export const SignUpCall = () => {
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
             })
 
-            // .then(async (user) => {
-            //     await db.collection(DBName).doc(auth.currentUser.uid).set({
-            //         name: name.value,
-            //         email: email.value,
-            //         id: auth.currentUser.uid
-            //     })
-            //         .then(res => {
-            //             auth.currentUser.updateProfile({
-            //                 displayName: name.value,
-            //             }).then(function () {
-            //                 console.log('User Name Added to authentication')
-            //             }).catch(function (error) {
-            //                 console.log('User Name Added to authentication')
-            //             });
-            //             alert(`Your Account Has Been Created Successfully !!`)
-            //             SignOut(event);
-            //             return Loading('none') && ClearField()
-            //         })
-            // })
-            // .catch(err => {
-            //     console.log(err.message)
-            //     return Loading('none')
-            // })
-
     } else {
             M.toast({html: 'Every Field is Mandatory!'})
     }
@@ -57,7 +33,8 @@ export const SignInCall = () => {
     auth.signInWithEmailAndPassword(email, pass)
         .then(async res => {
             if (res) {
-                window.location.replace("/Home");
+                
+                window.location.replace("/home");
                 console.log(auth.currentUser);
             }
         }).catch(err => {
@@ -70,20 +47,19 @@ var emailAddress = document.getElementById("reset-email").value;
 
 auth.sendPasswordResetEmail(emailAddress).then(function() {
   window.location.replace("/");
+  SignOut();
 }).catch(function(error) {
   console.log(error);
 });
 }
 export const NewPassword = (oobCode) => {
-    var actionCode = document.getParameterByName('oobCode');
-    // let code = this.props.match.params.oobCode;
-    let newPassword = document.getElementById("newPass");
-    let confirmPassword = document.getElementById("newPass");
+    let newPassword = document.getElementById("newPass").value;
+    let confirmPassword = document.getElementById("confirmPass").value;
     if(newPassword === confirmPassword){
 
-        auth().confirmPasswordReset(actionCode, newPassword)
+        auth.confirmPasswordReset(oobCode, newPassword)
             .then(function() {
-              window.location.replace("/Home");
+              window.location.replace("/home");
             })
             .catch(function(error) {
                 console.log(error);
@@ -98,9 +74,9 @@ export const NewPassword = (oobCode) => {
 // User Sign Out
 export const SignOut = () => {
     auth.signOut().then(res => {
-        alert('You\'re Logged Out Successfully');
+        M.toast({html: 'You\'re Logged Out Successfully'})
     }).catch(err => {
-        alert(err.message);
+        M.toast({html: err.message})
     })
 }
 

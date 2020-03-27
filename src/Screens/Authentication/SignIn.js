@@ -40,14 +40,14 @@ class SignIn extends Component {
                     <input id='login-pass' placeholder='Password' style={styleBox.inputs} type="Password" />
                 </div>
                 <a href="#!" class="waves-effect waves-light blue darken-1 btn-small" onClick={()=>{SignInCall()}} style={styleBox.loginBtn}>Sign In</a>
-                <p style={styleBox.contnt}><Link to='/passReset'>Forget Password ?</Link></p>
+                <p style={styleBox.contnt}><Link to='/resetpasword'>Forget Password ?</Link></p>
                 <p style={{color: "grey", marginTop: 10,width:"100%", textAlign:"center", borderBottom: "1px solid lightgrey", lineHeight:"0.1em", margin:"10px 0 20px"}}> <span style={{ background:"#fff", padding:"0 10px" }}>OR</span></p>
                 <div>
                     <img onClick={(event)=>facebookLogin(event)} style={styleBox.socialIcons} src={fb} alt="" />
                     <img onClick={(event) =>googleLogin(event) } style={styleBox.socialIcons} src={gplus} alt="" />
                     <img style={styleBox.socialIcons} src={twitr} alt="" />
                 </div>
-                <p style={{color: "grey", marginTop: 10}}>Not member yet? <Link to="/SignUp" ><b>Signup here</b></Link></p>
+                <p style={{color: "grey", marginTop: 10}}>Not member yet? <Link to="/signup" ><b>Signup here</b></Link></p>
               </div>
             </div>
             </div>

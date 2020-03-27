@@ -5,7 +5,7 @@ import '../App.css'
 import history from '../images/drawable/history.png';
 // import mail from '../images/drawable/mail.png'
 import AddExpense from '../Screens/Popup/AddExpense'
-import {HideCard, PopupCard} from '../Screens/Popup/configureCards';
+import {PopupCard} from '../Screens/Popup/configureCards';
 import { Link } from 'react-router-dom';
 
 
@@ -29,11 +29,8 @@ class Expense extends Component {
       M.Collapsible.init(elems);
       M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
       M.FormSelect.init(select);
-      HideCard('addExpense');
+      document.getElementById('addExpense').style.display = 'none';      
     }
-  handleClick(e,select){
-    this.setState({qtr: select.value});
-  }
 render() {
     var {userInfo} = this.props;
     var expenseData = this.props.expData;

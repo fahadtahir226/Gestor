@@ -9,12 +9,12 @@ import ForgetPassWord from "../Screens/Authentication/ForgetPass";
 import NewPass from "../Screens/Authentication/NewPass";
 
 const AppRouter = (props) => {
-  var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc} = props;
+  var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/"  render={() => <SignIn isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
-        <Route path="/Home" render={() => <Home 
+        <Route path="/home" render={() => <Home 
           isAuthenticated={isAuthenticated} 
           userInfo={userInfo} 
           expData={expData}
@@ -25,10 +25,11 @@ const AppRouter = (props) => {
           updateIncHis={updateIncHis}
           contacts={contacts} 
           uploadDoc={uploadDoc}
+          doc={doc}
            /> }  />
-        <Route path="/SignUp"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
-        <Route path="/passReset" render={() => <ForgetPassWord /> } />
-        <Route path="/newPass/?:mode&:oobCode&:apiKey&:lang" component={NewPass} exact />
+        <Route path="/signup"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
+        <Route path="/resetpasword" render={() => <ForgetPassWord /> } />
+        <Route path="/newPass/" component={NewPass} />
       </Switch>
     </BrowserRouter>
   );

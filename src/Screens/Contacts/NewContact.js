@@ -26,7 +26,7 @@ class NewContact extends Component {
 
       db.collection("Users").doc(user).collection("contacts").add(contact)
       .then(res =>{
-        window.location.replace('/Home/contacts');
+        window.location.replace('/home/contacts');
       })
       .catch(err => console.log(err))
         // M.toast({html: err.message}))

@@ -21,7 +21,7 @@ class App extends Component {
       }
   }
   render() {
-    var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts} = this.state;
+    var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc} = this.state;
     return (
       <div className='App' >
         <AppRouter 
@@ -34,15 +34,12 @@ class App extends Component {
         incHis = { incHis }
         updateIncHis = {this.updateIncHis }
         contacts = { contacts }
-        uploadDoc = { this.uploadDocData } 
+        uploadDoc = { this.uploadDocData }
+        doc={ doc } 
         />
       </div>
     );
   }
-  addContact = () => {
-    
-  }
-
   // Expense Related
   updateExpData = (expData) => {
     this.setState({expData})
@@ -72,10 +69,9 @@ class App extends Component {
     uploadDoc(e.target.files[0], userID, (doc) => this.updateDocData(doc));
   }
 
-  
-  componentDidMount() {
+componentDidMount() {     
 
-    auth.onAuthStateChanged((user) => {      
+    auth.onAuthStateChanged((user) => { 
       if(user){
         console.log("User : " ,user);
         this.setState({
@@ -85,8 +81,7 @@ class App extends Component {
         loadExpenses(user, new Date().getFullYear(), (exp) => this.updateExpData(exp), (expHis) => this.updateExpHis(expHis));
         loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));
         loadContact (user, (contacts) => this.updateContactData(contacts));
-        loadDocument(user,(document) => this.updateDocData(document) );
-        // loadDoc(user, (doc) => this.updateDocData(doc));
+        loadDocument(user, (document) => this.updateDocData(document) );
       }else {
         this.setState({
           isAuthenticated: false

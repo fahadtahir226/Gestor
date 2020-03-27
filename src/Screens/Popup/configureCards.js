@@ -1,15 +1,16 @@
 export const PopupCard = (card, url) => {
     var elem = document.getElementById(card);
     
-    elem.style.display = 'block';
+    elem.style.display = 'block'
     if(url){
         document.getElementById('docIframe').src = url;
     }
 
 }
-export const HideCard = (card) => {
+export const HideCard = (instance ,card) => {
     var elem = document.getElementById(card);
-    
+    console.log("Hide ", card," Instance ",instance);
     elem.style.display = 'none';
-
+    // instance.forEach(inst => inst.close());
+    window.location.reload(true);
 }
