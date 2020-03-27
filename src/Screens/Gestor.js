@@ -35,11 +35,52 @@ class Gestor extends Component {
             <div className="container" style={{marginLeft: 25}}>
             {/* {isAuthenticated? userInfo.displayName.split(" ")[0]: null} */}
             {/* {isAuthenticated? userInfo.displayName.split(" ")[1]: null} */}
-              <div className="row"><span>FIRST NAME: </span><span className="right textdata"> <input style={{ "height" : "1rem" }} type="text" name="fname" id="fname" /> </span></div>
-              <div className="row"><span>LAST NAME: </span><span className="right textdata"> <input style={{ "height" : "1rem" }} type="text" name="lname"  id="lname" />  </span></div>
-              <div className="row"><span>NIE/NIF: </span><span className="right textdata"><input style={{ "height" : "1rem" }} type="text" name="nif" id="nif" /></span></div>
-              <div className="row"><span>PHONE NUMBER: </span><span className="right textdata"><input style={{ "height" : "1rem" }} type="text" name="pnumber" id="pnumber" /></span></div>
-              <div className="row"><span>EMAIL</span><span className="right textdata"><input style={{ "height" : "1rem" }} type="text" name="email" id="email" /></span></div>
+              <div className="row">
+                
+                <div className="col s12 m12 l6">
+                      <span>FIRST NAME: </span>
+                  </div>
+                    <div className="col s12 m12 l6">
+                    <span className="textdata"> <input style={{ "height" : "1rem" }} type="text" name="fname" id="fname" /> </span>
+                    </div>
+                </div>
+
+                <div className="row">
+                  <div className="col s12 m12 l6">
+                    <span>LAST NAME: </span>
+                  </div>
+                  <div className="col s12 m12 l6">
+                    <span className="textdata"> <input style={{ "height" : "1rem" }} type="text" name="lname"  id="lname" />  </span>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col s12 m12 l6">
+                  <span>NIE/NIF: </span>
+                  </div>
+                  <div className="col s12 m12 l6">
+                  <span className=" textdata"><input style={{ "height" : "1rem" }} type="text" name="nif" id="nif" /></span>                  
+                  </div>
+                </div>
+                
+                <div className="row">
+                  <div className="col s12 m12 l6">
+                    <span>PHONE NUMBER: </span>
+                  </div>
+                  <div className="col s12 m12 l6" >
+                    <span className=" textdata"><input style={{ "height" : "1rem" }} type="text" name="pnumber" id="pnumber" /></span>
+                  </div>
+                </div>
+                
+                <div className="row">
+                  <div className="col s12 m12 l6">
+                    <span>EMAIL</span>
+                  </div>
+                  <div className="col s12 m12 l6">
+                    <span className="textdata"><input style={{ "height" : "1rem" }} type="text" name="email" id="email" /></span>
+                  </div>
+                </div>
+
             </div>  
           </div>
         </div>
@@ -136,7 +177,8 @@ const styleBox = {
       width: "100%" 
     },
     card : {
-      display: "table-cell"
+      display: "tableCell",
+      height: "100%"
     }
     
     
