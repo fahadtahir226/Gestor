@@ -3,7 +3,7 @@ import M from 'materialize-css'
 import { HideCard } from './configureCards';
 import { storageRef } from '../../Firebase/storage';
 
-import savBtn from "../../images/Rectangle 267@2x.png"
+
 import sbmtbtn from "../../images/text-background.png"
 import '../../index.css'
 
@@ -109,7 +109,6 @@ const styleBox = {
     // },
     
     savebtn: {
-      background: "rgba(15,213,245,1)",
       background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
       borderRadius : "25px",
       width:130,

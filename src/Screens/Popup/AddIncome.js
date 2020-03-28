@@ -68,15 +68,15 @@ const InputItem = (props) => {
 const addNewIncome = (userInfo) => {
     let client = document.getElementById('clientInc').value,
         concept = document.getElementById('conceptInc').value,
+        retention = parseInt(document.getElementById('retentionInc').value),
         irpf = parseInt(document.getElementById('irpfInc').value),
         iva = parseInt(document.getElementById('ivaInc').value),
-        taxable = parseInt(document.getElementById('taxableInc').value),
         amount = parseInt(document.getElementById('amountInc').value),
         date = document.getElementById('datePickerInc').value.split(' '),
         note = document.getElementById('noteInc').value;
     
 
-        if(!client || !concept || !date || !irpf || !iva || !taxable || !amount || !note){
+        if(!client || !concept || !date || !irpf || !iva || !retention || !amount || !note){
           M.toast({html: 'Every Field is Mandatory!'})
           return ;
         }
@@ -89,7 +89,8 @@ const addNewIncome = (userInfo) => {
             year : date[3].toUpperCase(),
             irpf : irpf,
             iva : iva,
-            // taxable : taxable,
+            retention : retention,
+            taxable : amount + iva + irpf - retention,
             // total : total,                   need formula for it
             amount : amount,
             status : "PENDING",
@@ -106,9 +107,15 @@ const addNewIncome = (userInfo) => {
 }
 
 const items1 = [
+<<<<<<< HEAD
     { title: 'CLIENT', id: 'clientInc',type: 'text' },
     { title: 'CONCEPT', id: 'conceptInc' ,type: 'text' },
     { title: 'TAXABLE', id: 'taxableInc' ,type: 'number' },
+=======
+    { title: 'CLIENT', id: 'clientInc' },
+    { title: 'CONCEPT', id: 'conceptInc' },
+    { title: 'RETENTION', id: 'retentionInc' },
+>>>>>>> 3947004b1f36661630e095d575f6e062e3c276b6
     ],     
     items2 = [
     { title: 'IRPF', id: 'irpfInc' ,type: 'number' },

@@ -45,6 +45,7 @@ let incomeData = new YearlyData();
 export const loadIncomes = (user, year, updateIncData, updateIncHis) => {
   let incomes = db.collection("Users").doc(user.uid).collection("income");
   incomeData.year = year;
+  console.log("",user.uid);
   
   monthlyData.map(month =>{
     incomes.where('year','==',year).where('month','==',month).get()
@@ -55,6 +56,7 @@ export const loadIncomes = (user, year, updateIncData, updateIncHis) => {
           }
       })
       if(month === 'DECEMBER') {
+        console.log(incomeData)
         updateIncData(incomeData);
         updateIncHis(incomeData);
       };
