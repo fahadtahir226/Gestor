@@ -28,7 +28,7 @@ class AddIncome extends React.Component {
           <form className="col s12 m6 l6">
             {
                 items1.map((item, key) => {
-                    return <InputItem title={item.title} id={item.id} key={key} />
+                    return <InputItem title={item.title} id={item.id} type={item.type} key={key} />
                 })
             }
             <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
@@ -39,7 +39,7 @@ class AddIncome extends React.Component {
           <form className="col s12 m6 l6">
             {
                 items2.map((item, key) => {
-                    return <InputItem title={item.title} id={item.id} key={key} />
+                    return <InputItem title={item.title} id={item.id} type={item.type} key={key} />
                 })
             }
 
@@ -58,7 +58,7 @@ const InputItem = (props) => {
     return (
       <div className="row" style={{marginBottom: 0}}>
         <div className="input-field col s12" style={{marginBottom: 0}}>
-          <input id={ props.id } type="text" className="validate" />
+          <input id={ props.id } type={ props.type ? props.type : "text" } className="validate" />
           <label htmlFor={ props.id }>{props.title}</label>
         </div>
       </div>
@@ -106,15 +106,15 @@ const addNewIncome = (userInfo) => {
 }
 
 const items1 = [
-    { title: 'CLIENT', id: 'clientInc' },
-    { title: 'CONCEPT', id: 'conceptInc' },
-    { title: 'TAXABLE', id: 'taxableInc' },
+    { title: 'CLIENT', id: 'clientInc',type: 'text' },
+    { title: 'CONCEPT', id: 'conceptInc' ,type: 'text' },
+    { title: 'TAXABLE', id: 'taxableInc' ,type: 'number' },
     ],     
     items2 = [
-    { title: 'IRPF', id: 'irpfInc' },
-    { title: 'IVA', id: 'ivaInc' },
-    { title: 'AMOUNT', id: 'amountInc' },
-    { title: 'NOTE', id: 'noteInc' }
+    { title: 'IRPF', id: 'irpfInc' ,type: 'number' },
+    { title: 'IVA', id: 'ivaInc' ,type: 'number' },
+    { title: 'AMOUNT', id: 'amountInc' ,type: 'number' },
+    { title: 'NOTE', id: 'noteInc' ,type: 'text' },
     ]
 
 const styleBox = {

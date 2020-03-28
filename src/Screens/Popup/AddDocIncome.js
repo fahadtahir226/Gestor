@@ -40,7 +40,7 @@ class AddDocIncome extends React.Component {
           <form className="col s12 m6 l6">
             {
                 items2.map((item, key) => {
-                    return <InputItem title={item.title} id={item.id} key={key} />
+                    return <InputItem title={item.title} id={item.id} key={key} type={item.type} />
                 })
             }
 
@@ -68,7 +68,7 @@ const InputItem = (props) => {
     return (
       <div className="row" style={{marginBottom: 0}}>
         <div className="input-field col s12" style={{marginBottom: 0}}>
-          <input id={ props.id } type="text" className="validate" />
+          <input id={ props.id } type={ props.type ? props.type : "text" } className="validate" />
           <label htmlFor={ props.id }>{props.title}</label>
         </div>
       </div>
@@ -128,16 +128,16 @@ const addNewIncome = (userInfo) => {
 
 const items1 = [
 
-  { title: 'CLIENT', id: 'clientDocInc'},
-  { title: 'CONCEPT', id: 'conceptDocInc'},
-  { title: 'IRPF', id: 'irpfDocInc'},
+  { title: 'CLIENT', id: 'clientDocInc',type: 'text' },
+  { title: 'CONCEPT', id: 'conceptDocInc',type: 'text' },
+  { title: 'IRPF', id: 'irpfDocInc',type: 'number' },
 
 ],     
 items2 = [
-  { title: 'RETENTIONS', id: 'retentionDocInc'},
-  { title: 'IVA', id: 'ivaDocInc'},
-  { title: 'AMOUNT', id: 'amountDocInc'  },
-  { title: 'NOTE', id: 'noteDocInc'  },
+  { title: 'RETENTIONS', id: 'retentionDocInc',type: 'number' },
+  { title: 'IVA', id: 'ivaDocInc',type: 'number' },
+  { title: 'AMOUNT', id: 'amountDocInc'  ,type: 'number' },
+  { title: 'NOTE', id: 'noteDocInc' , type: 'text' },
     ]
 
 const styleBox = {

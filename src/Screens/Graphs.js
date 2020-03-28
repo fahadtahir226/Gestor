@@ -154,7 +154,7 @@ class Graphs extends Component {
                                   margin: "0"
                                 }}
                               >
-                                ANNUAL:
+                                TAXES:
                               </h4>
                             </div>
                             <div className="col sm6 m6 12 right">
