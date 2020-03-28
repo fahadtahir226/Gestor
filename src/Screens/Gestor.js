@@ -83,7 +83,7 @@ class Gestor extends Component {
                   <span>NIE/NIF: </span>
                   </div>
                   <div className="col s12 m12 l6">
-                  <span className=" textdata"><input style={{ "height" : "1rem" }} type="text" name="nif" id="nif" /></span>                  
+                  <span className=" textdata"><input style={{ "height" : "1rem" }} type="number" name="nif" id="nif" /></span>                  
                   </div>
                 </div>
                 
@@ -101,7 +101,7 @@ class Gestor extends Component {
                     <span>EMAIL</span>
                   </div>
                   <div className="col s12 m12 l6">
-                    <span className="textdata"><input style={{ "height" : "1rem" }} type="text" name="email" id="email" /></span>
+                    <span className="textdata"><input style={{ "height" : "1rem" }} type="email" name="email" id="email" /></span>
                   </div>
                 </div>
                 <div className='row' style={{textAlign: 'center'}}>
