@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import M from 'materialize-css';
-import savBtn from "../../images/Rectangle 267@2x.png"
 import {db} from '../../Firebase/firestore'
 
 class NewContact extends Component {
@@ -106,18 +105,7 @@ const styleBox = {
         fontSize: 14,
         color: "#1e88e5",
     },
-    // savebtn: {
-    //     background: `url(${savBtn})`,
-    //     backgroundSize: "contain",
-    //     border: "none",
-    //     backgroundRepeat:"no-repeat",
-    //     width:130,
-    //     fontWeight:"bold",
-    //     boxShadow: "none",
-    //     color: "white",
-    // },
     savebtn: {
-      background: "rgba(15,213,245,1)",
       background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
       borderRadius : "25px",
       width:130,

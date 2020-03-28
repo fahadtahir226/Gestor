@@ -3,7 +3,7 @@ import M from 'materialize-css';
 import { HideCard } from './configureCards';
 import { db } from '../../Firebase/firestore';
 import { storageRef } from '../../Firebase/storage';
-import savBtn from "../../images/Rectangle 267@2x.png"
+
 import sbmtbtn from "../../images/text-background.png"
 import '../../index.css'
 
@@ -78,17 +78,14 @@ const InputItem = (props) => {
 const addNewIncome = (userInfo) => {
     let client = document.getElementById('clientDocInc').value,
         concept = document.getElementById('conceptDocInc').value,
-        date = document.getElementById('dateDocInc').value.toUpperCase(),
-        day = document.getElementById('dayDocInc').value.toUpperCase(),
-        month = document.getElementById('monthDocInc').value.toUpperCase(),
-        year = parseInt(document.getElementById('yearDocInc').value),
+        date = document.getElementById('datePickerExp').value.split(' '),
         docAddr = document.getElementById('docAddrInc').files[0],
-        iva = document.getElementById('ivaDocInc').value,
-        irpf = document.getElementById('irpfDocInc').value,
-        amount = document.getElementById('amountDocInc').value,
-        retentions = document.getElementById('retentionDocInc').value;
+        iva = parseInt(document.getElementById('ivaDocInc').value),
+        irpf = parseInt(document.getElementById('irpfDocInc').value),
+        amount = parseInt(document.getElementById('amountDocInc').value),
+        retentions = parseInt(document.getElementById('retentionDocInc').value);
 
-        if(!client|| !concept || !date || !day || !month || !year || !docAddr ){
+        if(!client|| !concept || !date || !docAddr || !iva || !irpf || !amount || !retentions ){
             M.toast({html: 'Every Field is Mandatory!'})
             return ;
         }
@@ -106,8 +103,9 @@ const addNewIncome = (userInfo) => {
                 date : date[0],
                 day : date[1].toUpperCase(),
                 month : date[2].toUpperCase(),
-                year : date[3].toUpperCase(),
+                year : parseInt(date[3]),
                 amount: amount,
+                taxable: amount + iva + irpf - retentions,
                 iva: iva,
                 irpf: irpf,
                 retentions: retentions, 
@@ -130,13 +128,13 @@ const items1 = [
 
   { title: 'CLIENT', id: 'clientDocInc'},
   { title: 'CONCEPT', id: 'conceptDocInc'},
-  { title: 'IRPF', id: 'irpfDocInc'},
-
+  { title: 'AMOUNT', id: 'amountDocInc'  },
+  
 ],     
 items2 = [
+  { title: 'IRPF', id: 'irpfDocInc'},
   { title: 'RETENTIONS', id: 'retentionDocInc'},
   { title: 'IVA', id: 'ivaDocInc'},
-  { title: 'AMOUNT', id: 'amountDocInc'  },
   { title: 'NOTE', id: 'noteDocInc'  },
     ]
 

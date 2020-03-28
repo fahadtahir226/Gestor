@@ -26,16 +26,6 @@ export const loadDocument = (user, updateDocData) => {
     updateDocData(doc);
 }
 
-// class Pdf{
-//   constructor() {
-//     let name, path;
-//   }
-// }
-// class Folders{
-//     constructor(){
-//         let name, subChilds, fulpath;
-//     }
-// }
 
 export let doc = {}
 const searchNested = (ref, doc, updateDocData) => {

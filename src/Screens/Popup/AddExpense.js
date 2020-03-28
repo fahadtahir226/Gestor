@@ -3,7 +3,7 @@ import M from 'materialize-css';
 import { HideCard } from './configureCards';
 import { db } from '../../Firebase/firestore';
 import { storageRef } from '../../Firebase/storage';
-import savBtn from "../../images/Rectangle 267@2x.png"
+
 import sbmtbtn from "../../images/text-background.png"
 import '../../index.css'
 
@@ -82,10 +82,10 @@ const addNewExpense = (userInfo) => {
         date = document.getElementById('datePickerExp').value.split(' '),
         docAddr = document.getElementById('docAddrExp').files[0],
         note = document.getElementById('noteExp').value,
-        amount = document.getElementById('amountExp').value,
-        iva = document.getElementById('ivaExp').value,
-        irpf = document.getElementById('irpfExp').value,
-        retentions = document.getElementById('retentionExp').value;
+        amount = parseInt(document.getElementById('amountExp').value),
+        iva = parseInt(document.getElementById('ivaExp').value),
+        irpf = parseInt(document.getElementById('irpfExp').value),
+        retentions = parseInt(document.getElementById('retentionExp').value);
 
         // total = document.getElementById('totalInc').value,
         
@@ -108,9 +108,10 @@ const addNewExpense = (userInfo) => {
                 date : date[0],
                 day : date[1].toUpperCase(),
                 month : date[2].toUpperCase(),
-                year : date[3].toUpperCase(),
+                year :  parseInt(date[3]),
                 docAddr: docAddr,
                 amount: amount,
+                taxable : amount + iva + irpf - retentions,
                 iva: iva,
                 irpf: irpf,
                 retentions: retentions, 
