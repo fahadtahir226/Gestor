@@ -18,10 +18,33 @@ class Gestor extends Component {
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
       <div className="col s12 m12 l12" style={styleBox.content}>
-            <div style={{height: 120,backgroundImage: `url(${keyIcon})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}}>
+            <div style={{               
+              height: "120px",          
+              width: "120px",
+              margin : "auto",
+              padding : 20,
+              backgroundImage: `url(${keyIcon})`, 
+              backgroundRepeat: "no-repeat", 
+              backgroundPosition: "center",
+              backgroundSize:"cover"
+              }}>
+            <div style={{
+              height: "80px",
+              width: "80px",
+              backgroundImage: `url(${userInfo.photoURL})`, 
+              backgroundRepeat: "no-repeat", 
+              backgroundSize: "contain", 
+              backgroundPosition: "center",
+              margin: "auto",
+              borderRadius: "50%",
+              backgroundSize:"cover"
+              }}>
               {/* <img alt="" style={{width: 120}} src={keyIcon} /> */}
-            <img alt="" style={{width:  80, borderRadius: "100%", marginTop: 20}} src={userInfo.photoURL} />
+              {/* <img alt="" style={{width:  80, borderRadius: "100%", marginTop: 20}} src={userInfo.photoURL} /> */}
             </div>
+
+            </div>
+
             <br />
             <label htmlFor="profileBtn" >
             <a onClick={()=>document.getElementById("profileBtn").click()} href="#!" style={styleBox.submitbtn} className="btn waves-effect waves-light">UPLOAD PHOTO</a>
