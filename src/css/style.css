@@ -1,0 +1,14 @@
+
+.optionBox{
+    cursor: pointer;
+}
+.confoptionactive{
+    border: 1px solid #26222130;
+    border-radius: 40px 40px 40px 40px;
+    background-color: rgba(38,34,33,0.1);
+}
+.confoptionactive :blur{
+    border: 2px solid rgba(38,34,33,0.19);
+    border-radius: 40px 40px 40px 40px;
+    background-color: rgba(38,34,33,0.1);
+}
