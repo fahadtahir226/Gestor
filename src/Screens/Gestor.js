@@ -13,7 +13,7 @@ class Gestor extends Component {
   }
 
   render() {
-    var {isAuthenticated ,userInfo} = this.props;
+    var { userInfo } = this.props;
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
@@ -96,9 +96,7 @@ class Gestor extends Component {
               <div className="row">
                 <span>PROFESSION: </span>
                 <div className="right">
-                  {/* {isAuthenticated? */}
-                {/* <> */}
-                  <a  style={styleBox.dropDown} className='dropdown-trigger' href='#' data-target='dropdown1'><span style={{visibility: 'hidden'}}>......</span>DESIGNER<span style={{visibility: 'hidden'}}>......</span></a>
+                  <a  style={styleBox.dropDown} className='dropdown-trigger' href='#!' data-target='dropdown1'><span style={{visibility: 'hidden'}}>......</span>DESIGNER<span style={{visibility: 'hidden'}}>......</span></a>
                   <ul id='dropdown1' className='dropdown-content'>
                     <li><a href="#!">DEVELOPER</a></li>
                     <li><a href="#!">MANAGER</a></li>

@@ -21,7 +21,7 @@ componentDidMount(){
 }
 
 render() {
-    var {userInfo, uploadDoc, doc} = this.props;
+    var {userInfo, doc} = this.props;
       console.log("Doc Reached UI",doc);
   return(
     <>

@@ -85,7 +85,7 @@ const addNewExpense = (userInfo) => {
         amount = document.getElementById('amountExp').value,
         iva = document.getElementById('ivaExp').value,
         irpf = document.getElementById('irpfExp').value,
-        retentions = document.getElementById('retenExp').value;
+        retentions = document.getElementById('retentionExp').value;
 
         // total = document.getElementById('totalInc').value,
         

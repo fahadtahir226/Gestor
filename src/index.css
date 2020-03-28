@@ -26,6 +26,7 @@ code {
   min-width: 65%;
 }
 #docPdf {
+  min-height: 75% !important;
   min-height: 90%;
 }
 .collapsible-body {

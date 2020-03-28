@@ -4,10 +4,9 @@ import '../App.css'
 import { Link } from 'react-router-dom';
 
 import history from '../images/drawable/history.png';
-// import mail from '../images/drawable/mail.png'
 import AddIncome from './Popup/AddIncome'
 import AddDocIncome from './Popup/AddDocIncome'
-import {HideCard, PopupCard} from './Popup/configureCards';
+import { PopupCard } from './Popup/configureCards';
 
 class Income extends Component {
   constructor(props){
@@ -208,12 +207,12 @@ const styleBox = {
     marginTop: 30,
   },
   content: {
-    // padding: 10,
+    padding: 10,
   },
   Ul: {
-      borderRight: "none",
-      borderLeft: "none",
-      boxShadow: "none"
+    borderRight: "none",
+    borderLeft: "none",
+    boxShadow: "none"
   }
   }
 

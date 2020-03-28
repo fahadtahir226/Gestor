@@ -26,16 +26,16 @@ export const loadDocument = (user, updateDocData) => {
     updateDocData(doc);
 }
 
-class Pdf{
-  constructor() {
-    let name, path;
-  }
-}
-class Folders{
-    constructor(){
-        let name, subChilds, fulpath;
-    }
-}
+// class Pdf{
+//   constructor() {
+//     let name, path;
+//   }
+// }
+// class Folders{
+//     constructor(){
+//         let name, subChilds, fulpath;
+//     }
+// }
 
 export let doc = {}
 const searchNested = (ref, doc, updateDocData) => {
@@ -43,7 +43,8 @@ const searchNested = (ref, doc, updateDocData) => {
     .then(ref => {
         if(ref.items){
         doc.items = ref.items.map((item)=> {
-            let pdf = new Pdf()
+            // let pdf = new Pdf()
+            let pdf = {};
             pdf.name = item.name;
             item.getDownloadURL()
             .then(url => pdf.path = url);
@@ -52,7 +53,8 @@ const searchNested = (ref, doc, updateDocData) => {
         }
         if(ref.prefixes) {
           doc.paths = ref.prefixes.map((prefix)=>{
-            let folder = new Folders();
+            // let folder = new Folders();
+            let folder = {};
             folder.name = prefix.name;
             folder.fulpath = prefix.fullPath;
             folder.subChilds = {};
