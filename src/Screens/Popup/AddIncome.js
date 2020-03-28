@@ -107,15 +107,9 @@ const addNewIncome = (userInfo) => {
 }
 
 const items1 = [
-<<<<<<< HEAD
     { title: 'CLIENT', id: 'clientInc',type: 'text' },
     { title: 'CONCEPT', id: 'conceptInc' ,type: 'text' },
     { title: 'TAXABLE', id: 'taxableInc' ,type: 'number' },
-=======
-    { title: 'CLIENT', id: 'clientInc' },
-    { title: 'CONCEPT', id: 'conceptInc' },
-    { title: 'RETENTION', id: 'retentionInc' },
->>>>>>> 3947004b1f36661630e095d575f6e062e3c276b6
     ],     
     items2 = [
     { title: 'IRPF', id: 'irpfInc' ,type: 'number' },
