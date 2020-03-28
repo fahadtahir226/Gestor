@@ -9,8 +9,11 @@ import '../../index.css'
 
 class AddDocIncome extends React.Component {
   componentDidMount(){
-    var modal = document.querySelectorAll('.modal');
+    var modal = document.querySelectorAll('.modal'),
+    picker = document.querySelectorAll('.datepicker');
     this.instance = M.Modal.init(modal);
+    M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
+
   }
 
     render(){
