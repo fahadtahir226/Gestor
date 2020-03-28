@@ -87,13 +87,15 @@ const styleBox = {
       padding: 20,
       borderRadius: 5,
       border: "2px solid rgb(76,177,233)",
-      paddingBottom: "45px !important"
+      paddingBottom: "45px !important",
+      minHeight: 300
     },
     plan: {
         display: "flex"
     },
     iconContainer: {
-        width: 16
+        width: 16,
+        marginRight : 16 
     },  
     discContainer: {
         flex: 1

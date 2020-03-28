@@ -12,3 +12,29 @@
     border-radius: 40px 40px 40px 40px;
     background-color: rgba(38,34,33,0.1);
 }
+
+*::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 4px grey;
+	box-shadow: inset 0 0 4px grey;
+	border-radius: 10px;
+	background-color: rgb(255, 255, 255);
+}
+
+*::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+	box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+	background-color: rgb(236, 236, 236);
+}
+
+.imageRound{
+    object-fit:cover;
+}

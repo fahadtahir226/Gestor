@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Chart } from "react-charts";
 import ReactChart from "react-google-charts";
+import "../css/style.css"
 
 class Graphs extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class Graphs extends Component {
                 <div className="section">
                   <div className="row vertical-modern-dashboard">
                     <div className="col s12 m6 l6">
-                      <div className="card" style={{ borderRadius: "20px" }}>
+                      <div className="card" style={styleBox.cardstyle}>
                         <div className="card-content">
                           <div className="row" style={{ marginBottom: "0px" }}>
                             <div className="col sm6 m6 12">
@@ -94,7 +95,7 @@ class Graphs extends Component {
                     <div className="col s12 m6 l6 animate fadeRight">
                       <div
                         className="card user-statistics-card animate fadeLeft"
-                        style={{ borderRadius: "20px" }}
+                        style={styleBox.cardstyle}
                       >
                         <div className="card-content">
                           <div className="row" style={{ marginBottom: "0px" }}>
@@ -142,9 +143,9 @@ class Graphs extends Component {
 
                   <div className="row">
                     <div className="col s12 m6 l6">
-                      <div className="card" style={{ borderRadius: "20px" }}>
+                      <div className="card" style={styleBox.bottomcardstyle}>
                         <div className="card-content">
-                        <div className="row" style={{ marginBottom: "0px" }}>
+                          <div className="row" style={{ marginBottom: "0px" }}>
                             <div className="col sm6 m6 12">
                               <h4
                                 style={{
@@ -172,94 +173,94 @@ class Graphs extends Component {
                           </div>
                           <br />
                           <div>
-                          <table>
-                            <tbody>
-                              <tr style={{ borderBottom: "0px" }}>
-                                <td
-                                  style={{
-                                    color: "#4aa4ef",
-                                    fontWeight: "bold"
-                                  }}
-                                >
-                                  TOTAL TAXES
+                            <table>
+                              <tbody>
+                                <tr style={{ borderBottom: "0px" }}>
+                                  <td
+                                    style={{
+                                      color: "#4aa4ef",
+                                      fontWeight: "bold"
+                                    }}
+                                  >
+                                    TOTAL TAXES
                                 </td>
-                                <td
-                                  className="right right-align"
-                                  style={{
-                                    backgroundColor: "hsl(0, 0%, 83%, 0.5)",
-                                    width: "100%",
-                                    margin: "8px",
-                                    paddingRight: "10px"
-                                  }}
-                                >
-                                  365 &euro;
+                                  <td
+                                    className="right right-align"
+                                    style={{
+                                      backgroundColor: "hsl(0, 0%, 83%, 0.5)",
+                                      width: "100%",
+                                      margin: "8px",
+                                      paddingRight: "10px"
+                                    }}
+                                  >
+                                    365 &euro;
                                 </td>
-                              </tr>
-                              <tr style={{ borderBottom: "0px" }}>
-                                <td
-                                  style={{
-                                    color: "#4aa4ef",
-                                    fontWeight: "bold"
-                                  }}
-                                >
-                                  IVA
+                                </tr>
+                                <tr style={{ borderBottom: "0px" }}>
+                                  <td
+                                    style={{
+                                      color: "#4aa4ef",
+                                      fontWeight: "bold"
+                                    }}
+                                  >
+                                    IVA
                                 </td>
-                                <td
-                                  className="right right-align"
-                                  style={{
-                                    backgroundColor: "hsl(0, 0%, 83%, 0.5)",
-                                    width: "100%",
-                                    margin: "8px",
-                                    paddingRight: "10px"
-                                  }}
-                                >
-                                  336
+                                  <td
+                                    className="right right-align"
+                                    style={{
+                                      backgroundColor: "hsl(0, 0%, 83%, 0.5)",
+                                      width: "100%",
+                                      margin: "8px",
+                                      paddingRight: "10px"
+                                    }}
+                                  >
+                                    336
                                 </td>
-                              </tr>
-                              <tr style={{ borderBottom: "0px" }}>
-                                <td
-                                  style={{
-                                    color: "#4aa4ef",
-                                    fontWeight: "bold"
-                                  }}
-                                >
-                                  IRPF
+                                </tr>
+                                <tr style={{ borderBottom: "0px" }}>
+                                  <td
+                                    style={{
+                                      color: "#4aa4ef",
+                                      fontWeight: "bold"
+                                    }}
+                                  >
+                                    IRPF
                                 </td>
-                                <td
-                                  className="right right-align"
-                                  style={{
-                                    backgroundColor: "hsl(0, 0%, 83%, 0.5)",
-                                    width: "100%",
-                                    margin: "8px",
-                                    paddingRight: "10px"
-                                  }}
-                                >
-                                  29
+                                  <td
+                                    className="right right-align"
+                                    style={{
+                                      backgroundColor: "hsl(0, 0%, 83%, 0.5)",
+                                      width: "100%",
+                                      margin: "8px",
+                                      paddingRight: "10px"
+                                    }}
+                                  >
+                                    29
                                 </td>
-                              </tr>
-                              <tr style={{ borderBottom: "0px" }}>
-                                <td
-                                  style={{
-                                    color: "#4aa4ef",
-                                    fontWeight: "bold"
-                                  }}
-                                >
-                                  RETENTIONS
+                                </tr>
+                                <tr style={{ borderBottom: "0px" }}>
+                                  <td
+                                    style={{
+                                      color: "#4aa4ef",
+                                      fontWeight: "bold"
+                                    }}
+                                  >
+                                    RETENTIONS
                                 </td>
-                                <td
-                                  className="right right-align"
-                                  style={{
-                                    backgroundColor: "hsl(0, 0%, 83%, 0.5)",
-                                    width: "100%",
-                                    margin: "8px",
-                                    paddingRight: "10px"
-                                  }}
-                                >
-                                  0
+                                  <td
+                                    className="right right-align"
+                                    style={{
+                                      backgroundColor: "hsl(0, 0%, 83%, 0.5)",
+                                      width: "100%",
+                                      margin: "8px",
+                                      paddingRight: "10px"
+                                    }}
+                                  >
+                                    0
                                 </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                                </tr>
+                              </tbody>
+                            </table>
 
 
                           </div>
@@ -269,16 +270,12 @@ class Graphs extends Component {
                     <div className="col s12 m6 l6 animate fadeRight">
                       <div
                         className="card user-statistics-card animate fadeLeft"
-                        style={{ borderRadius: "20px" }}
+                        style={styleBox.bottomcardstyle}
                       >
                         <div className="card-content">
                           <div className="col sm12 m12 12">
                             <h4
-                              style={{
-                                color: "#4aa4ef",
-                                fontWeight: "700",
-                                margin: "0"
-                              }}
+                              style={styleBox.mainheading}
                             >
                               NEXT FILING:
                             </h4>
@@ -290,17 +287,7 @@ class Graphs extends Component {
                               <tr>
                                 <td>
                                   <div
-                                    style={{
-                                      width: "50px",
-                                      height: "50px",
-                                      borderRadius: "250px",
-                                      fontSize: "12.5px",
-                                      paddingTop: "12.5px",
-                                      color: "#fff",
-                                      lineHeight: "12.5px",
-                                      textAlign: "center",
-                                      background: "#4aa4ef"
-                                    }}
+                                    style={styleBox.box}
                                   >
                                     <div>27</div>
                                     <div>Days</div>
@@ -333,17 +320,7 @@ class Graphs extends Component {
                               <tr>
                                 <td>
                                   <div
-                                    style={{
-                                      width: "50px",
-                                      height: "50px",
-                                      borderRadius: "250px",
-                                      fontSize: "12.5px",
-                                      paddingTop: "12.5px",
-                                      color: "#fff",
-                                      lineHeight: "12.5px",
-                                      textAlign: "center",
-                                      background: "#4aa4ef"
-                                    }}
+                                    style={styleBox.box}
                                   >
                                     <div>27</div>
                                     <div>Days</div>
@@ -351,10 +328,7 @@ class Graphs extends Component {
                                 </td>
                                 <td>
                                   <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
+                                    style={styleBox.heading}
                                   >
                                     IRPF (IT 2020)
                                   </div>
@@ -363,10 +337,7 @@ class Graphs extends Component {
 
                                 <td className="right right-align">
                                   <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
+                                    style={styleBox.heading}
                                   >
                                     290.00 &euro;
                                   </div>
@@ -375,29 +346,14 @@ class Graphs extends Component {
                               </tr>
                               <tr style={{ borderBottom: "0px" }}>
                                 <td>
-                                  <div
-                                    style={{
-                                      width: "50px",
-                                      height: "50px",
-                                      borderRadius: "250px",
-                                      fontSize: "12.5px",
-                                      paddingTop: "12.5px",
-                                      color: "#fff",
-                                      lineHeight: "12.5px",
-                                      textAlign: "center",
-                                      background: "#4aa4ef"
-                                    }}
-                                  >
+                                  <div style={styleBox.box}>
                                     <div>27</div>
                                     <div>Days</div>
                                   </div>
                                 </td>
                                 <td>
                                   <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
+                                    style={styleBox.heading}
                                   >
                                     Annual IVA (2020)
                                   </div>
@@ -414,6 +370,35 @@ class Graphs extends Component {
                                   </div>
                                   <div>15.01.20</div>
                                 </td>
+                                
+                              </tr>
+                              <tr style={{ borderBottom: "0px" }}>
+                                <td>
+                                  <div style={styleBox.box}>
+                                    <div>27</div>
+                                    <div>Days</div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div
+                                    style={styleBox.heading}
+                                  >
+                                    Annual IVA (2020)
+                                  </div>
+                                  <div>Model 390</div>
+                                </td>
+                                <td className="right right-align">
+                                  <div
+                                    style={{
+                                      color: "#4aa4ef",
+                                      fontWeight: "bold !important"
+                                    }}
+                                  >
+                                    0.00 &euro;
+                                  </div>
+                                  <div>15.01.20</div>
+                                </td>
+                                
                               </tr>
                             </tbody>
                           </table>
@@ -431,15 +416,48 @@ class Graphs extends Component {
   }
 }
 
-// const styleBox = {
-//     main: {
-//         // backgroundImage : `url(${bkground})`,
-//         width: "100%",
-//         backgroundRepeat: "no-repeat",
-//         backgroundSize: "contain",
-//         minHeight: 500,
-//         // paddingTop: 130,
-//     },
-// }
+const styleBox = {
+  main: {
+    // backgroundImage : `url(${bkground})`,
+    width: "100%",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
+    minHeight: 500,
+    // paddingTop: 130,
+  },
+  cardstyle: {
+    minHeight: 330,
+    maxHeight: 330,
+    overflow: "auto",
+    borderRadius: "20px"
+  },
+
+  bottomcardstyle: {
+    minHeight: 390,
+    maxHeight: 390,
+    overflow: "auto",
+    borderRadius: "20px"
+  },
+  box: {
+    width: "50px",
+    height: "50px",
+    borderRadius: "250px",
+    fontSize: "12.5px",
+    paddingTop: "12.5px",
+    color: "#fff",
+    lineHeight: "12.5px",
+    textAlign: "center",
+    background: "#4aa4ef"
+  },
+  heading : {
+    color: "#4aa4ef",
+    fontWeight: "bold !important"
+  },
+  mainheading: {
+    color: "#4aa4ef",
+    fontWeight: "700",
+    margin: "0"
+  }
+}
 
 export default Graphs;
