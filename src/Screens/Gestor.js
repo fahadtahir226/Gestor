@@ -18,10 +18,33 @@ class Gestor extends Component {
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
       <div className="col s12 m12 l12" style={styleBox.content}>
-            <div style={{height: 120,backgroundImage: `url(${keyIcon})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center"}}>
+            <div style={{               
+              height: "120px",          
+              width: "120px",
+              margin : "auto",
+              padding : 20,
+              backgroundImage: `url(${keyIcon})`, 
+              backgroundRepeat: "no-repeat", 
+              backgroundPosition: "center",
+              backgroundSize:"cover"
+              }}>
+            <div style={{
+              height: "80px",
+              width: "80px",
+              backgroundImage: `url(${userInfo.photoURL})`, 
+              backgroundRepeat: "no-repeat", 
+              backgroundSize: "contain", 
+              backgroundPosition: "center",
+              margin: "auto",
+              borderRadius: "50%",
+              backgroundSize:"cover"
+              }}>
               {/* <img alt="" style={{width: 120}} src={keyIcon} /> */}
-            <img alt="" style={{width:  80, borderRadius: "100%", marginTop: 20}} src={userInfo.photoURL} />
+              {/* <img alt="" style={{width:  80, borderRadius: "100%", marginTop: 20}} src={userInfo.photoURL} /> */}
             </div>
+
+            </div>
+
             <br />
             <label htmlFor="profileBtn" >
             <a onClick={()=>document.getElementById("profileBtn").click()} href="#!" style={styleBox.submitbtn} className="btn waves-effect waves-light">UPLOAD PHOTO</a>
@@ -60,7 +83,7 @@ class Gestor extends Component {
                   <span>NIE/NIF: </span>
                   </div>
                   <div className="col s12 m12 l6">
-                  <span className=" textdata"><input style={{ "height" : "1rem" }} type="text" name="nif" id="nif" /></span>                  
+                  <span className=" textdata"><input style={{ "height" : "1rem" }} type="number" name="nif" id="nif" /></span>                  
                   </div>
                 </div>
                 
@@ -78,7 +101,7 @@ class Gestor extends Component {
                     <span>EMAIL</span>
                   </div>
                   <div className="col s12 m12 l6">
-                    <span className="textdata"><input style={{ "height" : "1rem" }} type="text" name="email" id="email" /></span>
+                    <span className="textdata"><input style={{ "height" : "1rem" }} type="email" name="email" id="email" /></span>
                   </div>
                 </div>
                 <div className='row' style={{textAlign: 'center'}}>
@@ -182,19 +205,27 @@ const styleBox = {
       display: "tableCell",
       height: "100%"
     },
+    // savebtn: {
+    //   background: `url(${savBtn})`,
+    //   backgroundSize: "contain",
+    //   border: "none",
+    //   backgroundRepeat:"no-repeat",
+    //   width:130,
+    //   fontWeight:"bold",
+    //   boxShadow: "none",
+    //   color: "white",
+    //   margin: 10,
+    //   float: 'center',
+    // },
     savebtn: {
-      background: `url(${savBtn})`,
-      backgroundSize: "contain",
-      border: "none",
-      backgroundRepeat:"no-repeat",
+      background: "rgba(15,213,245,1)",
+      background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
+      borderRadius : "25px",
       width:130,
       fontWeight:"bold",
-      boxShadow: "none",
       color: "white",
       margin: 10,
-      float: 'center',
     },
-    
     
   }
 export default Gestor;

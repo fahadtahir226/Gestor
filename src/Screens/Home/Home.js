@@ -103,8 +103,10 @@ const styleBox = {
     profile: {
       width: 50,
       height: 50,
+      objectFit:"cover",
       border: "2px solid white",
-      borderRadius: "100%"
+      borderRadius: "100%",
+
     },
     name: {
       textAlign: "right",
@@ -122,7 +124,7 @@ const Header = (props) =>{
       <div className="col s5 m7 l9"></div>
         <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
         <div  className="col s2 m2 l1">
-          <img style={styleBox.profile} alt="" src={isAuthenticated ? userInfo.photoURL : null} />
+          <img style={styleBox.profile} className="imageRound" alt="" src={isAuthenticated ? userInfo.photoURL : null} />
         </div>
     </div>
    )
