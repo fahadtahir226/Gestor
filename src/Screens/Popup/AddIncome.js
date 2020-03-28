@@ -86,7 +86,7 @@ const addNewIncome = (userInfo) => {
             date : date[0],
             day : date[1].toUpperCase(),
             month : date[2].toUpperCase(),
-            year : date[3].toUpperCase(),
+            year : parseInt(date[3]),
             irpf : irpf,
             iva : iva,
             retention : retention,
