@@ -151,17 +151,6 @@ const styleBox = {
     paddingBottom: 0,
     overflow: 'visible'
   },
-  // savebtn: {
-  //   background: `url(${savBtn})`,
-  //   backgroundSize: "contain",
-  //   border: "none",
-  //   backgroundRepeat:"no-repeat",
-  //   width:130,
-  //   fontWeight:"bold",
-  //   boxShadow: "none",
-  //   color: "white",
-  //   margin: 10,
-  // },
   
   savebtn: {
     background: "rgba(15,213,245,1)",
