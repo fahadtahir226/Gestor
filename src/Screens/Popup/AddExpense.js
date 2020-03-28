@@ -28,7 +28,7 @@ class AddExpense extends React.Component {
           <form className="col s12 m6 l6">
             {
                 items1.map((item, key) => {
-                    return <InputItem title={item.title} id={item.id} typeName={item.typeName}  key={key} />
+                    return <InputItem title={item.title} id={item.id} type={item.type}  key={key} />
                 })
             }
             <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
@@ -39,7 +39,7 @@ class AddExpense extends React.Component {
           <form className="col s12 m6 l6">
             {
                 items2.map((item, key) => {
-                    return <InputItem title={item.title} id={item.id} typeName={item.typeName}  key={key} />
+                    return <InputItem title={item.title} id={item.id} typeName={item.typeName} type={item.type}  key={key} />
                 })
             }
 
@@ -68,7 +68,7 @@ const InputItem = (props) => {
     return (
       <div className="row" style={{marginBottom: 0}}>
         <div className="input-field col s12" style={{marginBottom: 0}}>
-          <input id={ props.id } type='text' className="validate" />
+          <input id={ props.id }  type={ props.type ? props.type : "text" } className="validate" />
           <label htmlFor={ props.id }>{props.title}</label>
         </div>
       </div>
@@ -128,15 +128,15 @@ const addNewExpense = (userInfo) => {
 }
 
 const items1 = [
-    { title: 'CLIENT', id: 'clientExp'},
-    { title: 'CONCEPT', id: 'conceptExp'},
-    { title: 'IRPF', id: 'irpfExp'},
+    { title: 'CLIENT', id: 'clientExp',type: 'text' },
+    { title: 'CONCEPT', id: 'conceptExp',type: 'text' },
+    { title: 'IRPF', id: 'irpfExp',type: 'number' },
   ],     
   items2 = [
-    { title: 'RETENTIONS', id: 'retentionExp'},
-    { title: 'IVA', id: 'ivaExp'},
-    { title: 'AMOUNT', id: 'amountExp'  },
-    { title: 'NOTE', id: 'noteExp'  },
+    { title: 'RETENTIONS', id: 'retentionExp',type: 'number' },
+    { title: 'IVA', id: 'ivaExp',type: 'number' },
+    { title: 'AMOUNT', id: 'amountExp'  ,type: 'number' },
+    { title: 'NOTE', id: 'noteExp'  ,type: 'text' },
   ]
 
 const styleBox = {
