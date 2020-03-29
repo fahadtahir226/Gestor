@@ -44,7 +44,18 @@ loadIncHis = (user, year) => {
 render() {
     var userInfo = this.props.userInfo,
         incomeData = this.props.incHis;
-
+        let result = Object.values(incomeData? incomeData : {a : []}).every(o =>{
+          if(typeof(o) =="number"){
+            return true
+          }
+          if(o.length == 0 || o == undefined ){
+            return true;
+          }else{
+            return false;
+          }
+        })
+        var d = new Date();
+        var months = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
   return (
     <>
     <center>
@@ -79,6 +90,14 @@ render() {
             <Month incomeData={incomeData} mon="NOVEMBER"/>
             <Month incomeData={incomeData} mon="DECEMBER"/>
         </div>
+        {
+          result ? 
+          <div className="col s12 m12 l12"  style={styleBox.content}>
+            <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
+            <h5 style={{ textAlign :  "center" }}>No Income History found</h5>
+          </div>
+           : null
+        }
       </div>
     </div>
     </>

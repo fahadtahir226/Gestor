@@ -34,6 +34,9 @@ class Expense extends Component {
 render() {
     var {userInfo, contacts} = this.props;
     var expenseData = this.props.expData;
+    var d = new Date();
+    var months = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
+
   return (
     <>
     <center>
@@ -59,6 +62,13 @@ render() {
             this.state.qtr === "4T" ?
             <QTR4 expenseData={expenseData} />:
             null
+          }
+          {
+            this.props.expenseData ?  "" : 
+            <div className="row" style ={{ textAlign : "center", margin : 0 }}>
+            <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
+            <h5>No Expense found</h5>
+            </div>
           }
         </div>
       </div>

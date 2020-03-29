@@ -16,7 +16,6 @@ class Income extends Component {
     else if(now < 6) toShow = '2T'
     else if(now < 9) toShow = '3T'
     else if(now < 12) toShow = '4T'
-
     this.state = {qtr: toShow }
   }
   componentDidMount(){
@@ -40,7 +39,9 @@ class Income extends Component {
 render() {
     var { userInfo} = this.props;
     var incomeData = this.props.incData;
-        
+    var d = new Date();
+    var months = ["JANUARy", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
+
 
   return (
     <>
@@ -68,6 +69,14 @@ render() {
             this.state.qtr === "4T" ?
             <QTR4 incomeData={incomeData} />:
             null
+
+          }
+          {
+            this.props.incData ?  "" : 
+            <div className="row" style ={{ textAlign : "center", margin : 0 }}>
+            <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
+            <h5>No Income Found</h5>
+            </div>
           }
         </div>
       </div>

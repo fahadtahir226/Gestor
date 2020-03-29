@@ -46,8 +46,20 @@ loadExpHis = (user, year) => {
 
 render() {
     var userInfo = this.props.userInfo,
-        expenseData = this.props.expHis;
+    expenseData = this.props.expHis;
 
+    let result = Object.values(expenseData? expenseData : {a : []}).every(o =>{
+      if(typeof(o) =="number"){
+        return true
+      }
+      if(o.length == 0 || o == undefined ){
+        return true;
+      }else{
+        return false;
+      }
+    })
+    var d = new Date();
+    var months = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
   return (
     <>
     <center>
@@ -82,6 +94,15 @@ render() {
             <Month expenseData={expenseData} mon="NOVEMBER"/>
             <Month expenseData={expenseData} mon="DECEMBER"/>
         </div>
+        {
+          result ? 
+          <div className="col s12 m12 l12" style ={{ textAlign : "center" }}>
+            <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
+            <h5>No Expense History found</h5>
+          </div>
+           : null
+        }
+        
       </div>
     </div>
     </>

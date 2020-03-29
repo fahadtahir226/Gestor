@@ -24,6 +24,12 @@ render() {
               contacts?
               contacts.map((contact,key) => <Contact data={contact} key={key}/>): null
             }
+            {
+              contacts ?  "" : 
+              <div className="row" style ={{ textAlign : "center", margin : 0 }}>
+                <h5>No Contacts Found</h5>
+              </div>
+            }
           </ul>
         </div>
       </div>
