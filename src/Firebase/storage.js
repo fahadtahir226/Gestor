@@ -65,20 +65,20 @@ const searchNested = (ref, doc, updateDocData) => {
 
 
 
-export const uploadDoc = (file, userID, updateDocData) => {
-    let refDoc = storageRef.child(`documents/${userID}`);
-     console.log(file);
-    refDoc.put(file).then(function(snapshot) {
-        console.log('Uploaded Your Document!', snapshot);
+// export const uploadDoc = (file, userID, updateDocData) => {
+//     let refDoc = storageRef.child(`documents/${userID}`);
+//      console.log(file);
+//     refDoc.put(file).then(function(snapshot) {
+//         console.log('Uploaded Your Document!', snapshot);
 
 
-        refDoc.getDownloadURL()
-        .then(function(url) {
-            document.getElementById('docIframe').src = url;
-            // console.log(url);
-        })
-        .catch((error)=>console.log("Error from getting url however doc is uploaded",error))
-    })
-    .catch((error) => console.log("Cannot Upload doc",error))
+//         refDoc.getDownloadURL()
+//         .then(function(url) {
+//             document.getElementById('docIframe').src = url;
+//             // console.log(url);
+//         })
+//         .catch((error)=>console.log("Error from getting url however doc is uploaded",error))
+//     })
+//     .catch((error) => console.log("Cannot Upload doc",error))
 
-}
+// }
