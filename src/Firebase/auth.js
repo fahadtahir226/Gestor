@@ -1,5 +1,6 @@
 import firebase from "./firebase"
 import M from 'materialize-css'
+import { db } from "./firestore";
 export const auth = firebase.auth();
 
 // user Sign Up 
@@ -15,8 +16,23 @@ export const SignUpCall = () => {
             auth.createUserWithEmailAndPassword(email, pass)
             .then(async () => {
                 console.log(auth.currentUser.email);
-                M.toast({html: "User Added!"})
+
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
+                db.collection('Users').doc(auth.currentUser.uid).add({
+                    userid: auth.currentUser.uid,
+                    email: auth.currentUser.email? auth.currentUser.email: '',
+                    fname: fname,
+                    lname: lname,
+                    profilepic: "",
+                    nif: '',
+                    profession: '',
+                    inc: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    exp: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    ret: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    iva: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    irpf: [0,0,0,0,0,0,0,0,0,0,0,0],
+                })
+                .then(() => M.toast({html: "User Added!"}))
             })
 
     } else {

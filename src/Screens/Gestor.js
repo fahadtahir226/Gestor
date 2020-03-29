@@ -3,7 +3,7 @@ import M from 'materialize-css'
 import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
 import {profileUpload} from "../Firebase/storage"
-import savBtn from "../images/Rectangle 267@2x.png"
+
 
 
 class Gestor extends Component {
@@ -39,8 +39,6 @@ class Gestor extends Component {
               borderRadius: "50%",
               backgroundSize:"cover"
               }}>
-              {/* <img alt="" style={{width: 120}} src={keyIcon} /> */}
-              {/* <img alt="" style={{width:  80, borderRadius: "100%", marginTop: 20}} src={userInfo.photoURL} /> */}
             </div>
 
             </div>
@@ -205,27 +203,13 @@ const styleBox = {
       display: "tableCell",
       height: "100%"
     },
-    // savebtn: {
-    //   background: `url(${savBtn})`,
-    //   backgroundSize: "contain",
-    //   border: "none",
-    //   backgroundRepeat:"no-repeat",
-    //   width:130,
-    //   fontWeight:"bold",
-    //   boxShadow: "none",
-    //   color: "white",
-    //   margin: 10,
-    //   float: 'center',
-    // },
     savebtn: {
-      background: "rgba(15,213,245,1)",
       background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
       borderRadius : "25px",
       width:130,
       fontWeight:"bold",
       color: "white",
       margin: 10,
-    },
-    
+    },    
   }
 export default Gestor;

@@ -3,7 +3,6 @@ import M from 'materialize-css'
 import { HideCard } from './configureCards';
 import { db } from '../../Firebase/firestore';
 
-import savBtn from "../../images/Rectangle 267@2x.png"
 import sbmtbtn from "../../images/text-background.png"
 import '../../index.css'
 
@@ -72,8 +71,10 @@ const addNewIncome = (userInfo) => {
         irpf = parseInt(document.getElementById('irpfInc').value),
         iva = parseInt(document.getElementById('ivaInc').value),
         amount = parseInt(document.getElementById('amountInc').value),
+        taxable = amount + irpf + iva - retention, 
         date = document.getElementById('datePickerInc').value.split(' '),
-        note = document.getElementById('noteInc').value;
+        note = document.getElementById('noteInc').value,
+        monthInNum = calculateMonth(date[2].toUpperCase());
     
 
         if(!client || !concept || !date || !irpf || !iva || !retention || !amount || !note){
@@ -81,24 +82,36 @@ const addNewIncome = (userInfo) => {
           return ;
         }
         db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
-            client : client,
-            concept : concept,
-            date : date[0],
-            day : date[1].toUpperCase(),
-            month : date[2].toUpperCase(),
-            year : parseInt(date[3]),
-            irpf : irpf,
-            iva : iva,
-            retention : retention,
-            taxable : amount + iva + irpf - retention,
-            // total : total,                   need formula for it
-            amount : amount,
-            status : "PENDING",
-            note: note,
-            isDoc: false
+          client : client,
+          concept : concept,
+          date : date[0],
+          day : date[1].toUpperCase(),
+          month : date[2].toUpperCase(),
+          year : parseInt(date[3]),
+          irpf : irpf,
+          iva : iva,
+          retention : retention,
+          taxable : taxable,
+          // total : total,                   need formula for it
+          amount : amount,
+          status : "PENDING",
+          note: note,
+          isDoc: false
         })
         .then(function() {
-            window.location.replace('income');
+          db.collection('Users').doc(userInfo.uid).get()
+          .then(userData => { 
+            console.log(userData.data());
+            userData.data().inc[monthInNum] += taxable;
+            userData.data().irpf[monthInNum] += irpf;
+            userData.data().iva[monthInNum] += iva;
+            userData.data().ret[monthInNum] += retention;
+            db.collection('User').doc(userInfo.uid).set(userData.data())
+            .then(()=>{
+              window.location.replace('income');
+            });
+          })
+
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -106,10 +119,38 @@ const addNewIncome = (userInfo) => {
 
 }
 
+const calculateMonth = mon => {
+  switch (mon) {
+    case "JANUARY":
+      return 0;
+    case "FEBRUARY":
+      return 1;
+    case "MARCH":
+      return 2;
+    case "APRIL":
+      return 3;
+    case "MAY":
+      return 4;
+    case "JUNE":
+      return 5;
+    case "JULY":
+      return 6;
+    case "AUGUST":
+      return 7;
+    case "SEPTEMBER":
+      return 8;
+    case "OCTUBER":
+      return 9;
+    case "NOVEMBER":
+      return 10
+    default:
+      return 11
+  }
+}
 const items1 = [
     { title: 'CLIENT', id: 'clientInc',type: 'text' },
     { title: 'CONCEPT', id: 'conceptInc' ,type: 'text' },
-    { title: 'TAXABLE', id: 'taxableInc' ,type: 'number' },
+    { title: 'RETENTIONS', id: 'retentionInc' ,type: 'number' },
     ],     
     items2 = [
     { title: 'IRPF', id: 'irpfInc' ,type: 'number' },
@@ -130,21 +171,8 @@ const styleBox = {
     content: {
       paddingBottom: 0,
       overflow: 'visible'
-    },
-    // savebtn: {
-    //   background: `url(${savBtn})`,
-    //   backgroundSize: "contain",
-    //   border: "none",
-    //   backgroundRepeat:"no-repeat",
-    //   width:130,
-    //   fontWeight:"bold",
-    //   boxShadow: "none",
-    //   color: "white",
-    //   margin: 10,
-    // },
-    
+    },    
     savebtn: {
-      background: "rgba(15,213,245,1)",
       background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
       borderRadius : "25px",
       width:130,

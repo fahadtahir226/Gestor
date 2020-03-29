@@ -56,7 +56,6 @@ export const loadIncomes = (user, year, updateIncData, updateIncHis) => {
           }
       })
       if(month === 'DECEMBER') {
-        console.log(incomeData)
         updateIncData(incomeData);
         updateIncHis(incomeData);
       };

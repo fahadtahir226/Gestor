@@ -114,7 +114,6 @@ const styleBox = {
       margin: 10,
     },
     saveBtnResponsive: {
-        background: "rgba(15,213,245,1)",
         background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
         border: "none",
         backgroundRepeat:"no-repeat",
