@@ -76,3 +76,13 @@ export const loadContact = (user, updateContactState) => {
   })
   .catch((error) => console.log("Error: ", error) )
 }
+
+
+export const loadProfile = (user, updateProfile) => {
+  db.collection("Users").doc(user.uid).get()
+  .then((data) => {
+    let userData = data.data();
+    updateProfile(userData);
+  })
+  .catch((error) => console.log("Error: ", error) )
+}

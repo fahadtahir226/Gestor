@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 
 import AppRouter from './Router/routes';
 import { auth }  from './Firebase/auth';
-import { loadExpenses, loadIncomes, loadContact } from './Firebase/firestore';
-import { uploadDoc, loadDocument } from './Firebase/storage';
+import { loadExpenses, loadIncomes, loadContact, loadProfile } from './Firebase/firestore';
+import { loadDocument } from './Firebase/storage';
 
 class App extends Component {
   constructor(props){
@@ -17,11 +17,12 @@ class App extends Component {
       incData: null,
       incHis: null,
       contacts: null,
-      doc: null
+      doc: null,
+      userData: null,
       }
   }
   render() {
-    var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc} = this.state;
+    var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc, userData} = this.state;
     return (
       <div className='App' >
         <AppRouter 
@@ -36,6 +37,7 @@ class App extends Component {
         contacts = { contacts }
         uploadDoc = { this.uploadDocData }
         doc={ doc } 
+        userData={ userData }
         />
       </div>
     );
@@ -59,15 +61,19 @@ class App extends Component {
   updateContactData = (contacts) => {
     this.setState({contacts})
   }
+  updateUserData = (userData) => {
+    console.log("Updating State As User Data Here: ", userData);
+    this.setState({userData})
+  }
 
 // Document Related
   updateDocData = (doc) => {
     this.setState({doc});
   }
 
-  uploadDocData(e, userID){
-    uploadDoc(e.target.files[0], userID, (doc) => this.updateDocData(doc));
-  }
+  // uploadDocData(e, userID){
+  //   uploadDoc(e.target.files[0], userID, (doc) => this.updateDocData(doc));
+  // }
 
 componentDidMount() {     
 
@@ -82,6 +88,7 @@ componentDidMount() {
         loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));
         loadContact (user, (contacts) => this.updateContactData(contacts));
         loadDocument(user, (document) => this.updateDocData(document) );
+        loadProfile(user, (userData) => this.updateUserData(userData))
       }else {
         this.setState({
           isAuthenticated: false

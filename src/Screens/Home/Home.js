@@ -32,7 +32,7 @@ class Home extends Component {
     document.getElementById('docPdf').style.display = 'none';      
   }
   render() {
-    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc} = this.props;
+    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
     return (
     <div style={styleBox.main}>
       <div className="container-fluid">
@@ -51,7 +51,7 @@ class Home extends Component {
                 <DocPdf url=''/>
                 <Switch>
 
-                  <Route path="/home/"  exact ><Graphs /> </Route>
+                  <Route path="/home/"  exact ><Graphs userData={userData}/> </Route>
                   <Route path="/home/mygestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
                   <Route path="/home/expense" exact ><Expense contacts={contacts} isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
