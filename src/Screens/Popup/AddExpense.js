@@ -16,12 +16,24 @@ class AddExpense extends React.Component {
       this.instance = M.Modal.init(modal);
       M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
       M.Dropdown.init(dropdown);
+      
+    
     }
     render(){
+      let clientArray = [];
       var ins = this.instance;
       var {userInfo, clients} = this.props;
-      console.log(clients)
-    return(
+      console.log(clients);
+      if(clients != null){
+        clients.map((eachClient) =>{
+          console.log("AddExpense -> render -> eachClient", eachClient)
+          clientArray.push(eachClient["name"]);
+        })
+      }else{
+        clientArray = [];
+      }
+      console.log("AddExpense -> render -> clientArray", clientArray)
+  return(
     <div id="addExpense" style={styleBox.main} className='modal z-depth-5' >
       <div className="modal-content" style={styleBox.content}>
         <div className="row" style={styleBox.bluishHeading} >
@@ -29,8 +41,7 @@ class AddExpense extends React.Component {
         </div>
         <div className="row">
           <form className="col s12 m6 l6">
-          
-          <DropDown clients={clients} />
+            <Select clientArray={clientArray} />
             {
                 items1.map((item, key) => {
                     return <InputItem title={item.title} id={item.id} type={item.type}  key={key} />
@@ -89,6 +100,7 @@ const DropDown = (props) => {
       <input type="text" id='clientExp' className='dropdown-trigger' data-target='clientExp' />
     </div>
     <ul id='clientExp' className='dropdown-content'>
+    
       {props.clients? props.clients.map((client, key)=>
               <li id={key}><a href="#!">{client.name}</a></li>
       ): null}
@@ -97,6 +109,25 @@ const DropDown = (props) => {
   )
 }
 
+const Select = (props) => {
+  console.log("Select -> props.clientArray", props.clientArray)
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, props.clientArray);
+  });
+  return (
+    <div className="row" style={{marginBottom: 0}}>
+      <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+        <select>
+        <option value="" selected>Choose your option</option>  
+        {props.clientArray.map((client)=>
+            <option>{client}</option>  
+            )}
+        </select>
+      </div>
+  </div>
+  )
+}
 const addNewExpense = (userInfo) => {
 
     let client = document.getElementById('clientExp').value,
