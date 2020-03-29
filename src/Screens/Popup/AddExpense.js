@@ -114,7 +114,7 @@ const Select = (props) => {
       <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
         <select>
         <option value="">Choose your option</option>  
-        {props.clientArray.forEach((client)=>
+        {props.clientArray.forEach((client)=> 
             <option>{client}</option>  
             )}
         </select>
