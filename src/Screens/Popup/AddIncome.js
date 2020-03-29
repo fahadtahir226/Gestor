@@ -109,7 +109,7 @@ const addNewIncome = (userInfo) => {
             userData.data().irpf[monthInNum] += irpf;
             userData.data().iva[monthInNum] += iva;
             userData.data().ret[monthInNum] += retention;
-            db.collection('User').doc(userInfo.uid).set(userData.data())
+            db.collection('Users').doc(userInfo.uid).set(userData.data())
             .then(()=>{
               window.location.replace('income');
             });

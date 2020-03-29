@@ -18,36 +18,23 @@ class Gestor extends Component {
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
       <div className="col s12 m12 l12" style={styleBox.content}>
-            <div style={{               
-              height: "120px",          
-              width: "120px",
-              margin : "auto",
-              padding : 20,
-              backgroundImage: `url(${keyIcon})`, 
-              backgroundRepeat: "no-repeat", 
-              backgroundPosition: "center",
-              backgroundSize:"cover"
-              }}>
-            <div style={{
-              height: "80px",
-              width: "80px",
-              backgroundImage: `url(${userInfo.photoURL})`, 
-              backgroundRepeat: "no-repeat", 
-              backgroundSize: "contain", 
-              backgroundPosition: "center",
-              margin: "auto",
-              borderRadius: "50%",
-              backgroundSize:"cover"
-              }}>
-            </div>
-
-            </div>
-
+            <div style={styleBox.inputHeader}>
+              <div style={{
+                  height: "80px",
+                  width: "80px",
+                  backgroundImage: `url(${userInfo.photoURL})`, 
+                  backgroundRepeat: "no-repeat", 
+                  backgroundSize: "contain", 
+                  backgroundPosition: "center",
+                  margin: "auto",
+                  borderRadius: "50%",
+                  backgroundSize:"cover"
+                }}></div></div>
             <br />
             <label htmlFor="profileBtn" >
             <a onClick={()=>document.getElementById("profileBtn").click()} href="#!" style={styleBox.submitbtn} className="btn waves-effect waves-light">UPLOAD PHOTO</a>
             </label>
-            <input id="profileBtn" name={userInfo.uid} onChange={(event) => profileUpload(event)} className="hide" type="file" />
+            <input id="profileBtn" name={userInfo.uid} onChange={(event) => profileUpload(event, userInfo.uid)} className="hide" type="file" />
         </div>
       </div>
       <div className="row" style={styleBox.row}>
@@ -55,8 +42,6 @@ class Gestor extends Component {
           <div className="card" style={styleBox.DataBox}>
             <div style={styleBox.bluishHeading} >PERSONAL DATA</div>
             <div className="container-fluid" style={{margin: 25, marginBottom: 0}}>
-            {/* {isAuthenticated? userInfo.displayName.split(" ")[0]: null} */}
-            {/* {isAuthenticated? userInfo.displayName.split(" ")[1]: null} */}
               <div className="row">
                 
                 <div className="col s12 m12 l6">
@@ -158,6 +143,17 @@ const styleBox = {
       textAlign: "center",
       color: "grey"
     },
+    inputHeader: {            
+      height: "120px",          
+      width: "120px",
+      margin : "auto",
+      padding : 20,
+      backgroundImage: `url(${keyIcon})`, 
+      backgroundRepeat: "no-repeat", 
+      backgroundPosition: "center",
+      backgroundSize:"cover"
+    },
+
     submitbtn: {
       width:130,
       color: "darkgrey",

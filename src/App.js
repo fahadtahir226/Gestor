@@ -25,8 +25,9 @@ class App extends Component {
     var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc, userData} = this.state;
     return (
       <div className='App' >
+
         <AppRouter 
-        isAuthenticated = { isAuthenticated} 
+        isAuthenticated = { isAuthenticated } 
         userInfo = { userInfo } 
         expData = { expData }
         expHis = { expHis } 
@@ -84,11 +85,11 @@ componentDidMount() {
           isAuthenticated: true,
           userInfo: user,
         })
-        loadExpenses(user, new Date().getFullYear(), (exp) => this.updateExpData(exp), (expHis) => this.updateExpHis(expHis));
-        loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));
-        loadContact (user, (contacts) => this.updateContactData(contacts));
         loadDocument(user, (document) => this.updateDocData(document) );
         loadProfile(user, (userData) => this.updateUserData(userData))
+        loadContact (user, (contacts) => this.updateContactData(contacts));
+        loadExpenses(user, new Date().getFullYear(), (exp) => this.updateExpData(exp), (expHis) => this.updateExpHis(expHis));
+        loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));
       }else {
         this.setState({
           isAuthenticated: false
