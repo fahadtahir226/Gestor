@@ -23,10 +23,8 @@ class AddExpense extends React.Component {
       let clientArray = [];
       var ins = this.instance;
       var {userInfo, clients} = this.props;
-      console.log(clients);
       if(clients != null){
         clients.map((eachClient) =>{
-          console.log("AddExpense -> render -> eachClient", eachClient)
           clientArray.push(eachClient["name"]);
         })
       }else{
@@ -109,17 +107,14 @@ const InputItem = (props) => {
 // }
 
 const Select = (props) => {
-  console.log("Select -> props.clientArray", props.clientArray)
-  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, props.clientArray);
-  });
+    M.FormSelect.init(elems);
   return (
     <div className="row" style={{marginBottom: 0}}>
       <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
         <select>
-        <option value="" selected>Choose your option</option>  
-        {props.clientArray.map((client)=>
+        <option value="">Choose your option</option>  
+        {props.clientArray.forEach((client)=>
             <option>{client}</option>  
             )}
         </select>

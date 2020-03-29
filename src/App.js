@@ -63,7 +63,6 @@ class App extends Component {
     this.setState({contacts})
   }
   updateUserData = (userData) => {
-    console.log("Updating State As User Data Here: ", userData);
     this.setState({userData})
   }
 
