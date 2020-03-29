@@ -30,9 +30,12 @@ class AddIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} type={item.type} key={key} />
                 })
             }
-            <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
-              <label htmlFor='datePickerInc' >DATE</label>
-              <input type="text" id='datePickerInc' className="datepicker" />
+
+            <div className="row" style={{marginBottom: 0}}>
+              <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+                <label htmlFor='datePickerInc' >DATE</label>
+                <input type="text" id='datePickerInc' className="datepicker" />
+              </div>
             </div>
           </form>
           <form className="col s12 m6 l6">

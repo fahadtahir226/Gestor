@@ -10,14 +10,17 @@ import '../../index.css'
 class AddExpense extends React.Component {
     componentDidMount(){
       var modal = document.querySelectorAll('.modal'),
-      picker = document.querySelectorAll('.datepicker');
+          dropdown = document.querySelectorAll('.dropdown-trigger'),
+          picker = document.querySelectorAll('.datepicker');
 
       this.instance = M.Modal.init(modal);
       M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
+      M.Dropdown.init(dropdown);
     }
     render(){
       var ins = this.instance;
-      var {userInfo} = this.props;
+      var {userInfo, clients} = this.props;
+      console.log(clients)
     return(
     <div id="addExpense" style={styleBox.main} className='modal z-depth-5' >
       <div className="modal-content" style={styleBox.content}>
@@ -26,14 +29,18 @@ class AddExpense extends React.Component {
         </div>
         <div className="row">
           <form className="col s12 m6 l6">
+          
+          <DropDown clients={clients} />
             {
                 items1.map((item, key) => {
                     return <InputItem title={item.title} id={item.id} type={item.type}  key={key} />
                 })
             }
-            <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
-              <label htmlFor='datePickerExp' >DATE</label>
-              <input type="text" id='datePickerExp' className="datepicker" />
+            <div className="row" style={{marginBottom: 0}}>
+              <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+                <label htmlFor='datePickerExp' >DATE</label>
+                <input type="text" id='datePickerExp' className="datepicker" />
+              </div>
             </div>
           </form>
           <form className="col s12 m6 l6">
@@ -73,6 +80,21 @@ const InputItem = (props) => {
         </div>
       </div>
     )
+}
+const DropDown = (props) => {
+  return(
+  <div className="row" style={{marginBottom: 0}}>
+    <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+      <label htmlFor='clientExp' >CLIENT</label>
+      <input type="text" id='clientExp' className='dropdown-trigger' data-target='clientExp' />
+    </div>
+    <ul id='clientExp' className='dropdown-content'>
+      {props.clients? props.clients.map((client, key)=>
+              <li id={key}><a href="#!">{client.name}</a></li>
+      ): null}
+      </ul>
+  </div>
+  )
 }
 
 const addNewExpense = (userInfo) => {
@@ -128,7 +150,6 @@ const addNewExpense = (userInfo) => {
 }
 
 const items1 = [
-    { title: 'CLIENT', id: 'clientExp',type: 'text' },
     { title: 'CONCEPT', id: 'conceptExp',type: 'text' },
     { title: 'IRPF', id: 'irpfExp',type: 'number' },
   ],     

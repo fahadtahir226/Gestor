@@ -54,10 +54,10 @@ class Home extends Component {
                   <Route path="/home/"  exact ><Graphs /> </Route>
                   <Route path="/home/mygestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
-                  <Route path="/home/expense" exact ><Expense isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
+                  <Route path="/home/expense" exact ><Expense contacts={contacts} isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
                   <Route path="/home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
 
-                  <Route path="/home/income" exact ><Income isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
+                  <Route path="/home/income" exact ><Income contacts={contacts} isAuthenticated={isAuthenticated} userInfo={userInfo} incData={incData}/></Route>
                   <Route path="/home/income/history" exact ><IncomeHis isAuthenticated={isAuthenticated} userInfo={userInfo} incHis={incHis} updateIncHis={updateIncHis} /></Route>
                   <Route path="/home/contacts" exact ><Contacts contacts={contacts}/></Route>
                   <Route path="/home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>

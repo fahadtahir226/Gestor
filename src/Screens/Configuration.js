@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import M from'materialize-css';
 import "../css/style.css"
 
 class Configuration extends Component {
+
+  componentDidMount(){
+    var elems = document.querySelectorAll('.tooltipped');
+    M.Tooltip.init(elems);
+  }
 
   lastTarget= null;
 
@@ -54,17 +60,17 @@ class Configuration extends Component {
           <div className="container">
             <div className="row" style={styleBox.headins}>TAXES:</div>
                 
-            <div className="row optionBox" onClick={this.handleClick} style={styleBox.options}>MODEL 115 <i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you have office/local, check this box." >MODEL 115 <i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox" onClick={this.handleClick} style={styleBox.options}>MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox" onClick={this.handleClick} style={styleBox.options}>MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox" onDoubleClick={this.dblclick} onClick={this.handleClick} style={styleBox.options}>MODEL 115 <i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you retained the IRPF of other professionals, employees or businessmen, check this box. (Double Click To select)" style={styleBox.options}>MODEL 111 <i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox" onDoubleClick={this.dblclick} onClick={this.handleClick} style={styleBox.options}>MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you have operations with other EU countries, check this box (Double Click To select)" style={styleBox.options}>MODEL 349<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox" onDoubleClick={this.dblclick} onClick={this.handleClick} style={styleBox.options}>MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you made operations over the amount 3005,06€ with 3rd parties, check this box. (Double Click To select)" style={styleBox.options}>MODEL 347<i className="material-icons right" style={{color: "green"}} >check</i></div>
 
           </div>
         </div>

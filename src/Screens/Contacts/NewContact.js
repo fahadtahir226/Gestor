@@ -43,7 +43,7 @@ render() {
         <span className="hide-on-small-only">SAVE</span>
       </a>
 
-      <a onClick={() => this.addContact(userInfo)} href="#!" style={styleBox.saveBtnResponsive} 
+      <a onClick={() => this.addContact(userInfo.uid)} href="#!" style={styleBox.saveBtnResponsive} 
          className="btn waves-effect waves-light col s1 hide-on-med-and-up" id="saveBtnIcon">
         <i className="material-icons show-on-small-only">save</i>
       </a>

@@ -32,10 +32,7 @@ class AddDocIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} key={key} />
                 })
             }
-            <div className="input-field col s12" style={{marginBottom: 0, padding: 0}}>
-              <label htmlFor='datePickerExp' >DATE</label>
-              <input type="text" id='datePickerExp' className="datepicker" />
-            </div>
+
           </form>
           <form className="col s12 m6 l6">
             {
@@ -43,6 +40,12 @@ class AddDocIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} key={key} type={item.type} />
                 })
             }
+            <div className="row" style={{marginBottom: 0}}>
+              <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+                <label htmlFor='datePickerExp' >DATE</label>
+                <input type="text" id='datePickerExp' className="datepicker" />
+              </div>
+            </div>
 
             <div className="file-field input-field">
               <div className="btn">

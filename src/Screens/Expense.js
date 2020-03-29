@@ -32,12 +32,12 @@ class Expense extends Component {
       document.getElementById('addExpense').style.display = 'none';      
     }
 render() {
-    var {userInfo} = this.props;
+    var {userInfo, contacts} = this.props;
     var expenseData = this.props.expData;
   return (
     <>
     <center>
-    <AddExpense userInfo={userInfo} />
+    <AddExpense userInfo={userInfo} clients={contacts} />
     </center>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row" style={{marginBottom: 0}}>
