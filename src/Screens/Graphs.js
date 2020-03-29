@@ -6,6 +6,7 @@ import "../css/style.css"
 
 class Graphs extends Component {
   constructor(props) {
+    console.log("Graphs -> constructor -> props", props)
     super();
     const data = [
       {
@@ -61,6 +62,7 @@ class Graphs extends Component {
               <div style={{ width: "90%", margin: "auto" }}>
                 <div className="section">
                   <div className="row vertical-modern-dashboard">
+                    {/* First Start */}
                     <div className="col s12 m6 l6">
                       <div className="card" style={styleBox.cardstyle}>
                         <div className="card-content">
@@ -92,6 +94,8 @@ class Graphs extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* First End */}
+                    {/* Second Start */}
                     <div className="col s12 m6 l6 animate fadeRight">
                       <div
                         className="card user-statistics-card animate fadeLeft"
@@ -139,9 +143,11 @@ class Graphs extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Second End */}
                   </div>
 
                   <div className="row">
+                    {/* Third Start */}
                     <div className="col s12 m6 l6">
                       <div className="card" style={styleBox.bottomcardstyle}>
                         <div className="card-content">
@@ -267,6 +273,8 @@ class Graphs extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Third End */}
+                    {/* Fourth Start */}
                     <div className="col s12 m6 l6 animate fadeRight">
                       <div
                         className="card user-statistics-card animate fadeLeft"
@@ -405,6 +413,7 @@ class Graphs extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Fourth End */}
                   </div>
                 </div>
               </div>
