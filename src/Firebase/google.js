@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { db } from './firestore'
+// import { db } from './firestore'
 export const googleLogin = (event) => {
     var provider = new firebase.auth.GoogleAuthProvider();
     event.preventDefault();

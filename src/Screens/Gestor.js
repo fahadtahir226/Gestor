@@ -13,7 +13,8 @@ class Gestor extends Component {
   }
 
   render() {
-    var { userInfo } = this.props;
+    var { userInfo , userData} = this.props;
+    console.log(userData);
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
@@ -22,7 +23,7 @@ class Gestor extends Component {
               <div style={{
                   height: "80px",
                   width: "80px",
-                  backgroundImage: `url(${userInfo.photoURL})`, 
+                  backgroundImage: `url(${userData ? userData.profilepic : null})`, 
                   backgroundRepeat: "no-repeat", 
                   backgroundSize: "contain", 
                   backgroundPosition: "center",

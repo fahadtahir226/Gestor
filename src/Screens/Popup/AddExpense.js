@@ -23,16 +23,13 @@ class AddExpense extends React.Component {
       let clientArray = [];
       var ins = this.instance;
       var {userInfo, clients} = this.props;
-      console.log(clients);
       if(clients != null){
         clients.map((eachClient) =>{
-          console.log("AddExpense -> render -> eachClient", eachClient)
           clientArray.push(eachClient["name"]);
         })
       }else{
         clientArray = [];
       }
-      console.log("AddExpense -> render -> clientArray", clientArray)
   return(
     <div id="addExpense" style={styleBox.main} className='modal z-depth-5' >
       <div className="modal-content" style={styleBox.content}>
@@ -92,35 +89,32 @@ const InputItem = (props) => {
       </div>
     )
 }
-const DropDown = (props) => {
-  return(
-  <div className="row" style={{marginBottom: 0}}>
-    <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
-      <label htmlFor='clientExp' >CLIENT</label>
-      <input type="text" id='clientExp' className='dropdown-trigger' data-target='clientExp' />
-    </div>
-    <ul id='clientExp' className='dropdown-content'>
+// const DropDown = (props) => {
+//   return(
+//   <div className="row" style={{marginBottom: 0}}>
+//     <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+//       <label htmlFor='clientExp' >CLIENT</label>
+//       <input type="text" id='clientExp' className='dropdown-trigger' data-target='clientExp' />
+//     </div>
+//     <ul id='clientExp' className='dropdown-content'>
     
-      {props.clients? props.clients.map((client, key)=>
-              <li id={key}><a href="#!">{client.name}</a></li>
-      ): null}
-      </ul>
-  </div>
-  )
-}
+//       {props.clients? props.clients.map((client, key)=>
+//               <li id={key}><a href="#!">{client.name}</a></li>
+//       ): null}
+//       </ul>
+//   </div>
+//   )
+// }
 
 const Select = (props) => {
-  console.log("Select -> props.clientArray", props.clientArray)
-  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, props.clientArray);
-  });
+    M.FormSelect.init(elems);
   return (
     <div className="row" style={{marginBottom: 0}}>
       <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
         <select>
-        <option value="" selected>Choose your option</option>  
-        {props.clientArray.map((client)=>
+        <option value="">Choose your option</option>  
+        {props.clientArray.forEach((client)=> 
             <option>{client}</option>  
             )}
         </select>

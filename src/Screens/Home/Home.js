@@ -45,14 +45,14 @@ class Home extends Component {
             
             <div className="container-fluid">
             
-              <Header  isAuthenticated={isAuthenticated} userInfo={userInfo}/>
+              <Header userData={userData} isAuthenticated={isAuthenticated} userInfo={userInfo}/>
               <div className="row">
                 <div className="col s12 m12 l12">
                 <DocPdf url=''/>
                 <Switch>
 
                   <Route path="/home/"  exact ><Graphs userData={userData}/> </Route>
-                  <Route path="/home/mygestor"  exact ><Gestor isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
+                  <Route path="/home/mygestor"  exact ><Gestor userData={userData} isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
                   <Route path="/home/expense" exact ><Expense contacts={contacts} isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
                   <Route path="/home/expense/history" exact ><ExpenseHis isAuthenticated={isAuthenticated} userInfo={userInfo} expHis={expHis} updateExpHis={updateExpHis} /></Route>
@@ -90,7 +90,6 @@ const styleBox = {
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
         minHeight: 500,
-        // paddingTop: 130,
     },
 
     //Header
@@ -118,13 +117,13 @@ const styleBox = {
 
 
 const Header = (props) =>{
-  var {isAuthenticated, userInfo} = props;
+  var { userInfo, userData} = props;
   return (
     <div className="row" style={styleBox.header}>
       <div className="col s5 m7 l9"></div>
         <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
         <div  className="col s2 m2 l1">
-          <img style={styleBox.profile} className="imageRound" alt="" src={isAuthenticated ? userInfo.photoURL : null} />
+          <img style={styleBox.profile} className="imageRound" alt="" src={userData ? userData.profilepic : null} />
         </div>
     </div>
    )
