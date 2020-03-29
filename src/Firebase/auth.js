@@ -18,7 +18,7 @@ export const SignUpCall = () => {
                 console.log(auth.currentUser.email);
 
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
-                db.collection('Users').doc(auth.currentUser.uid).add({
+                db.collection('Users').doc(auth.currentUser.uid).set({
                     userid: auth.currentUser.uid,
                     email: auth.currentUser.email? auth.currentUser.email: '',
                     fname: fname,
@@ -32,7 +32,10 @@ export const SignUpCall = () => {
                     iva: [0,0,0,0,0,0,0,0,0,0,0,0],
                     irpf: [0,0,0,0,0,0,0,0,0,0,0,0],
                 })
-                .then(() => M.toast({html: "User Added!"}))
+                .then(() => {
+                    M.toast({html: "User Added!"})
+                    window.location.replace('/home');
+                })
             })
 
     } else {
