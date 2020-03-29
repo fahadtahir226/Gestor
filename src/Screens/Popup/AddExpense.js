@@ -32,7 +32,6 @@ class AddExpense extends React.Component {
       }else{
         clientArray = [];
       }
-      console.log("AddExpense -> render -> clientArray", clientArray)
   return(
     <div id="addExpense" style={styleBox.main} className='modal z-depth-5' >
       <div className="modal-content" style={styleBox.content}>
@@ -92,22 +91,22 @@ const InputItem = (props) => {
       </div>
     )
 }
-const DropDown = (props) => {
-  return(
-  <div className="row" style={{marginBottom: 0}}>
-    <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
-      <label htmlFor='clientExp' >CLIENT</label>
-      <input type="text" id='clientExp' className='dropdown-trigger' data-target='clientExp' />
-    </div>
-    <ul id='clientExp' className='dropdown-content'>
+// const DropDown = (props) => {
+//   return(
+//   <div className="row" style={{marginBottom: 0}}>
+//     <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+//       <label htmlFor='clientExp' >CLIENT</label>
+//       <input type="text" id='clientExp' className='dropdown-trigger' data-target='clientExp' />
+//     </div>
+//     <ul id='clientExp' className='dropdown-content'>
     
-      {props.clients? props.clients.map((client, key)=>
-              <li id={key}><a href="#!">{client.name}</a></li>
-      ): null}
-      </ul>
-  </div>
-  )
-}
+//       {props.clients? props.clients.map((client, key)=>
+//               <li id={key}><a href="#!">{client.name}</a></li>
+//       ): null}
+//       </ul>
+//   </div>
+//   )
+// }
 
 const Select = (props) => {
   console.log("Select -> props.clientArray", props.clientArray)
