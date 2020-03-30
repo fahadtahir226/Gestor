@@ -162,7 +162,7 @@ class Graphs extends Component {
                                 position="month*temperature"
                                 size={4}
                                 shape={"circle"}
-                                color={"mode",["#FA1B13", "#3DF6EA"]}
+                                color={["mode",["#3DF6EA", "#FA1B13"]]}
                                 style={{
                                   stroke: "#fff"
                                 }}
