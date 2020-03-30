@@ -30,6 +30,7 @@ class AddExpense extends React.Component {
       }else{
         clientArray = [];
       }
+      console.log(clientArray);
   return(
     <div id="addExpense" style={styleBox.main} className='modal z-depth-5' >
       <div className="modal-content" style={styleBox.content}>

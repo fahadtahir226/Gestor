@@ -18,15 +18,15 @@ export const profileUpload = (e,uid) => {
             db.collection('Users').doc(uid).get()
             .then((res)=>{
                 res.data().profilepic =  url;
-                res.data().inc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().exp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().irpfExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().irpfInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().ivaExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().ivaInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().retExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                res.data().retInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                db.collection('Users').doc(uid).add(res.data())
+                // res.data().inc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().exp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().irpfExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().irpfInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().ivaExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().ivaInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().retExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                // res.data().retInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
+                db.collection('Users').doc(uid).update(res.data())
                 .then(() => window.location.replace('myGestor'))
             })
         })

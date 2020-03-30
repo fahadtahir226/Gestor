@@ -88,7 +88,6 @@ export const loadProfile = (user, updateProfile) => {
 
 export const updateProfile = (user) => {
   db.collection("Users").doc(user.uid).update({
-    
   })
   .then(function() {
       console.log("Document successfully updated!");

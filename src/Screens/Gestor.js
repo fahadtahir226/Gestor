@@ -3,25 +3,39 @@ import M from 'materialize-css'
 import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
 import {profileUpload} from "../Firebase/storage"
-import { updateProfile } from '../Firebase/firestore';
+
 
 
 
 class Gestor extends Component {
+  constructor(props){
+    super(props);
+    this.state = {reupdate: null}
+  }
   componentDidMount(){
     var elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems);
+    M.Dropdown.init(elems, {onCloseEnd: this.updateDropDown});
+    this.updateState();
+  }
+  updateDropDown(){
+    document.getElementById('dropDown').innerHtml = 
+  }
+  updateState(){
+    setTimeout(() => {
+    this.setState({reupdate: 1})
+    }, 2000)
   }
 
-  updateProfileData(data){
-    setTimeout(() => {
-      document.getElementById("fname").value = (data["fname"] ? data["fname"] : '');
-      document.getElementById("lname").value = (data["lname"] ? data["lname"] : '');
-      document.getElementById("nif").value = (data["nif"] ? data["nif"] : '');
-      document.getElementById("pnumber").value = (data["pnumber"] ? data["pnumber"] : '');
-      document.getElementById("email").value = (data["email"] ? data["email"] : '');  
-    }, 1000)
-  }
+  // updateProfileData(data){
+  //   setTimeout(() => {
+
+  //     document.getElementById("fname").value = (data["fname"] ? data["fname"] : '');
+  //     document.getElementById("lname").value = (data["lname"] ? data["lname"] : '');
+  //     document.getElementById("nif").value = (data["nif"] ? data["nif"] : '');
+  //     document.getElementById("pnumber").value = (data["pnumber"] ? data["pnumber"] : '');
+  //     document.getElementById("email").value = (data["email"] ? data["email"] : '');  
+  //   }, 1000)
+  // }
   submitForm(event){
     event.preventDefault(); 
     let fname = document.getElementById("fname").value;
@@ -36,8 +50,7 @@ class Gestor extends Component {
 
   render() {
   var { userInfo , userData} = this.props;
-  this.updateProfileData((userData? userData : {}));
-    
+  console.log(userData)
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
@@ -72,7 +85,7 @@ class Gestor extends Component {
                       <span>FIRST NAME: </span>
                   </div>
                     <div className="col s12 m12 l6">
-                    <span className="textdata"> <input style={styleBox.inputBox} type="text" name="fname" id="fname" value=""/> </span>
+                    <span className="textdata"> <input style={styleBox.inputBox} type="text" name="fname" id="fname" defaultValue={userData ? userData.fname : null} /> </span>
                     </div>
                 </div>
 
@@ -81,7 +94,7 @@ class Gestor extends Component {
                     <span>LAST NAME: </span>
                   </div>
                   <div className="col s12 m12 l6">
-                    <span className="textdata"> <input style={styleBox.inputBox} type="text" name="lname"  id="lname" value="" />  </span>
+                    <span className="textdata"> <input style={styleBox.inputBox} type="text" name="lname"  id="lname" defaultValue={userData ? userData.lname : null} />  </span>
                   </div>
                 </div>
 
@@ -90,7 +103,7 @@ class Gestor extends Component {
                   <span>NIE/NIF: </span>
                   </div>
                   <div className="col s12 m12 l6">
-                  <span className=" textdata"><input style={styleBox.inputBox} type="number" name="nif" id="nif" value="" /></span>                  
+                  <span className=" textdata"><input style={styleBox.inputBox} type="number" name="nif" id="nif" defaultValue={userData ? userData.nif : null} /></span>                  
                   </div>
                 </div>
                 
@@ -99,7 +112,7 @@ class Gestor extends Component {
                     <span>PHONE NUMBER: </span>
                   </div>
                   <div className="col s12 m12 l6" >
-                    <span className=" textdata"><input style={styleBox.inputBox} type="text" name="pnumber" id="pnumber" value="" /></span>
+                    <span className=" textdata"><input style={styleBox.inputBox} type="number" name="pnumber" id="pnumber" defaultValue={userData ? userData.phonenumber : null} /></span>
                   </div>
                 </div>
                 
@@ -108,7 +121,7 @@ class Gestor extends Component {
                     <span>EMAIL</span>
                   </div>
                   <div className="col s12 m12 l6">
-                    <span className="textdata"><input style={styleBox.inputBox} type="email" name="email" id="email" value="" /></span>
+                    <span className="textdata"><input style={styleBox.inputBox} type="email" name="email" id="email" defaultValue={userData ? userData.email : null} /></span>
                   </div>
                 </div>
                 <div className='row' style={{textAlign: 'center'}}>
@@ -125,8 +138,8 @@ class Gestor extends Component {
 
               <div className="row">
                 <span>PROFESSION: </span>
-                <div className="right">
-                  <a  style={styleBox.dropDown} className='dropdown-trigger' href='#!' data-target='dropdown1'><span style={{visibility: 'hidden'}}>......</span>DESIGNER<span style={{visibility: 'hidden'}}>......</span></a>
+                <div className="right" style={{minWidth: 200}}>
+                  <a  style={styleBox.dropDown} className='dropdown-trigger' href='#!' id={'dropDown'} data-target='dropdown1'><span style={{visibility: 'hidden'}}>........................</span>{userData ? userData.profession : null}<span style={{visibility: 'hidden'}}>........................</span></a>
                   <ul id='dropdown1' className='dropdown-content'>
                     <li><a href="#!">DEVELOPER</a></li>
                     <li><a href="#!">MANAGER</a></li>
@@ -205,7 +218,6 @@ const styleBox = {
         marginLeft: -20,
         marginBottom: 10,
         fontSize: 14
-        // fontWeight: "bold"
     },
     DataBox: {
       padding: 20,
@@ -213,7 +225,10 @@ const styleBox = {
       minHeight: 440 
     },
     dropDown : {
-      color : 'darkgrey'
+      color : 'darkgrey',
+      borderBottom: "1px solid #9e9e9e",
+      minWidth: 100,
+
     },
     row : {
       display: "table",

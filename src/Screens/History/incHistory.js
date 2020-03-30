@@ -44,11 +44,11 @@ loadIncHis = (user, year) => {
 render() {
     var userInfo = this.props.userInfo,
         incomeData = this.props.incHis;
-        let result = Object.values(incomeData? incomeData : {a : []}).every(o =>{
-          if(typeof(o) =="number"){
+        let result = Object.values(incomeData? incomeData : {a : []}).every(data =>{
+          if(typeof(data) =="number"){
             return true
           }
-          if(o.length == 0 || o == undefined ){
+          if(data.length === 0 || data === undefined ){
             return true;
           }else{
             return false;
