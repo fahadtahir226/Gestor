@@ -19,59 +19,38 @@ import "../css/style.css"
 class Graphs extends Component {
   constructor(props) {
     super();
-    const data = [
-      {
-        label: "Series 1",
-        data: [
-          [0, 1],
-          [1, 2],
-          [2, 4],
-          [3, 2],
-          [4, 7],
-        ]
-      },
-      {
-        label: "Series 2",
-        data: [
-          [0, 3],
-          [1, 1],
-          [2, 5],
-          [3, 6],
-          [4, 4]
-        ]
-      }
-    ];
-    const barChart = [
-      ["", "", { role: "style" }],
-      ["", 8, "red"], // RGB value
-      ["", 10, "rgb(74, 164, 239)"] // English color name
-    ];
-    const series = {
-      type: "bar"
-    };
-
-    const axes = [
-      { primary: true, type: "linear", position: "bottom", show: true },
-      { type: "linear", position: "left", show: true }
-    ];
-
     this.state = {
-      data: data,
-      axes: axes,
-      series: series,
-      barChart: barChart
+      optionValue : 0
     };
+  }
+
+  updateSelectValue(value){
+    this.setState({
+      optionValue : value
+    })
   }
   getSum(total, num) {
     return total + Math.round(num);
   }
   render() {
+    let incQtr = [];
+    let expQtr = [];
     var {userInfo, userData} = this.props;
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var data1 = [];
     if(userData == null){
       data1 = [];
     }else{
+      incQtr = 
+      [userData.inc[0] + userData.inc[1] + userData.inc[2] ,
+      userData.inc[3] + userData.inc[4] + userData.inc[5] ,
+      userData.inc[6] + userData.inc[7] + userData.inc[8] ,
+      userData.inc[9] + userData.inc[10] + userData.inc[11]]
+      expQtr =  [
+      userData.exp[0] + userData.exp[1] + userData.exp[2] ,
+      userData.exp[3] + userData.exp[4] + userData.exp[5] ,
+      userData.exp[6] + userData.exp[7] + userData.exp[8] ,
+      userData.exp[9] + userData.exp[10] + userData.exp[11]]
       months.map((eachMonth, index) => {
         data1.push({
           month: eachMonth,
@@ -84,14 +63,14 @@ class Graphs extends Component {
           temperature: userData.exp[index]
         })
       })
-      var data = [
+      var barchartdata = [
         {
           name: "Income",
-          vote: userData.inc.reduce(this.getSum, 0)
+          vote: (this.state.optionValue != 0 ? incQtr[this.state.optionValue-1] : incQtr[0])
         },
         {
           name: "Expense",
-          vote: userData.exp.reduce(this.getSum, 0)
+          vote: (this.state.optionValue != 0 ? expQtr[this.state.optionValue-1] : expQtr[0])
         }
       ];
 
@@ -197,19 +176,20 @@ class Graphs extends Component {
                               <span className="input-field">
                                 <select
                                   className="select2 browser-default form-control"
-                                  style={{ width: "150px", color: "black" }}
+                                  style={{ width: "150px", color: "black" }} 
+                                  onChange={(event)=> {this.updateSelectValue(event.target.value, incQtr, expQtr)}}
                                 >
-                                  <option> 1T 2020</option>
-                                  <option> 2T 2020</option>
-                                  <option> 3T 2020</option>
-                                  <option> 4T 2020</option>
+                                  <option value="1"> 1T 2020</option>
+                                  <option value="2"> 2T 2020</option>
+                                  <option value="3"> 3T 2020</option>
+                                  <option value="4"> 4T 2020</option>
                                 </select>
                               </span>
                             </div>
                           </div>
                           <div className="row" style={{ "position" : "relative" , "width": "100%", "height": "100%", "cursor": "pointer"}}>
                           <Chart
-                            data={data}
+                            data={barchartdata}
                             padding={[20, 20, 20, 20]}
                             scale={scale}
                           >
