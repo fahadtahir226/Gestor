@@ -62,7 +62,7 @@ class Gestor extends Component {
             <label htmlFor="profileBtn" >
             <a onClick={()=>document.getElementById("profileBtn").click()} href="#!" style={styleBox.submitbtn} className="btn waves-effect waves-light">UPLOAD PHOTO</a>
             </label>
-            <input id="profileBtn" name={userInfo.uid} onChange={(event) => profileUpload(event, userInfo.uid)} className="hide" type="file" />
+            <input id="profileBtn" name={userInfo.uid} onChange={(event) => profileUpload(event, userData)} className="hide" type="file" />
         </div>
       </div>
       <div className="row" style={styleBox.row}>

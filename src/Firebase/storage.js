@@ -5,33 +5,22 @@ import { db } from "./firestore";
 export const storageRef = firebase.storage().ref();
 
 
-export const profileUpload = (e,uid) => {
-    let name = e.target.name,
-    ref = storageRef.child(`profile/${name}.jpg`);
+export const profileUpload = (e,userData) => {
+    // let name = e.target.name,
+    let ref = storageRef.child(`profile/${userData.userid}.jpg`);
     ref.put(e.target.files[0]).then(function(snapshot) {
-        console.log('Uploaded Your Profile Picture!', snapshot);
-        storageRef.child(`profile/${name}.jpg`).getDownloadURL()
-        .then(function(url) {
-            console.log(url);
-            auth.currentUser.updateProfile({photoURL: url});
+    //   console.log('Uploaded Your Profile Picture!', snapshot);
 
-            db.collection('Users').doc(uid).get()
-            .then((res)=>{
-                res.data().profilepic =  url;
-                // res.data().inc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().exp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().irpfExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().irpfInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().ivaExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().ivaInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().retExp = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                // res.data().retInc = [0,0,0, 0,0,0, 0,0,0, 0,0,0] 
-                db.collection('Users').doc(uid).update(res.data())
-                .then(() => window.location.replace('myGestor'))
-            })
-        })
-    })
-    .catch((error) => console.log(error))
+      storageRef.child(`profile/${userData.userid}.jpg`).getDownloadURL()
+      .then(function(url) {
+      console.log(url);
+      auth.currentUser.updateProfile({photoURL: url});
+      userData.profilepic = url;
+      db.collection('Users').doc(userData.userid).set(userData)
+      .then(() => window.location.replace('myGestor'))
+      
+    })  
+  })
 }
 
 export const loadDocument = (user, updateDocData) => {
