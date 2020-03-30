@@ -7,16 +7,26 @@ import sbmtbtn from "../../images/text-background.png"
 import '../../index.css'
 
 class AddIncome extends React.Component {
+  constructor(props){
+    super(props);  
+    this.state = {reupdate: 0}
+  }
     componentDidMount(){
       var modal = document.querySelectorAll('.modal'),
       picker = document.querySelectorAll('.datepicker');
       
       this.instance = M.Modal.init(modal);
       M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
+      this.updateState();
+    }
+    updateState(){
+      setTimeout(() => {
+      this.setState({reupdate: 1})
+      }, 2000)
     }
     render(){
       var ins = this.instance;
-      var {userInfo} = this.props;
+      var {userInfo, contacts} = this.props;
     return(
     <div id="addIncome" style={styleBox.main} className='modal z-depth-5' >
       <div className="modal-content" style={styleBox.content} >
@@ -30,13 +40,13 @@ class AddIncome extends React.Component {
                     return <InputItem title={item.title} id={item.id} type={item.type} key={key} />
                 })
             }
-
             <div className="row" style={{marginBottom: 0}}>
               <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
                 <label htmlFor='datePickerInc' >DATE</label>
                 <input type="text" id='datePickerInc' className="datepicker" />
               </div>
             </div>
+            <Select contacts={contacts} />
           </form>
           <form className="col s12 m6 l6">
             {
@@ -65,6 +75,25 @@ const InputItem = (props) => {
         </div>
       </div>
     )
+}
+const Select = (props) => {
+  var elems = document.querySelectorAll('select');
+  M.FormSelect.init(elems);
+  var contacts = props.contacts ? props.contacts: null;
+  console.log(contacts);
+return (
+  <div className="row" style={{marginBottom: 0}}>
+    <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+      <select id='clientInc'>
+      <option value="">CLIENTS</option>  
+      {contacts ? contacts.map((client)=> 
+          <option>{client.name}</option>  
+      ): null
+      }
+      </select>
+    </div>
+</div>
+)
 }
 
 const addNewIncome = (userInfo) => {

@@ -3,9 +3,7 @@ import M from 'materialize-css'
 import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
 import {profileUpload} from "../Firebase/storage"
-
-
-
+import { updateProfileData } from "../Firebase/firestore"
 
 class Gestor extends Component {
   constructor(props){
@@ -13,8 +11,8 @@ class Gestor extends Component {
     this.state = {reupdate: null}
   }
   componentDidMount(){
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, {onCloseEnd: this.updateDropDown});
+  var elems = document.querySelectorAll('select');
+  M.FormSelect.init(elems);
     this.updateState();
   }
   updateDropDown(){
@@ -26,26 +24,16 @@ class Gestor extends Component {
     }, 2000)
   }
 
-  // updateProfileData(data){
-  //   setTimeout(() => {
-
-  //     document.getElementById("fname").value = (data["fname"] ? data["fname"] : '');
-  //     document.getElementById("lname").value = (data["lname"] ? data["lname"] : '');
-  //     document.getElementById("nif").value = (data["nif"] ? data["nif"] : '');
-  //     document.getElementById("pnumber").value = (data["pnumber"] ? data["pnumber"] : '');
-  //     document.getElementById("email").value = (data["email"] ? data["email"] : '');  
-  //   }, 1000)
-  // }
-  submitForm(event){
+  submitForm(event, userData){
     event.preventDefault(); 
-    let fname = document.getElementById("fname").value;
-    let lname = document.getElementById("lname").value;
-    let nif = document.getElementById("nif").value;
-    let pnumber = document.getElementById("pnumber").value;
-    let email = document.getElementById("email").value;
-    let uid = this.props.userData.uid; 
-    console.log({ uid, fname , lname, nif, pnumber, email});
-    // updateProfile({ uid, fname , lname, nif, pnumber, email});
+    userData.fname = document.getElementById("fname").value;
+    userData.lname = document.getElementById("lname").value;
+    userData.nif = document.getElementById("nif").value;
+    userData.pnumber = document.getElementById("pnumber").value;
+    userData.email = document.getElementById("email").value;
+    userData.profession = document.getElementById("professionDropDown").value;
+    // console.log({ uid, fname , lname, nif, pnumber, email, profession});
+    updateProfileData(userData);
   }
 
   render() {
@@ -125,7 +113,7 @@ class Gestor extends Component {
                   </div>
                 </div>
                 <div className='row' style={{textAlign: 'center'}}>
-                  <a href="#!" onClick={(e)=>this.submitForm(e)} style={styleBox.savebtn} className="btn-flat">Submit</a>
+                  <a href="#!" onClick={(e)=>this.submitForm(e, userData)} style={styleBox.savebtn} className="btn-flat">Submit</a>
                 </div>
 
             </div>  
@@ -133,21 +121,21 @@ class Gestor extends Component {
         </div>
         <div className="col s12 m12 l6"  style={styleBox.card}>
           <div className="card" style={styleBox.DataBox}>
-            <div style={styleBox.bluishHeading} >PROFESSIONAL ACTIVITY</div>
+            <div style={styleBox.bluishHeading} >PROFESSIONAL ACTIVITY </div>
             <div className="container-fluid" style={{margin: 25}}>
 
               <div className="row">
-                <span>PROFESSION: </span>
-                <div className="right" style={{minWidth: 200}}>
-                  <a  style={styleBox.dropDown} className='dropdown-trigger' href='#!' id={'dropDown'} data-target='dropdown1'><span style={{visibility: 'hidden'}}>........................</span>{userData ? userData.profession : null}<span style={{visibility: 'hidden'}}>........................</span></a>
-                  <ul id='dropdown1' className='dropdown-content'>
-                    <li><a href="#!">DEVELOPER</a></li>
-                    <li><a href="#!">MANAGER</a></li>
-                    <li><a href="#!">DESIGNER</a></li>
-                    <li><a href="#!">ARCHITECT</a></li>
-                  </ul>
-                {/* </>: null */}
-              {/* } */}
+                <div className="left" style={{verticalAlign: 'bottom'}} >PROFESSION: </div>
+                <div className="right" >
+                  <div className="col s12 validate" style={{ marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+                    <select id='professionDropDown' style={{color: 'darkgrey',}}>
+                      <option selected >{userData ? userData.profession : 'CHOOSE PROFESSION'}</option>  
+                      <option>ARTIST</option>  
+                      <option>DATA ANALYST</option>  
+                      <option>MANAGER</option>  
+                      <option>QA</option>  
+                    </select>
+                  </div>
               </div>
               </div>
             </div>
@@ -159,7 +147,17 @@ class Gestor extends Component {
   }
 }
 
+// const Select = (props) => {
+//   var elems = document.querySelectorAll('select');
+//   M.FormSelect.init(elems);
 
+//   console.log(contacts);
+// return (
+//   <div className="row" style={{marginBottom: 0}}>
+
+// </div>
+// )
+// }
 
 const styleBox = {
   main: {
@@ -203,7 +201,7 @@ const styleBox = {
         outline: 'none',
         borderBottom: '0px',
         boxShadow: 'none',
-        background: '#F2F0EC',
+        background: ' #F2F0EC',
         paddingLeft: 15,
         maxWidth: 220    
     },
@@ -227,7 +225,7 @@ const styleBox = {
     dropDown : {
       color : 'darkgrey',
       borderBottom: "1px solid #9e9e9e",
-      minWidth: 100,
+      // minWidth: 100,
 
     },
     row : {

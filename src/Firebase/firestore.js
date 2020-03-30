@@ -86,10 +86,11 @@ export const loadProfile = (user, updateProfile) => {
 }
 
 
-export const updateProfile = (user) => {
-  db.collection("Users").doc(user.uid).update({
-  })
+export const updateProfileData = (user) => {
+  console.log(user.uid, user)
+  db.collection("Users").doc(user.userid).set(user)
   .then(function() {
+      window.location.replace('./mygestor')
       console.log("Document successfully updated!");
   })
   .catch((error) => console.log("Error: ", error) )

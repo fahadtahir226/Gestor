@@ -3,13 +3,16 @@ import M from 'materialize-css';
 
 import folderIcon from '../../images/drawable/folderIcon.png'
 import pdfIcon from '../../images/drawable/pdfIcon.png'
-// import { doc } from '../../Firebase/storage'
 import { PopupCard } from '../Popup/configureCards';
 import AddNewDoc from '../Popup/addDoc'
  
 import '../../App.css'
 
 class Documents extends Component {
+constructor(props){
+  super(props);
+  this.state = {reupdate: 0};
+}
 componentDidMount(){
     var elems = document.querySelectorAll('.collapsible');
     var fixdbtn = document.querySelectorAll('.fixed-action-btn');
@@ -17,7 +20,12 @@ componentDidMount(){
     document.getElementById('addDoc').style.display = 'none';      
     M.Collapsible.init(elems);
     M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
-
+    this.updateState();
+}
+updateState(){
+  setTimeout(() => {
+  this.setState({reupdate: 1})
+  }, 5000)
 }
 
 render() {

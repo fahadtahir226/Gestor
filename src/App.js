@@ -84,8 +84,8 @@ componentDidMount() {
           isAuthenticated: true,
           userInfo: user,
         })
-        loadDocument(user, (document) => this.updateDocData(document) );
-        loadProfile(user, (userData) => this.updateUserData(userData))
+        loadDocument(user, (document) => this.updateDocData(document));
+        loadProfile(user, (userData) => this.updateUserData(userData));
         loadContact (user, (contacts) => this.updateContactData(contacts));
         loadExpenses(user, new Date().getFullYear(), (exp) => this.updateExpData(exp), (expHis) => this.updateExpHis(expHis));
         loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));

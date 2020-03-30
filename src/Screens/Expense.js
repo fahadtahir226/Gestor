@@ -7,7 +7,6 @@ import history from '../images/drawable/history.png';
 import AddExpense from '../Screens/Popup/AddExpense'
 import {PopupCard} from '../Screens/Popup/configureCards';
 import { Link } from 'react-router-dom';
-import { findAllByTitle } from '@testing-library/react';
 
 
 class Expense extends Component {
@@ -65,7 +64,7 @@ render() {
             null
           }
           {
-            this.props.expenseData ?  "" : 
+            expenseData ?  "" : 
             <div className="row" style ={{ textAlign : "center", margin : 0 }}>
             <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
             <h5>No Expense found</h5>

@@ -37,7 +37,7 @@ class Income extends Component {
     console.log(document.getElementById('datePicker').value);
   }
 render() {
-    var { userInfo} = this.props;
+    var { userInfo, contacts} = this.props;
     var incomeData = this.props.incData;
     var d = new Date();
     var months = ["JANUARy", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
@@ -47,8 +47,8 @@ render() {
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
     <center>
-    <AddDocIncome userInfo={userInfo} />
-    <AddIncome userInfo={userInfo} />
+    <AddDocIncome userInfo={userInfo} contacts={contacts} />
+    <AddIncome userInfo={userInfo} contacts={contacts}/>
     </center>
       <div className="row" style={{marginBottom: 0}}>
       <h5 className="col s12 m8 l4 " style={styleBox.mainHeading}>NET INCOME 1500€<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
@@ -72,7 +72,7 @@ render() {
 
           }
           {
-            this.props.incData ?  "" : 
+            incomeData ?  "" : 
             <div className="row" style ={{ textAlign : "center", margin : 0 }}>
             <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
             <h5>No Income Found</h5>
