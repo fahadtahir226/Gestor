@@ -38,3 +38,17 @@
 .imageRound{
     object-fit:cover;
 }
+
+#canvas_1{
+	position: relative;
+	top: -15px;
+    left: -35px;
+}
+
+#canvas_2{
+	width: 673.125px;
+	height: 350px !important;
+	position: relative;
+	cursor: default;
+}
+
