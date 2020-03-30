@@ -225,6 +225,7 @@ class Graphs extends Component {
                               type="interval"
                               position="name*vote"
                               color={["name", ["#3DF6EA", "#FA1B13"]]}
+                              size={50}
                             />
                             <Tooltip />
                             <Geom
