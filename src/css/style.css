@@ -45,10 +45,12 @@
     left: -35px;
 }
 
-#canvas_2{
-	width: 673.125px;
-	height: 350px !important;
+#canvas_2 {
+    width: 300px !important;
+    height: 250px !important;
 	position: relative;
+    cursor: default;
+    left: 180px;
 	cursor: default;
 }
 

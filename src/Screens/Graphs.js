@@ -207,32 +207,19 @@ class Graphs extends Component {
                               </span>
                             </div>
                           </div>
-                          <div className="row" style={{ "position" : "relative",  "top": "-60px" }}>
+                          <div className="row" style={{ "position" : "relative" , "width": "100%", "height": "100%"}}>
                           <Chart
                             data={data}
-                            padding={[100, 20, 100, 20]}
+                            padding={[20, 20, 20, 20]}
                             scale={scale}
-                            forceFit
                           >
-                            <Axis
-                              name="vote"
-                              labels={null}
-                              title={null}
-                              line={null}
-                              tickLine={null}
-                            />
                             <Geom
                               type="interval"
                               position="name*vote"
                               color={["name", ["#3DF6EA", "#FA1B13"]]}
-                              size={50}
+                              size={120}
                             />
                             <Tooltip />
-                            <Geom
-                              type="point"
-                              position="name*vote"
-                              size={0}
-                            />
                           </Chart>
 
                           </div>
