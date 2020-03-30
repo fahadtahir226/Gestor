@@ -84,3 +84,14 @@ export const loadProfile = (user, updateProfile) => {
   })
   .catch((error) => console.log("Error: ", error) )
 }
+
+
+export const updateProfile = (user) => {
+  db.collection("Users").doc(user.uid).update({
+    
+  })
+  .then(function() {
+      console.log("Document successfully updated!");
+  })
+  .catch((error) => console.log("Error: ", error) )
+}

@@ -16,7 +16,7 @@ class Graphs extends Component {
           [1, 2],
           [2, 4],
           [3, 2],
-          [4, 7]
+          [4, 7],
         ]
       },
       {
@@ -40,8 +40,8 @@ class Graphs extends Component {
     };
 
     const axes = [
-      { primary: true, type: "linear", position: "bottom", show: false },
-      { type: "linear", position: "left", show: false }
+      { primary: true, type: "linear", position: "bottom", show: true },
+      { type: "linear", position: "left", show: true }
     ];
 
     this.state = {
@@ -52,8 +52,34 @@ class Graphs extends Component {
     };
   }
   render() {
-    // var {isAuthenticated, userInfo} = this.props;
-
+    var {userInfo, userData} = this.props;
+    console.log("Graphs -> render -> userData", userData)
+    let data1 = []; 
+    let data2 = []; 
+    if(userData == null){
+      userData = [];
+    }else{
+      userData.inc.map((eachData, index) => {
+        data1.push([index, eachData]);
+        data2.push([index, userData.exp[index]]);
+      })
+    }
+    const data = [
+      {
+        label: "Series 1",
+        data: data1?data1 : []
+      },
+      {
+        label: "Series 2",
+        data: data2? data2 : []
+      }
+    ];
+    console.log("Graphs -> render -> data1", data1)
+    console.log("Graphs -> render -> data2", data2)
+    const axes = [
+      { primary: true, type: "linear", position: "bottom", show: true },
+      { type: "linear", position: "left", show: true }
+    ];
     return (
       <div>
         <div id="main">
@@ -87,8 +113,8 @@ class Graphs extends Component {
                             }}
                           >
                             <Chart
-                              data={this.state.data}
-                              axes={this.state.axes}
+                              data={data}
+                              axes={axes}
                             />
                           </div>
                         </div>

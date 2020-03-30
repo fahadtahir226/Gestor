@@ -3,6 +3,7 @@ import M from 'materialize-css'
 import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
 import {profileUpload} from "../Firebase/storage"
+import { updateProfile } from '../Firebase/firestore';
 
 
 
@@ -12,9 +13,31 @@ class Gestor extends Component {
     M.Dropdown.init(elems);
   }
 
+  updateProfileData(data){
+    setTimeout(() => {
+      document.getElementById("fname").value = (data["fname"] ? data["fname"] : '');
+      document.getElementById("lname").value = (data["lname"] ? data["lname"] : '');
+      document.getElementById("nif").value = (data["nif"] ? data["nif"] : '');
+      document.getElementById("pnumber").value = (data["pnumber"] ? data["pnumber"] : '');
+      document.getElementById("email").value = (data["email"] ? data["email"] : '');  
+    }, 1000)
+  }
+  submitForm(event){
+    event.preventDefault(); 
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let nif = document.getElementById("nif").value;
+    let pnumber = document.getElementById("pnumber").value;
+    let email = document.getElementById("email").value;
+    let uid = this.props.userData.uid; 
+    console.log({ uid, fname , lname, nif, pnumber, email});
+    // updateProfile({ uid, fname , lname, nif, pnumber, email});
+  }
+
   render() {
-    var { userInfo , userData} = this.props;
-    console.log(userData);
+  var { userInfo , userData} = this.props;
+  this.updateProfileData((userData? userData : {}));
+    
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row">
@@ -45,20 +68,20 @@ class Gestor extends Component {
             <div className="container-fluid" style={{margin: 25, marginBottom: 0}}>
               <div className="row">
                 
-                <div className="col s12 m12 l6">
+                <div className="col s12 m12 l6" style={{ "height" : "2rem" }}>
                       <span>FIRST NAME: </span>
                   </div>
                     <div className="col s12 m12 l6">
-                    <span className="textdata"> <input style={{ "height" : "1rem" }} type="text" name="fname" id="fname" /> </span>
+                    <span className="textdata"> <input style={styleBox.inputBox} type="text" name="fname" id="fname" value=""/> </span>
                     </div>
                 </div>
 
                 <div className="row">
-                  <div className="col s12 m12 l6">
+                  <div className="col s12 m12 l6" >
                     <span>LAST NAME: </span>
                   </div>
                   <div className="col s12 m12 l6">
-                    <span className="textdata"> <input style={{ "height" : "1rem" }} type="text" name="lname"  id="lname" />  </span>
+                    <span className="textdata"> <input style={styleBox.inputBox} type="text" name="lname"  id="lname" value="" />  </span>
                   </div>
                 </div>
 
@@ -67,7 +90,7 @@ class Gestor extends Component {
                   <span>NIE/NIF: </span>
                   </div>
                   <div className="col s12 m12 l6">
-                  <span className=" textdata"><input style={{ "height" : "1rem" }} type="number" name="nif" id="nif" /></span>                  
+                  <span className=" textdata"><input style={styleBox.inputBox} type="number" name="nif" id="nif" value="" /></span>                  
                   </div>
                 </div>
                 
@@ -76,7 +99,7 @@ class Gestor extends Component {
                     <span>PHONE NUMBER: </span>
                   </div>
                   <div className="col s12 m12 l6" >
-                    <span className=" textdata"><input style={{ "height" : "1rem" }} type="text" name="pnumber" id="pnumber" /></span>
+                    <span className=" textdata"><input style={styleBox.inputBox} type="text" name="pnumber" id="pnumber" value="" /></span>
                   </div>
                 </div>
                 
@@ -85,11 +108,11 @@ class Gestor extends Component {
                     <span>EMAIL</span>
                   </div>
                   <div className="col s12 m12 l6">
-                    <span className="textdata"><input style={{ "height" : "1rem" }} type="email" name="email" id="email" /></span>
+                    <span className="textdata"><input style={styleBox.inputBox} type="email" name="email" id="email" value="" /></span>
                   </div>
                 </div>
                 <div className='row' style={{textAlign: 'center'}}>
-                  <a href="#!" onClick={()=>console.log("implement me Please")} style={styleBox.savebtn} className="btn-flat">Submit</a>
+                  <a href="#!" onClick={(e)=>this.submitForm(e)} style={styleBox.savebtn} className="btn-flat">Submit</a>
                 </div>
 
             </div>  
@@ -187,7 +210,7 @@ const styleBox = {
     DataBox: {
       padding: 20,
       borderRadius: 5,
-      minHeight: 420 
+      minHeight: 440 
     },
     dropDown : {
       color : 'darkgrey'
@@ -208,5 +231,10 @@ const styleBox = {
       color: "white",
       margin: 10,
     },    
+    inputBox:{ 
+      "height" : "2rem",
+      "margin" : 0 
+    }
+
   }
 export default Gestor;
