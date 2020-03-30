@@ -7,6 +7,7 @@ import history from '../images/drawable/history.png';
 import AddExpense from '../Screens/Popup/AddExpense'
 import {PopupCard} from '../Screens/Popup/configureCards';
 import { Link } from 'react-router-dom';
+import { findAllByTitle } from '@testing-library/react';
 
 
 class Expense extends Component {
@@ -82,14 +83,14 @@ render() {
 
 
 const Entry = (props) => {
-    var {concept, day, date, status, docAddr} = props;
+    var {concept, day, date, status, docAddr, amount} = props;
     
     return (
 
       <li className="collection-item avatar" style={{borderRight: "none",borderLeft: "none", borderBottom: "1px solid #e0e0e0", paddingLeft: 30}}>
         <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}</h5>
         <p style={{color: "dimgrey", padding: 3, fontSize: 12}}> {day} , {date}</p>
-        <a href="#!" className="secondary-content"><i onClick={()=>PopupCard('docPdf', docAddr)} className='material-icons' style={{color: "grey"}}>picture_as_pdf</i>
+        <a href="#!" className="secondary-content"><a onClick={()=>PopupCard('docPdf', docAddr)} style={{color: "grey"}}>{amount}€</a>
             <i className="material-icons right" style={{color: "grey"}}>chevron_right</i>
             <br />
             {status ? 
@@ -112,7 +113,7 @@ const Month = (props) => {
       <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.expenseData.year}</div>
       <ul className="collection" style={{margin: 0}}>
         {usrs.map((entry, key) => 
-            <Entry key={key} concept = {entry.concept} day={entry.day} date={entry.date} status={entry.status} docAddr={entry.docAddr} />
+            <Entry key={key} amount = {entry.amount} concept = {entry.concept} day={entry.day} date={entry.date} status={entry.status} docAddr={entry.docAddr} />
         )}
       </ul>
     </>
