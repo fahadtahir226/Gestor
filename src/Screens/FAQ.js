@@ -28,13 +28,13 @@ render() {
 const QuestionList = (data) =>{
     // {console.log(heading,questions)}
     return(
-      <ul class="collection with-header" style={styleBox.listheader} >
-        <li class="collection-header" style={styleBox.listItem}><h5>{data.heading}</h5></li>
+      <ul className="collection with-header" style={styleBox.listheader} >
+        <li className="collection-header" style={styleBox.listItem}><h5>{data.heading}</h5></li>
         {data.questions.map((que,key)=>(
-            <li class="collection-item" style={styleBox.listItem} key={key} >
+            <li className="collection-item" style={styleBox.listItem} key={key} >
               <div>{que}
-                <a href="#!" class="secondary-content">
-                  <i class="material-icons">chevron_right</i>
+                <a href="#!" className="secondary-content">
+                  <i className="material-icons">chevron_right</i>
                 </a>
               </div>
             </li>

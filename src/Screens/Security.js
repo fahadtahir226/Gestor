@@ -26,7 +26,7 @@ render() {
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
             <img alt="" src={keyIcon} />
-            <p>Reset Passowrd</p>
+            <p>Reset Password</p>
             <p>Enter Your New Password</p>
 
               <input id='newChangePass' placeholder='New Password' style={styleBox.inputs} type="password" />

@@ -38,6 +38,9 @@ class Gestor extends Component {
 
   render() {
   var { userInfo , userData} = this.props;
+  setTimeout(() => {
+    document.getElementById("professionDropDown").value = this.props.userData.profession
+  }, 3000)
   console.log(userData)
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
@@ -128,12 +131,12 @@ class Gestor extends Component {
                 <div className="left" style={{verticalAlign: 'bottom'}} >PROFESSION: </div>
                 <div className="right" >
                   <div className="col s12 validate" style={{ marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
-                    <select id='professionDropDown' style={{color: 'darkgrey',}}>
-                      <option selected >{userData ? userData.profession : 'CHOOSE PROFESSION'}</option>  
-                      <option>ARTIST</option>  
-                      <option>DATA ANALYST</option>  
-                      <option>MANAGER</option>  
-                      <option>QA</option>  
+                    <select id='professionDropDown' style={{color: 'darkgrey',}} >
+                      <option value="">CHOOSE PROFESSION</option>  
+                      <option value="ARTIST">ARTIST</option>  
+                      <option value="DATA ANALYST">DATA ANALYST</option>  
+                      <option value="MANAGER"></option>  
+                      <option value="QA">QA</option>  
                     </select>
                   </div>
               </div>
