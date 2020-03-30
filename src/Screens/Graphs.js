@@ -67,6 +67,9 @@ class Graphs extends Component {
   }
   render() {
     var {userInfo, userData} = this.props;
+
+    let incQtr = userData ? [userData.inc[0] + userData.inc[1] + userData.inc[2] , userData.inc[3] + userData.inc[4] + userData.inc[5] , userData.inc[6] + userData.inc[7] + userData.inc[8] , userData.inc[9] + userData.inc[10] + userData.inc[11]] : null;
+    let expQtr = userData ? [userData.inc[0] + userData.inc[1] + userData.inc[2] ,userData.inc[3] + userData.inc[4] + userData.inc[5] ,userData.inc[6] + userData.inc[7] + userData.inc[8] ,userData.inc[9] + userData.inc[10] + userData.inc[11]]: null;
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var data1 = [];
     if(userData == null){
