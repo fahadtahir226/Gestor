@@ -14,13 +14,10 @@ import {
   Facet,
   Util
 } from "bizcharts";
- import "../css/style.css"
-import ReactChart from "react-google-charts";
 import "../css/style.css"
 
 class Graphs extends Component {
   constructor(props) {
-    console.log("Graphs -> constructor -> props", props)
     super();
     const data = [
       {
@@ -76,7 +73,6 @@ class Graphs extends Component {
       data1 = [];
     }else{
       months.map((eachMonth, index) => {
-        console.log("Graphs -> render -> eachMonth, index", eachMonth, index)
         data1.push({
           month: eachMonth,
           mode: "Income",
@@ -158,7 +154,7 @@ class Graphs extends Component {
                                 type="line"
                                 position="month*temperature"
                                 size={2}
-                                color={"mode"}
+                                color={["mode",["#3DF6EA", "#FA1B13"]]}
                                 shape={"smooth"}
                               />
                               <Geom
@@ -166,7 +162,7 @@ class Graphs extends Component {
                                 position="month*temperature"
                                 size={4}
                                 shape={"circle"}
-                                color={"mode"}
+                                color={"mode",["#FA1B13", "#3DF6EA"]}
                                 style={{
                                   stroke: "#fff"
                                 }}
@@ -228,7 +224,7 @@ class Graphs extends Component {
                             <Geom
                               type="interval"
                               position="name*vote"
-                              color={["name", ["red", ""]]}
+                              color={["name", ["#3DF6EA", "#FA1B13"]]}
                             />
                             <Tooltip />
                             <Geom
