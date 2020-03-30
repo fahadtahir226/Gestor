@@ -18,7 +18,7 @@ class Gestor extends Component {
     this.updateState();
   }
   updateDropDown(){
-    document.getElementById('dropDown').innerHtml = ''
+    document.getElementById('dropDown').innerHtml =  "";
   }
   updateState(){
     setTimeout(() => {

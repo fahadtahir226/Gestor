@@ -1,6 +1,20 @@
 import React, { Component } from "react";
-
-import { Chart } from "react-charts";
+import {
+  G2,
+  Chart,
+  Geom,
+  Axis,
+  Tooltip,
+  Coord,
+  Label,
+  Legend,
+  View,
+  Guide,
+  Shape,
+  Facet,
+  Util
+} from "bizcharts";
+ import "../css/style.css"
 import ReactChart from "react-google-charts";
 import "../css/style.css"
 
@@ -51,35 +65,53 @@ class Graphs extends Component {
       barChart: barChart
     };
   }
+  getSum(total, num) {
+    return total + Math.round(num);
+  }
   render() {
     var {userInfo, userData} = this.props;
-    console.log("Graphs -> render -> userData", userData)
-    let data1 = []; 
-    let data2 = []; 
+    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var data1 = [];
     if(userData == null){
-      userData = [];
+      data1 = [];
     }else{
-      userData.inc.map((eachData, index) => {
-        data1.push([index, eachData]);
-        data2.push([index, userData.exp[index]]);
+      months.map((eachMonth, index) => {
+        console.log("Graphs -> render -> eachMonth, index", eachMonth, index)
+        data1.push({
+          month: eachMonth,
+          mode: "Income",
+          temperature: userData.inc[index]
+        })
+        data1.push({
+          month: eachMonth,
+          mode: "Expense",
+          temperature: userData.exp[index]
+        })
       })
+      var data = [
+        {
+          name: "Income",
+          vote: userData.inc.reduce(this.getSum, 0)
+        },
+        {
+          name: "Expense",
+          vote: userData.exp.reduce(this.getSum, 0)
+        }
+      ];
+
     }
-    const data = [
-      {
-        label: "Series 1",
-        data: data1?data1 : []
-      },
-      {
-        label: "Series 2",
-        data: data2? data2 : []
+    const scale = {
+      vote: {
+        min: 0
       }
-    ];
-    console.log("Graphs -> render -> data1", data1)
-    console.log("Graphs -> render -> data2", data2)
-    const axes = [
-      { primary: true, type: "linear", position: "bottom", show: true },
-      { type: "linear", position: "left", show: true }
-    ];
+    };
+    
+    const cols = {
+      month: {
+        range: [0, 1]
+      }
+    };
+   
     return (
       <div>
         <div id="main">
@@ -89,11 +121,10 @@ class Graphs extends Component {
                 <div className="section">
                   <div className="row vertical-modern-dashboard">
                     {/* First Start */}
-                    <div className="col s12 m6 l6">
+                    <div className="col s12 m12 l6">
                       <div className="card" style={styleBox.cardstyle}>
                         <div className="card-content">
                           <div className="row" style={{ marginBottom: "0px" }}>
-                            <div className="col sm6 m6 12">
                               <h4
                                 style={{
                                   color: "#4aa4ef",
@@ -103,8 +134,6 @@ class Graphs extends Component {
                               >
                                 ANNUAL:
                               </h4>
-                            </div>
-
                           </div>
                           <br />
                           <div
@@ -112,23 +141,51 @@ class Graphs extends Component {
                               height: "200px"
                             }}
                           >
-                            <Chart
-                              data={data}
-                              axes={axes}
-                            />
+                            <Chart height={300} data={data1} scale={cols} forceFit>
+                              <Axis name="month" />
+                              <Axis
+                                name=""
+                                label={{
+                                  formatter: val => `${val}$`
+                                }}
+                              />
+                              <Tooltip
+                                crosshairs={{
+                                  type: "x"
+                                }}
+                              />
+                              <Geom
+                                type="line"
+                                position="month*temperature"
+                                size={2}
+                                color={"mode"}
+                                shape={"smooth"}
+                              />
+                              <Geom
+                                type="point"
+                                position="month*temperature"
+                                size={4}
+                                shape={"circle"}
+                                color={"mode"}
+                                style={{
+                                  stroke: "#fff"
+                                }}
+                              />
+                            </Chart>
+
                           </div>
                         </div>
                       </div>
                     </div>
                     {/* First End */}
                     {/* Second Start */}
-                    <div className="col s12 m6 l6 animate fadeRight">
+                    <div className="col s12 m12 l6 animate fadeRight">
                       <div
                         className="card user-statistics-card animate fadeLeft"
                         style={styleBox.cardstyle}
                       >
                         <div className="card-content">
-                          <div className="row" style={{ marginBottom: "0px" }}>
+                        <div className="row" style={{ marginBottom: "0px" }}>
                             <div className="col sm6 m6 12">
                               <h4
                                 style={{
@@ -143,8 +200,8 @@ class Graphs extends Component {
                             <div className="col sm6 m6 12 right">
                               <span className="input-field">
                                 <select
-                                  className="select2 browser-default "
-                                  style={{ width: "150px" }}
+                                  className="select2 browser-default form-control"
+                                  style={{ width: "150px", color: "black" }}
                                 >
                                   <option> 1T 2020</option>
                                   <option> 2T 2020</option>
@@ -154,18 +211,35 @@ class Graphs extends Component {
                               </span>
                             </div>
                           </div>
-                          <div
-                            style={{
-                              height: "220px"
-                            }}
+                          <div className="row" style={{ "position" : "relative",  "top": "-60px" }}>
+                          <Chart
+                            data={data}
+                            padding={[100, 20, 100, 20]}
+                            scale={scale}
+                            forceFit
                           >
-                            <ReactChart
-                              chartType="ColumnChart"
-                              width="100%"
-                              height="220px"
-                              data={this.state.barChart}
+                            <Axis
+                              name="vote"
+                              labels={null}
+                              title={null}
+                              line={null}
+                              tickLine={null}
                             />
+                            <Geom
+                              type="interval"
+                              position="name*vote"
+                              color={["name", ["red", ""]]}
+                            />
+                            <Tooltip />
+                            <Geom
+                              type="point"
+                              position="name*vote"
+                              size={0}
+                            />
+                          </Chart>
+
                           </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -174,7 +248,7 @@ class Graphs extends Component {
 
                   <div className="row">
                     {/* Third Start */}
-                    <div className="col s12 m6 l6">
+                    <div className="col s12 m12 l6">
                       <div className="card" style={styleBox.bottomcardstyle}>
                         <div className="card-content">
                           <div className="row" style={{ marginBottom: "0px" }}>
@@ -301,7 +375,7 @@ class Graphs extends Component {
                     </div>
                     {/* Third End */}
                     {/* Fourth Start */}
-                    <div className="col s12 m6 l6 animate fadeRight">
+                    <div className="col s12 m12 l6 animate fadeRight">
                       <div
                         className="card user-statistics-card animate fadeLeft"
                         style={styleBox.bottomcardstyle}
@@ -406,34 +480,6 @@ class Graphs extends Component {
                                 </td>
                                 
                               </tr>
-                              <tr style={{ borderBottom: "0px" }}>
-                                <td>
-                                  <div style={styleBox.box}>
-                                    <div>27</div>
-                                    <div>Days</div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div
-                                    style={styleBox.heading}
-                                  >
-                                    Annual IVA (2020)
-                                  </div>
-                                  <div>Model 390</div>
-                                </td>
-                                <td className="right right-align">
-                                  <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
-                                  >
-                                    0.00 &euro;
-                                  </div>
-                                  <div>15.01.20</div>
-                                </td>
-                                
-                              </tr>
                             </tbody>
                           </table>
                         </div>
@@ -463,7 +509,6 @@ const styleBox = {
   cardstyle: {
     minHeight: 330,
     maxHeight: 330,
-    overflow: "auto",
     borderRadius: "20px"
   },
 
