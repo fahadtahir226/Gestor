@@ -40,17 +40,40 @@
 }
 
 #canvas_1{
+    cursor: pointer;
 	position: relative;
 	top: -15px;
     left: -35px;
 }
 
 #canvas_2 {
-    width: 300px !important;
+	cursor: pointer;
+	width: 60% !important;
     height: 250px !important;
 	position: relative;
-    cursor: default;
-    left: 180px;
+    left: 20%;
 	cursor: default;
 }
+#canvas_4{
+    cursor: pointer;
+	width: 60% !important;
+	position: relative;
+    left: 20%;
+    height: 250px !important;	
+}
 
+#canvas_5{
+    cursor: pointer;
+	width: 60% !important;
+	position: relative;
+    left: 20%;
+    height: 250px !important;	
+}
+
+#canvas_6{
+    cursor: pointer;
+	width: 60% !important;
+	position: relative;
+    left: 20%;
+    height: 250px !important;
+}

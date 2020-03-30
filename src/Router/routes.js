@@ -10,6 +10,7 @@ import NewPass from "../Screens/Authentication/NewPass";
 
 const AppRouter = (props) => {
   var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = props;
+  console.log("AppRouter -> isAuthenticated", isAuthenticated)
   return (
     <BrowserRouter>
       <Switch>
@@ -29,8 +30,8 @@ const AppRouter = (props) => {
           userData={userData}
            /> }  />
         <Route path="/signup"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
-        <Route path="/resetpasword" render={() => <ForgetPassWord /> } />
-        <Route path="/newPass/" component={NewPass} />
+        <Route path="/resetpasword" render={() => <ForgetPassWord   isAuthenticated={isAuthenticated} /> } />
+        <Route path="/newPass/" component={NewPass} isAuthenticated={isAuthenticated} />
       </Switch>
     </BrowserRouter>
   );

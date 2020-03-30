@@ -13,7 +13,12 @@ import { googleLogin } from '../../Firebase/google'
 
 class SignIn extends Component {
   render() {
-    // var {isAuthenticated, userInfo} = this.props;
+    var {isAuthenticated, userInfo} = this.props;
+    setTimeout(() => {
+      if(this.props.isAuthenticated == true){
+        window.location.replace("/home");
+      }
+    }, 2000)
     return (
     <div style={styleBox.main}>
     <center>

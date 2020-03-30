@@ -207,7 +207,7 @@ class Graphs extends Component {
                               </span>
                             </div>
                           </div>
-                          <div className="row" style={{ "position" : "relative" , "width": "100%", "height": "100%"}}>
+                          <div className="row" style={{ "position" : "relative" , "width": "100%", "height": "100%", "cursor": "pointer"}}>
                           <Chart
                             data={data}
                             padding={[20, 20, 20, 20]}

@@ -7,8 +7,14 @@ import {PassReset} from "../../Firebase/auth"
 
 
 class ForgetPassWord extends Component {
+  
   render() {
-    // var {isAuthenticated, userInfo} = this.props;
+    var {isAuthenticated, userInfo} = this.props;
+    setTimeout(() => {
+      if(this.props.isAuthenticated == true){
+        window.location.replace("/home");
+      }
+    }, 2000)
     return (
     <div style={styleBox.main}>
     <center>

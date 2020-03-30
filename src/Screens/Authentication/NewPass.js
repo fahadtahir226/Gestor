@@ -11,9 +11,14 @@ class NewPass extends Component {
         console.log(this.props.location.search.split('=')[2].split('&')[0]);
     }
   render() {
-      let { oobCode } = this.props.location.search.split('=')[2].split('&')[0];
+    var {isAuthenticated, userInfo} = this.props;
+    setTimeout(() => {
+      if(this.props.isAuthenticated == true){
+        window.location.replace("/home");
+      }
+    }, 2000)
 
-    // var {isAuthenticated, userInfo} = this.props;
+    let { oobCode } = this.props.location.search.split('=')[2].split('&')[0];
     return (
     <div style={styleBox.main}>
     <center>

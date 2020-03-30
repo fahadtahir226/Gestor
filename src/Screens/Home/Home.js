@@ -31,8 +31,21 @@ class Home extends Component {
   componentDidMount(){
     document.getElementById('docPdf').style.display = 'none';      
   }
+  checkkAuthentication(isAuthenticated){
+    // setTimeout(() => {
+    //   if(isAuthenticated == false){
+    //     window.location.replace("/");
+    //   }
+    //   }, 2000)
+  }
   render() {
     var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
+    // this.checkkAuthentication(isAuthenticated);
+    setTimeout(() => {
+          if(this.props.isAuthenticated == false){
+            window.location.replace("/");
+          }
+        }, 2000)
     return (
     <div style={styleBox.main}>
       <div className="container-fluid">
