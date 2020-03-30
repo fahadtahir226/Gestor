@@ -23,7 +23,7 @@ export const SignUpCall = () => {
                     email: auth.currentUser.email? auth.currentUser.email: '',
                     fname: fname,
                     lname: lname,
-                    profilepic: "https://firebasestorage.googleapis.com/v0/b/the-gestor.appspot.com/o/profile%2F16-168770_user-iconset-no-profile-picture-icon-circle-clipart.png?alt=media&token=3c9bfd75-7075-4277-89ad-f4feea47dcb1",
+                    profilepic: "https://firebasestorage.googleapis.com/v0/b/the-gestor.appspot.com/o/profile%2Fuser.png?alt=media&token=df2b9ca4-a73a-4312-b61f-1faf1c2fe374",
                     nif: '',
                     profession: '',
                     inc: [0,0,0,0,0,0,0,0,0,0,0,0],
