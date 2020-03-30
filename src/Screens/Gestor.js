@@ -135,7 +135,7 @@ class Gestor extends Component {
                       <option value="">CHOOSE PROFESSION</option>  
                       <option value="ARTIST">ARTIST</option>  
                       <option value="DATA ANALYST">DATA ANALYST</option>  
-                      <option value="MANAGER"></option>  
+                      <option value="MANAGER">MANAGER</option>  
                       <option value="QA">QA</option>  
                     </select>
                   </div>
