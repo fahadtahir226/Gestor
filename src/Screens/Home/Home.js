@@ -136,7 +136,7 @@ const Header = (props) =>{
       <div className="col s5 m7 l9"></div>
         <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
         <div  className="col s2 m2 l1">
-          <img style={styleBox.profile} className="imageRound" alt="" src={userData ? userData.profilepic : null} />
+          <img style={styleBox.profile} className="imageRound" alt="" src={userData ? userData.profilepic : "//image.freepik.com/free-vector/people-profile-icon_24877-40756.jpg"} />
         </div>
     </div>
    )

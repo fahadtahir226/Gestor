@@ -50,7 +50,7 @@ class Gestor extends Component {
               <div style={{
                   height: "80px",
                   width: "80px",
-                  backgroundImage: `url(${userData ? userData.profilepic : null})`, 
+                  backgroundImage: `url(${userData ? userData.profilepic :"//image.freepik.com/free-vector/people-profile-icon_24877-40756.jpg" })`, 
                   backgroundRepeat: "no-repeat", 
                   backgroundSize: "contain", 
                   backgroundPosition: "center",
