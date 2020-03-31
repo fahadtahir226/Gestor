@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import M from 'materialize-css'
 import keyIcon from "../images/drawable/profileBackground.png"
 import sbmtbtn from "../images/Rectangle 267@2x.png"
 
@@ -9,11 +9,9 @@ handleClick(){
         conPass = document.getElementById("conChangePass").value;
     if(newPass === conPass){
         this.props.userInfo.updatePassword(newPass).then(function() {
-            // Update successful.
-            console.log("Sucessfully Changed Password !")
-            window.location.replace('/');
+            M.toast({html: "Password Changed!"})
           }).catch(function(error) {
-            // An error happened.
+            M.toast({html: error})
             console(error);
           });
     }
