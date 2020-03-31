@@ -26,8 +26,8 @@ class SideBar extends React.Component {
             <i style={styleBox.icon} className="material-icons">attach_money</i>Expense</Link></li>
         <li style={styleBox.Li} className="collection-item"><Link to="/home/income" style={{color: "dimgray"}}> 
             <i style={styleBox.icon} className="material-icons">attach_money</i>Income</Link></li>
-        <li style={styleBox.Li} className="collection-item"><Link to="/home/contacts" style={{color: "dimgray"}}>
-            <i style={styleBox.icon} className="material-icons">device_hub</i>Contact Us</Link></li>
+        <li style={styleBox.Li} className="collection-item"><Link to="/home/clients" style={{color: "dimgray"}}>
+            <i style={styleBox.icon} className="material-icons">device_hub</i>Clients</Link></li>
 
         {/* Bottom */}
         <li style={styleBox.LiHeadings} >Settings {"&"} help</li>
