@@ -16,7 +16,7 @@ class Income extends Component {
     else if(now < 6) toShow = '2T'
     else if(now < 9) toShow = '3T'
     else if(now < 12) toShow = '4T'
-    this.state = {qtr: toShow }
+    this.state = {qtr: toShow , reupdate: 0}
   }
   componentDidMount(){
     var elems = document.querySelectorAll('.collapsible'),
@@ -29,7 +29,14 @@ class Income extends Component {
 
       document.getElementById('addIncome').style.display = 'none';      
       document.getElementById('addDocIncome').style.display = 'none';      
+      this.updateState();
     }
+    updateState(){
+      setTimeout(() => {
+        this.setState({reupdate: 1});
+      }, 2000);
+    }
+  
   handleClick(e,select){
     this.setState({qtr: select.value});
   }
@@ -38,6 +45,7 @@ class Income extends Component {
   }
 render() {
     var { userInfo, contacts} = this.props;
+    console.log("User Info:",userInfo);
     var incomeData = this.props.incData;
     var d = new Date();
     var months = ["JANUARy", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];

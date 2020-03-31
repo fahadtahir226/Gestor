@@ -18,7 +18,7 @@ class Expense extends Component {
     else if(now < 9) toShow = '3T'
     else if(now < 12) toShow = '4T'
 
-    this.state = {qtr: toShow }
+    this.state = {qtr: toShow ,reupdate: 0}
   }
 
   componentDidMount(){
@@ -30,6 +30,12 @@ class Expense extends Component {
       M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
       M.FormSelect.init(select);
       document.getElementById('addExpense').style.display = 'none';      
+      this.updateState();
+    }
+    updateState(){
+      setTimeout(() => {
+        this.setState({reupdate: 1});
+      }, 2000);
     }
 render() {
     var {userInfo, contacts} = this.props;
