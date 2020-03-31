@@ -107,7 +107,9 @@ const Entry = (props) => {
       <li className="collection-item avatar" style={{borderRight: "none",borderLeft: "none", borderBottom: "1px solid #e0e0e0", paddingLeft: 30}}>
       <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}</h5>
       <p style={{color: "dimgrey", padding: 3, fontSize: 12}}> {day} , {date}</p>
-      <a href="#!" className="secondary-content"><i onClick={()=>PopupCard('docPdf', docAddr)} className='material-icons' style={{color: "grey"}}>picture_as_pdf</i>
+      <a href="#!" className="secondary-content">
+        {/* <i onClick={()=>PopupCard('docPdf', docAddr)} className='material-icons' style={{color: "grey"}}>picture_as_pdf</i> */}
+        <a target='_blank' to={docAddr}>{amount}€</a>
           <i className="material-icons right" style={{color: "grey"}}>chevron_right</i>
           <br />
           {status ? 

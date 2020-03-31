@@ -126,9 +126,9 @@ const addNewExpense = (userInfo) => {
         amount = parseInt(document.getElementById('amountExp').value),
         iva = parseInt(document.getElementById('ivaExp').value),
         irpf = parseInt(document.getElementById('irpfExp').value),
-        retentions = parseInt(document.getElementById('retentionExp').value);
-
-        // total = document.getElementById('totalInc').value,
+        retentions = parseInt(document.getElementById('retentionExp').value),
+        taxable = amount + iva + irpf - retentions,
+        monthInNum = calculateMonth(date[2].toUpperCase());
         
         if(!client || !concept || !date || !note || !amount || !docAddr || !iva || !irpf || !retentions ){
           M.toast({html: 'Every Field is Mandatory!'})
@@ -152,20 +152,55 @@ const addNewExpense = (userInfo) => {
                 year :  parseInt(date[3]),
                 docAddr: docAddr,
                 amount: amount,
-                taxable : amount + iva + irpf - retentions,
+                taxable : taxable,
                 iva: iva,
                 irpf: irpf,
                 retentions: retentions, 
                 note: note,
                 status : "PENDING"
             })
-            .then(function() {
-                window.location.replace('expense');
-            })
-          })
-          .catch((error)=>console.log("Error from getting url however Expens is uploaded",error))})
-      .catch((error) => console.log("Cannot Upload Expese",error));
+            db.collection('Users').doc(userInfo.uid).get()
+            .then(userData => { 
+              let data = userData.data();
+              data.inc[monthInNum] += taxable;
+              data.irpfExp[monthInNum] += irpf;
+              data.ivaExp[monthInNum] += iva;
+              data.retExp[monthInNum] += retentions;
+              db.collection('Users').doc(userInfo.uid).set(data)
+              .then(()=> window.location.replace('expense'))
 
+              .catch((error) => console.error("Error writing document: ", error))
+              })
+            })
+  })
+}
+const calculateMonth = mon => {
+  switch (mon) {
+    case "JANUARY":
+      return 0;
+    case "FEBRUARY":
+      return 1;
+    case "MARCH":
+      return 2;
+    case "APRIL":
+      return 3;
+    case "MAY":
+      return 4;
+    case "JUNE":
+      return 5;
+    case "JULY":
+      return 6;
+    case "AUGUST":
+      return 7;
+    case "SEPTEMBER":
+      return 8;
+    case "OCTUBER":
+      return 9;
+    case "NOVEMBER":
+      return 10
+    default:
+      return 11
+  }
 }
 
 const items1 = [

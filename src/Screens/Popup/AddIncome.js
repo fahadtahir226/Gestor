@@ -130,21 +130,18 @@ const addNewIncome = (userInfo) => {
           note: note,
           isDoc: false
         })
-        .then(function() {
           db.collection('Users').doc(userInfo.uid).get()
           .then(userData => { 
-            console.log(userData.data());
-            userData.data().inc[monthInNum] += taxable;
-            userData.data().irpf[monthInNum] += irpf;
-            userData.data().iva[monthInNum] += iva;
-            userData.data().ret[monthInNum] += retention;
-            db.collection('Users').doc(userInfo.uid).set(userData.data())
+            let data = userData.data();
+            data.inc[monthInNum] += taxable;
+            data.irpfInc[monthInNum] += irpf;
+            data.ivaInc[monthInNum] += iva;
+            data.retInc[monthInNum] += retention;
+            db.collection('Users').doc(userInfo.uid).set(data)
             .then(()=>{
               window.location.replace('income');
             });
           })
-
-        })
         .catch(function(error) {
             console.error("Error writing document: ", error);
         });
@@ -180,7 +177,6 @@ const calculateMonth = mon => {
   }
 }
 const items1 = [
-    { title: 'CLIENT', id: 'clientInc',type: 'text' },
     { title: 'CONCEPT', id: 'conceptInc' ,type: 'text' },
     { title: 'RETENTIONS', id: 'retentionInc' ,type: 'number' },
     ],     

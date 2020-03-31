@@ -9,7 +9,7 @@ handleClick(){
         conPass = document.getElementById("conChangePass").value;
     if(newPass === conPass){
         this.props.userInfo.updatePassword(newPass).then(function() {
-            M.toast({html: "Password Changed!"})
+            M.toast({html: "Your Password is Changed Sucessfully!"})
           }).catch(function(error) {
             M.toast({html: error})
             console(error);

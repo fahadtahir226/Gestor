@@ -114,7 +114,9 @@ const addNewIncome = (userInfo) => {
         iva = parseInt(document.getElementById('ivaDocInc').value),
         irpf = parseInt(document.getElementById('irpfDocInc').value),
         amount = parseInt(document.getElementById('amountDocInc').value),
-        retentions = parseInt(document.getElementById('retentionDocInc').value);
+        retentions = parseInt(document.getElementById('retentionDocInc').value),
+        taxable = amount + iva + irpf - retentions,
+        monthInNum = calculateMonth(date[2].toUpperCase());
 
         if(!client|| !concept || !date || !docAddr || !iva || !irpf || !amount || !retentions ){
             M.toast({html: 'Every Field is Mandatory!'})
@@ -136,7 +138,7 @@ const addNewIncome = (userInfo) => {
                 month : date[2].toUpperCase(),
                 year : parseInt(date[3]),
                 amount: amount,
-                taxable: amount + iva + irpf - retentions,
+                taxable: taxable,
                 iva: iva,
                 irpf: irpf,
                 retentions: retentions, 
@@ -145,8 +147,17 @@ const addNewIncome = (userInfo) => {
                 docAddr : url
 
             })
-            .then(function() {
+            db.collection('Users').doc(userInfo.uid).get()
+            .then(userData => { 
+              let data = userData.data();
+              data.inc[monthInNum] += taxable;
+              data.irpfInc[monthInNum] += irpf;
+              data.ivaInc[monthInNum] += iva;
+              data.retInc[monthInNum] += retentions;
+              db.collection('Users').doc(userInfo.uid).set(data)
+              .then(()=>{
                 window.location.replace('income');
+              });
             })
           })
           .catch((error)=>console.log("Error from getting url however Income document is uploaded",error))})
@@ -154,10 +165,36 @@ const addNewIncome = (userInfo) => {
 
 
 }
+const calculateMonth = mon => {
+  switch (mon) {
+    case "JANUARY":
+      return 0;
+    case "FEBRUARY":
+      return 1;
+    case "MARCH":
+      return 2;
+    case "APRIL":
+      return 3;
+    case "MAY":
+      return 4;
+    case "JUNE":
+      return 5;
+    case "JULY":
+      return 6;
+    case "AUGUST":
+      return 7;
+    case "SEPTEMBER":
+      return 8;
+    case "OCTUBER":
+      return 9;
+    case "NOVEMBER":
+      return 10
+    default:
+      return 11
+  }
+}
 
 const items1 = [
-
-  { title: 'CLIENT', id: 'clientDocInc',type: 'text' },
   { title: 'CONCEPT', id: 'conceptDocInc',type: 'text' },
   { title: 'IRPF', id: 'irpfDocInc',type: 'number' },
 
