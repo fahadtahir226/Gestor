@@ -29,6 +29,7 @@ class Expense extends Component {
       M.Collapsible.init(elems);
       M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
       M.FormSelect.init(select);
+
       document.getElementById('addExpense').style.display = 'none';      
       this.updateState();
     }
@@ -40,9 +41,19 @@ class Expense extends Component {
 render() {
     var {userInfo, contacts} = this.props;
     var expenseData = this.props.expData;
+    console.log("Expense -> render -> this.props.expData", this.props.expData)
     var d = new Date();
     var months = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
-
+    let result = Object.values(expenseData? expenseData : {a : []}).every(data =>{
+        if(typeof(data) =="number"){
+          return true
+        }
+        if(data.length === 0 || data === undefined ){
+          return true;
+        }else{
+          return false;
+        }
+      })
   return (
     <>
     <center>
@@ -70,7 +81,7 @@ render() {
             null
           }
           {
-            expenseData ?  "" : 
+            !result ?  "" : 
             <div className="row" style ={{ textAlign : "center", margin : 0 }}>
             <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {months[d.getMonth()]} {new Date().getFullYear()}</div>
             <h5>No Expense found</h5>

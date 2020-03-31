@@ -12,6 +12,7 @@ componentDidMount(){
 }
 render() {
     var {contacts} = this.props;
+    console.log("Contacts -> render -> contacts", contacts)
     console.log(contacts);
   return (
     <>
@@ -25,7 +26,7 @@ render() {
               contacts.map((contact,key) => <Contact data={contact} key={key}/>): null
             }
             {
-              contacts ?  "" : 
+              (this.props.contacts && this.props.contacts.length) ?  "" : 
               <div className="row" style ={{ textAlign : "center", margin : 0 }}>
                 <h5>No Contacts Found</h5>
               </div>

@@ -13,6 +13,8 @@ class Gestor extends Component {
   componentDidMount(){
   var elems = document.querySelectorAll('select');
   M.FormSelect.init(elems);
+    document.getElementById("professionDropDown").value = this.props.userData.profession ? this.props.userData.profession : ''
+
     this.updateState();
   }
   updateDropDown(){
@@ -38,9 +40,7 @@ class Gestor extends Component {
 
   render() {
   var { userInfo , userData} = this.props;
-  setTimeout(() => {
-    document.getElementById("professionDropDown").value = this.props.userData.profession
-  }, 3000)
+
   console.log(userData)
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
