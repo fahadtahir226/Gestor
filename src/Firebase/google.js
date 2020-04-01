@@ -23,7 +23,6 @@ export const googleLogin = (event) => {
                     lname: result.user.displayName.split(" ")[1],
                     profilepic: result.user.photoURL,
                     nif: '',
-                    email: result.user.email ? result.user.email: '',
                     profession: ''
                 }, {merge: true})
                 .then(() => M.toast({html: "Logged In Successfully!"}))
@@ -37,14 +36,16 @@ export const googleLogin = (event) => {
                     lname: result.user.displayName.split(" ")[1],
                     profilepic: result.user.photoURL,
                     nif: '',
-                    email: result.user.email ? result.user.email: '',
                     profession: '',
                     inc: [0,0,0,0,0,0,0,0,0,0,0,0],
                     exp: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    ret: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    iva: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    irpf: [0,0,0,0,0,0,0,0,0,0,0,0],
-                }, {merge: true})
+                    retExp: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    ivaExp: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    irpfExp: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    retInc: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    ivaInc: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    irpfInc: [0,0,0,0,0,0,0,0,0,0,0,0],
+                })
                 .then(() => M.toast({html: "User Added!"}))
 
             }

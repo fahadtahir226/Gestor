@@ -12,11 +12,12 @@ componentDidMount(){
 }
 render() {
     var {contacts} = this.props;
+    console.log("Contacts -> render -> contacts", contacts)
     console.log(contacts);
   return (
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
-    <h4 className="col s12 m12 l12 " style={styleBox.mainHeading}>Contacts</h4>
+    <h4 className="col s12 m12 l12 " style={styleBox.mainHeading}>Clients</h4>
       <div className="row">
         <div className="col s12 m12 l12" style={styleBox.content}>
           <ul className="collapsible" style={styleBox.Ul}>
@@ -25,9 +26,9 @@ render() {
               contacts.map((contact,key) => <Contact data={contact} key={key}/>): null
             }
             {
-              contacts ?  "" : 
+              (this.props.contacts && this.props.contacts.length) ?  "" : 
               <div className="row" style ={{ textAlign : "center", margin : 0 }}>
-                <h5>No Contacts Found</h5>
+                <h5>No Clients Found</h5>
               </div>
             }
           </ul>

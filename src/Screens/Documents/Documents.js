@@ -75,7 +75,7 @@ const Pdf = (props) => {
   // console.log(props.data.numbersList);
     return (
         <li>
-          <div className="collapsible-header modal-trigger" href="#docPdf" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}} onClick={() => PopupCard('docPdf', props.path, null)}>
+          <div className="collapsible-header modal-trigger" style={{paddingTop: '0px !important', paddingBottom: '0px !important'}} onClick={()=> window.open(props.path, "_blank")}>
             <img alt="" style={styleBox.pdfStyle} src={pdfIcon} />
             {props.name}
           </div>

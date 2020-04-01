@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.70ede0c4.chunk.css",
-    "main.js": "/static/js/main.4a219fa5.chunk.js",
-    "main.js.map": "/static/js/main.4a219fa5.chunk.js.map",
+    "main.css": "/static/css/main.27897263.chunk.css",
+    "main.js": "/static/js/main.e111c15b.chunk.js",
+    "main.js.map": "/static/js/main.e111c15b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.0bc67f27.js",
     "runtime-main.js.map": "/static/js/runtime-main.0bc67f27.js.map",
-    "static/js/2.9cb81523.chunk.js": "/static/js/2.9cb81523.chunk.js",
-    "static/js/2.9cb81523.chunk.js.map": "/static/js/2.9cb81523.chunk.js.map",
+    "static/js/2.bc6d27f2.chunk.js": "/static/js/2.bc6d27f2.chunk.js",
+    "static/js/2.bc6d27f2.chunk.js.map": "/static/js/2.bc6d27f2.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.a29a52c521573f386824cd9d7d9912de.js": "/precache-manifest.a29a52c521573f386824cd9d7d9912de.js",
+    "precache-manifest.24bce2cf31a797498aac4fadf470947c.js": "/precache-manifest.24bce2cf31a797498aac4fadf470947c.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.70ede0c4.chunk.css.map": "/static/css/main.70ede0c4.chunk.css.map",
-    "static/js/2.9cb81523.chunk.js.LICENSE.txt": "/static/js/2.9cb81523.chunk.js.LICENSE.txt",
+    "static/css/main.27897263.chunk.css.map": "/static/css/main.27897263.chunk.css.map",
+    "static/js/2.bc6d27f2.chunk.js.LICENSE.txt": "/static/js/2.bc6d27f2.chunk.js.LICENSE.txt",
     "static/media/Component5-1.png": "/static/media/Component5-1.86b0b691.png",
     "static/media/Group762.png": "/static/media/Group762.0e986ca3.png",
     "static/media/facebook.png": "/static/media/facebook.e950bb6e.png",
@@ -22,8 +22,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0bc67f27.js",
-    "static/js/2.9cb81523.chunk.js",
-    "static/css/main.70ede0c4.chunk.css",
-    "static/js/main.4a219fa5.chunk.js"
+    "static/js/2.bc6d27f2.chunk.js",
+    "static/css/main.27897263.chunk.css",
+    "static/js/main.e111c15b.chunk.js"
   ]
 }

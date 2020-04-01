@@ -264,7 +264,7 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    365 &euro;
+                                    0
                                 </td>
                                 </tr>
                                 <tr style={{ borderBottom: "0px" }}>
@@ -285,7 +285,7 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    336
+                                    0
                                 </td>
                                 </tr>
                                 <tr style={{ borderBottom: "0px" }}>
@@ -306,7 +306,7 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    29
+                                    0
                                 </td>
                                 </tr>
                                 <tr style={{ borderBottom: "0px" }}>
