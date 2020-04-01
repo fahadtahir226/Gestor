@@ -31,13 +31,13 @@ class Expense extends Component {
       M.FormSelect.init(select);
 
       document.getElementById('addExpense').style.display = 'none';      
-      this.updateState();
+      // this.updateState();
     }
-    updateState(){
-      setTimeout(() => {
-        this.setState({reupdate: 1});
-      }, 2000);
-    }
+    // updateState(){
+    //   setTimeout(() => {
+    //     this.setState({reupdate: 1});
+    //   }, 2000);
+    // }
 render() {
     var {userInfo, contacts} = this.props;
     var expenseData = this.props.expData;

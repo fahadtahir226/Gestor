@@ -26,6 +26,8 @@ import Help from '../Help';
 import DocPdf from '../Popup/docPdf'
 import ExpenseHis from '../History/expHistory';
 import IncomeHis from '../History/incHistory';
+import Recipt from '../recipt';
+
 
 class Home extends Component {
   componentDidMount(){
@@ -81,7 +83,8 @@ class Home extends Component {
                   <Route path="/home/faq" exact ><FAQ/> </Route>
                   <Route path="/home/security" exact ><Security/></Route>
                   <Route path="/home/help" exact ><Help /> </Route>
-
+                  <Route path="/home/income/recipt/:id" exact ><Recipt userData={userData} incData={incData}  heading='INCOME'/></Route>
+                  <Route path="/home/expense/recipt/:id" exact ><Recipt userData={userData} expData={expData} heading='EXPENSE'/></Route>
                 </Switch>
                 </div>
               </div>

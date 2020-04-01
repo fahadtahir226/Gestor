@@ -102,14 +102,13 @@ const Select = (props) => {
     var elems = document.querySelectorAll('select');
     M.FormSelect.init(elems);
     var clients = props.clientArray ? props.clientArray: null;
-    console.log(clients)
   return (
     <div className="row" style={{marginBottom: 0}}>
       <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
         <select id='clientExp'>
         <option value="">CLIENTS</option>  
-        {clients.map((client)=> 
-            <option>{client}</option>  
+        {clients.map((client, key)=> 
+            <option className={key}>{client}</option>  
         )}
         </select>
       </div>

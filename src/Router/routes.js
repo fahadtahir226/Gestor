@@ -10,7 +10,6 @@ import NewPass from "../Screens/Authentication/NewPass";
 
 const AppRouter = (props) => {
   var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = props;
-  console.log("AppRouter -> isAuthenticated", isAuthenticated)
   return (
     <BrowserRouter>
       <Switch>

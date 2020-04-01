@@ -109,16 +109,17 @@ render() {
 
 
 const Entry = (props) => {
-    var {concept, day, date, amount, status, isDoc, docAddr} = props;
+    var {ticketNo, concept, day, date, amount, status, isDoc, docAddr} = props;
     // console.log(props);
     return (
       isDoc ?
       <li className="collection-item avatar" style={{borderRight: "none",borderLeft: "none", borderBottom: "1px solid #e0e0e0", paddingLeft: 30}}>
-      <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}</h5>
+      <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}
+        </h5>
       <p style={{color: "dimgrey", padding: 3, fontSize: 12}}> {day} , {date}</p>
       <a href="#!" className="secondary-content">
         {/* <i onClick={()=>PopupCard('docPdf', docAddr)} className='material-icons' style={{color: "grey"}}>picture_as_pdf</i> */}
-        <a target='_blank' to={docAddr}>{amount}€</a>
+        <a target='_blank' to={docAddr}>{amount} € </a>
           <i className="material-icons right" style={{color: "grey"}}>chevron_right</i>
           <br />
           {status ? 
@@ -151,16 +152,18 @@ const Month = (props) => {
   usrs.sort((i,iPlus) => i.date - iPlus.date);
   return (
     <>
-      <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.incomeData.year}</div>
+    <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.incomeData.year}</div>
       <div>
 
-      <ul className="collection" style={{margin: 0, zIndex: -1}}>
+      <ul className="collection" style={{margin: 0}}>
         {usrs.map((entry, key) => 
-            <Entry key={key} concept={entry.concept} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status} isDoc={entry.isDoc} docAddr={entry.docAddr}/>
+          <Link to={"income/recipt/"+ entry.ticketNo }>
+            <Entry ticketNo={entry.ticketNo} key={key} concept={entry.concept} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status} isDoc={entry.isDoc} docAddr={entry.docAddr}/>
+          </Link>
         )}
       </ul>
       </div>
-    </>
+      </>
   )
 }
 

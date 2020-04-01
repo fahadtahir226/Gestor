@@ -29,7 +29,9 @@ export const loadExpenses = (user, year, updateExpData, updateExpHis) => {
     .then((data) => {
       data.forEach((report) => {
           if(report) {
-            expenseData[month].push(report.data());   
+            let data = report.data();
+            data.ticketNo = report.id;
+            expenseData[month].push();   
           }
       })
       if(month === 'DECEMBER') {
@@ -50,7 +52,9 @@ export const loadIncomes = (user, year, updateIncData, updateIncHis) => {
     .then((data) => {
       data.forEach((report) => {
           if(report) {
-            incomeData[month].push(report.data());   
+            let data = report.data();
+            data.ticketNo = report.id;
+            incomeData[month].push(data);   
           }
       })
       if(month === 'DECEMBER') {
