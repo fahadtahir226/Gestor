@@ -5,38 +5,66 @@ import '../App.css'
 
 
 class Recipt extends Component {
-    componentDidMount(){
-        setInterval(() => {
-            console.log(this.props.match)
-            
-        }, 4000);
-
-
-    }   
-
-render() {
-    
-    // var { userData, expData, incData} = this.props;
-    // console.log("User Info:", userData);
+  render() {
+    console.log(this.props.location)
     return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
-        <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 20, color: "grey", height: 50, fontSize: 24}}>
+        <div style={styleBox.content}>
            {this.props.heading}
         </div>
-      <div class="row">
-
-        <div class="col s6 ">
-        ticket info
-
+        <div class="row">
+            <div class="col offset-l2 l4 offset-m1 m10 offset-s1 s10">
+            <table class="highlight " >
+            <tbody>
+              <tr>
+                <td>CLIENT</td>
+                <td>JOSEPH</td>
+              </tr>
+              <tr>
+                <td>NIF</td>
+                <td>RBS12C</td>
+              </tr>
+              <tr>
+                <td>DATE</td>
+                <td>06.01.2020</td>
+              </tr>
+              <tr>
+                <td>CONCEPT </td>
+                <td>IE MARCH(Training)</td>
+              </tr>
+            </tbody>
+        </table>
         </div>
-        <div class="col s6 ">
-            personal info
-
+        <div class="col l4 offset-m1 m10 offset-s1 s10">
+        <table>
+        <tbody>
+          <tr>
+            <td>TAXABLE</td>
+            <td>290.54</td>
+          </tr>
+          <tr>
+            <td>IVA</td>
+            <td>120.34</td>
+          </tr>
+          <tr>
+            <td>IRPF</td>
+            <td>20.00</td>
+          </tr>
+          <tr>
+            <td>TOTAL</td>
+            <td>150.24</td>
+          </tr>
+        </tbody>
+      </table>
         </div>
-
       </div>
-      <div class="row">
-        note            
+      <div className='container'> <div class="divider"></div></div>
+      
+      <div className="container">
+        <h5>NOTE</h5>    
+        <p className='container'>
+            {/* {this.props.note} */}
+        </p>
 
         </div>    
     </div>
@@ -49,7 +77,6 @@ const styleBox = {
     margin: 30,
     borderRadius: 10,
     minHeight: 500,
-    color: "#1e88e5",
     boxShadow:"0px 1px 2px 2px #ceeef2",
     zIndex: 0,
 
@@ -62,25 +89,14 @@ const styleBox = {
     color: "#1e88e5",
     fontWeight :"bold"
   },
-  HeaderIcons: {
-    width: 30,
-    height: 30,
-    marginRight: 20
-},
-  inputDiv: {
-    background: "#F2F0EC",
-    borderRadius: 200,
-    paddingLeft: 15,
-    marginTop: 30,
-  },
   content: {
-    padding: 10,
-  },
-  Ul: {
-    borderRight: "none",
-    borderLeft: "none",
-    boxShadow: "none"
-  }
+    background: "#e0e0e0",
+    textAlign: "center",
+    marginTop: 20,
+    color: "grey",
+    padding: 20,
+    fontSize: 24,
+    borderRadius: 10}
   }
 
 export default Recipt;

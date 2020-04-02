@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 import AppRouter from './Router/routes';
-import { auth }  from './Firebase/auth';
+import { auth, SignOut }  from './Firebase/auth';
 import { loadExpenses, loadIncomes, loadContact, loadProfile } from './Firebase/firestore';
 import { loadDocument } from './Firebase/storage';
 
@@ -20,6 +20,7 @@ class App extends Component {
       doc: null,
       userData: null,
       }
+      // SignOut();
   }
   render() {
     var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc, userData} = this.state;
@@ -71,12 +72,9 @@ class App extends Component {
     this.setState({doc});
   }
 
-  // uploadDocData(e, userID){
-  //   uploadDoc(e.target.files[0], userID, (doc) => this.updateDocData(doc));
-  // }
 
 componentDidMount() {     
-
+    
     auth.onAuthStateChanged((user) => { 
       if(user){
         console.log("User : " ,user);
