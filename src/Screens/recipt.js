@@ -5,16 +5,20 @@ import '../App.css'
 
 
 class Recipt extends Component {
+  constructor(props){
+    super(props);
+    console.log(this.props);
+  }
   render() {
-    console.log(this.props.location)
+    // console.log(this.props.location)
     return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
         <div style={styleBox.content}>
            {this.props.heading}
         </div>
-        <div class="row">
-            <div class="col offset-l2 l4 offset-m1 m10 offset-s1 s10">
-            <table class="highlight " >
+        <div className="row">
+            <div className="col offset-l2 l4 offset-m1 m10 offset-s1 s10">
+            <table className="highlight " >
             <tbody>
               <tr>
                 <td>CLIENT</td>
@@ -35,7 +39,7 @@ class Recipt extends Component {
             </tbody>
         </table>
         </div>
-        <div class="col l4 offset-m1 m10 offset-s1 s10">
+        <div className="col l4 offset-m1 m10 offset-s1 s10">
         <table>
         <tbody>
           <tr>
@@ -58,7 +62,7 @@ class Recipt extends Component {
       </table>
         </div>
       </div>
-      <div className='container'> <div class="divider"></div></div>
+      <div className='container'> <div className="divider"></div></div>
       
       <div className="container">
         <h5>NOTE</h5>    

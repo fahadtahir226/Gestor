@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import M from 'materialize-css'
 
-
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 
 // Photos
 import bkground from "../../images/maskgroup.png";
@@ -27,22 +27,15 @@ import DocPdf from '../Popup/docPdf'
 import ExpenseHis from '../History/expHistory';
 import IncomeHis from '../History/incHistory';
 import Recipt from '../recipt';
+import { SignOut } from '../../Firebase/auth';
 
 
 class Home extends Component {
   componentDidMount(){
-    document.getElementById('docPdf').style.display = 'none';      
-  }
-  checkkAuthentication(isAuthenticated){
-    // setTimeout(() => {
-    //   if(isAuthenticated == false){
-    //     window.location.replace("/");
-    //   }
-    //   }, 2000)
+    document.getElementById('docPdf').style.display = 'none';  
   }
   render() {
     var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
-    // this.checkkAuthentication(isAuthenticated);
     setTimeout(() => {
           if(this.props.isAuthenticated == false){
             window.location.replace("/");
@@ -126,6 +119,10 @@ const styleBox = {
     name: {
       textAlign: "right",
       marginTop: 12,
+    },
+    profileDropDown :{
+      minWidth: 200,
+      fontSize: 10,
     }
 
 }
@@ -134,13 +131,21 @@ const styleBox = {
 
 const Header = (props) =>{
   var { userInfo, userData} = props;
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  M.Dropdown.init(elems, {hover: true, constrainWidth: false});    
   return (
     <div className="row" style={styleBox.header}>
       <div className="col s5 m7 l9"></div>
         <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
         <div  className="col s2 m2 l1">
+        <a class='dropdown-trigger' href='#' data-target='signout'>
           <img style={styleBox.profile} className="imageRound" alt="" src={userData ? userData.profilepic : "//image.freepik.com/free-vector/people-profile-icon_24877-40756.jpg"} />
+          </a>
         </div>
+        <ul style={styleBox.profileDropDown} id='signout' className='dropdown-content'>
+            <li><a href="#!" style={{color: 'darkgrey'}}><i className='material-icons' >perm_identity</i> <Link style={{color: 'darkgrey'}} to='/home/mygestor'>PROFILE</Link></a></li>
+            <li onClick={()=>SignOut()} ><a href="#!" style={{color: 'darkgrey'}}><i className='material-icons'>lock</i>LOG OUT</a></li>
+          </ul>
     </div>
    )
 }

@@ -95,7 +95,10 @@ export const NewPassword = (oobCode) => {
 // User Sign Out
 export const SignOut = () => {
     auth.signOut().then(res => {
-        M.toast({html: 'You\'re Logged Out Successfully'})
+        M.toast({html: 'LOGGING OUT'})        
+        setTimeout(() => {
+            M.toast({html: 'You\'re Logged Out Successfully'})
+        }, 1000);
     }).catch(err => {
         M.toast({html: err.message})
     })

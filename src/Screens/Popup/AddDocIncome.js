@@ -91,7 +91,6 @@ const Select = (props) => {
   var elems = document.querySelectorAll('select');
   M.FormSelect.init(elems);
   var contacts = props.contacts ? props.contacts: null;
-  console.log(contacts);
 return (
   <div className="row" style={{marginBottom: 0}}>
     <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>

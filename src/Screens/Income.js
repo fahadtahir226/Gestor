@@ -117,9 +117,9 @@ const Entry = (props) => {
       <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}
         </h5>
       <p style={{color: "dimgrey", padding: 3, fontSize: 12}}> {day} , {date}</p>
-      <a href="#!" className="secondary-content">
+      <div className="secondary-content">
         {/* <i onClick={()=>PopupCard('docPdf', docAddr)} className='material-icons' style={{color: "grey"}}>picture_as_pdf</i> */}
-        <a target='_blank' to={docAddr}>{amount} € </a>
+        <a href='#!' target='_blank' to={docAddr}>{amount} € </a>
           <i className="material-icons right" style={{color: "grey"}}>chevron_right</i>
           <br />
           {status ? 
@@ -127,13 +127,13 @@ const Entry = (props) => {
               {status==="PENDING"? "badge blue": status==='REVICE'? "badge red" : "hide"} style={{color: "white", borderRadius: 4, fontSize: 9, width: 70, marginLeft: 0, }} >
                   {status}</span>
           : null}
-      </a>
+      </div>
     </li>
       :
       <li className="collection-item avatar" style={{borderRight: "none",borderLeft: "none", borderBottom: "1px solid #e0e0e0", paddingLeft: 30}}>
         <h5 style={{marginTop: 5, marginBottom: 0, padding: 3}} className="title">{concept}</h5>
         <p style={{color: "dimgrey", padding: 3, fontSize: 12}}> {day} , {date}</p>
-        <a href="#!" className="secondary-content">{amount}€
+        <div className="secondary-content">{amount}€
             <i className="material-icons right" style={{color: "grey"}}>chevron_right</i>
             <br />
             {status ? 
@@ -141,7 +141,7 @@ const Entry = (props) => {
                 {status==="PENDING"? "badge blue": status==='REVICE'? "badge red" : "hide"} style={{color: "white", borderRadius: 4, fontSize: 9, width: 70, marginLeft: 0, }} >
                     {status}</span>
             : null}
-        </a>
+        </div>
       </li>
     )
 }
@@ -149,6 +149,8 @@ const Month = (props) => {
   if(props.incomeData==null) return null;
   if(props.incomeData[props.mon].length === 0) return null;
   let usrs = props.incomeData[props.mon];
+  console.log(props.location)
+
   usrs.sort((i,iPlus) => i.date - iPlus.date);
   return (
     <>
