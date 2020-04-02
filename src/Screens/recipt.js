@@ -9,6 +9,14 @@ class Recipt extends Component {
     super(props);
     console.log(this.props);
   }
+  onBack(whereTo){
+    if(whereTo === 'INCOME'){
+      window.location.replace('/home/income');
+    }
+    else{
+      window.location.replace('/home/expense');
+    }
+  }
   render() {
     // console.log(this.props.location)
     return (
@@ -40,7 +48,7 @@ class Recipt extends Component {
         </table>
         </div>
         <div className="col l4 offset-m1 m10 offset-s1 s10">
-        <table>
+        <table className='highlight'>
         <tbody>
           <tr>
             <td>TAXABLE</td>
@@ -54,7 +62,7 @@ class Recipt extends Component {
             <td>IRPF</td>
             <td>20.00</td>
           </tr>
-          <tr>
+          <tr> 
             <td>TOTAL</td>
             <td>150.24</td>
           </tr>
@@ -66,11 +74,15 @@ class Recipt extends Component {
       
       <div className="container">
         <h5>NOTE</h5>    
-        <p className='container'>
+        <p className='container-fluid'>
+          Cupidatat occaecat occaecat labore deserunt tempor anim. Tempor dolor qui exercitation officia anim amet pariatur cillum. Proident occaecat reprehenderit id veniam dolor pariatur elit proident nulla nostrud nulla do. Est dolor et consectetur duis labore cupidatat tempor voluptate velit fugiat eu cupidatat.
             {/* {this.props.note} */}
         </p>
 
         </div>    
+      <div className='container' style={{textAlign: 'center'}}>
+        <a href="#!" onClick={(e)=>this.onBack(this.props.heading)} style={styleBox.savebtn} className="btn-flat">BACK</a>
+      </div>
     </div>
     )
 }
@@ -100,7 +112,16 @@ const styleBox = {
     color: "grey",
     padding: 20,
     fontSize: 24,
-    borderRadius: 10}
+    borderRadius: 10,
+  },
+  savebtn: {
+    background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
+    borderRadius : "25px",
+    width:130,
+    fontWeight:"bold",
+    color: "white",
+    margin: 10,
   }
+}    
 
 export default Recipt;

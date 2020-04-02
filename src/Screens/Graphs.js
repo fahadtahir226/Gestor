@@ -18,40 +18,55 @@ import "../css/style.css"
 
 class Graphs extends Component {
   constructor(props) {
-    super();
-    this.state = {
-      optionValue : 0
-    };
+    super(props);
+    this.state = { optionValue : 0,taxesQtr: 0 };
   }
 
-  updateSelectValue(value){
-    this.setState({
-      optionValue : value
-    })
+  calculateIRPF(incQtr,expQtr, irpfExp){
+    let irpf = [], irpfExpense = this.sumOfArrayy(irpfExp);
+    irpf[0] = Math.round((0.2 * (incQtr[0] - expQtr[0]) + irpfExpense[0]) + Number.EPSILON * 100) / 100;
+    irpf[1] = Math.round((0.2 * (incQtr[1] - expQtr[1]) + irpfExpense[1]) + Number.EPSILON * 100) / 100;
+    irpf[2] = Math.round((0.2 * (incQtr[2] - expQtr[2]) + irpfExpense[2]) + Number.EPSILON * 100) / 100;
+    irpf[3] = Math.round((0.2 * (incQtr[3] - expQtr[3]) + irpfExpense[3]) + Number.EPSILON * 100) / 100;
+    
+
+
+    return irpf;
   }
+
   getSum(total, num) {
     return total + Math.round(num);
   }
-  render() {
-    let incQtr = [];
-    let expQtr = [];
-    var {userInfo, userData} = this.props;
 
+  sumOfArrayy(arry){
+    let total = []
+        total[0] = arry[0] + arry[1] + arry[2];
+        total[1] = arry[3] + arry[4] + arry[5];
+        total[2] = arry[6] + arry[7] + arry[8];
+        total[3] = arry[9] + arry[10] + arry[11];
+    return total;
+  }
+  render() {
+    let {userData} = this.props;
+    // let {ivaInc, irpfInc, retInc, ivaExp, irpfExp, retExp } = userData;
+ console.log(userData ? userData.ivaInc: null);
+
+    let incQtr = [],expQtr = [];
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var data1 = [];
     if(userData == null){
       data1 = [];
     }else{
       incQtr = 
-      [userData.inc[0] + userData.inc[1] + userData.inc[2] ,
-      userData.inc[3] + userData.inc[4] + userData.inc[5] ,
-      userData.inc[6] + userData.inc[7] + userData.inc[8] ,
-      userData.inc[9] + userData.inc[10] + userData.inc[11]]
+        [userData.inc[0] + userData.inc[1] + userData.inc[2] ,
+        userData.inc[3] + userData.inc[4] + userData.inc[5] ,
+        userData.inc[6] + userData.inc[7] + userData.inc[8] ,
+        userData.inc[9] + userData.inc[10] + userData.inc[11]]
       expQtr =  [
-      userData.exp[0] + userData.exp[1] + userData.exp[2] ,
-      userData.exp[3] + userData.exp[4] + userData.exp[5] ,
-      userData.exp[6] + userData.exp[7] + userData.exp[8] ,
-      userData.exp[9] + userData.exp[10] + userData.exp[11]]
+        userData.exp[0] + userData.exp[1] + userData.exp[2] ,
+        userData.exp[3] + userData.exp[4] + userData.exp[5] ,
+        userData.exp[6] + userData.exp[7] + userData.exp[8] ,
+        userData.exp[9] + userData.exp[10] + userData.exp[11]]
       months.map((eachMonth, index) => {
         data1.push({
           month: eachMonth,
@@ -67,11 +82,13 @@ class Graphs extends Component {
       var barchartdata = [
         {
           name: "Income",
-          vote: (this.state.optionValue != 0 ? incQtr[this.state.optionValue-1] : incQtr[0])
+          // vote: (this.state.optionValue != 0 ? incQtr[this.state.optionValue-1] : incQtr[0])
+          vote: incQtr[this.state.optionValue]
         },
         {
           name: "Expense",
-          vote: (this.state.optionValue != 0 ? expQtr[this.state.optionValue-1] : expQtr[0])
+          // vote: (this.state.optionValue != 0 ? expQtr[this.state.optionValue-1] : expQtr[0])
+          vote: expQtr[this.state.optionValue]
         }
       ];
 
@@ -87,6 +104,15 @@ class Graphs extends Component {
         range: [0, 1]
       }
     };
+    let totalIva =  userData ? this.sumOfArrayy(this.props.userData.ivaInc)  : null, //- this.sumOfArrayy(this.props.userData.ivaExp)
+    totalret =  userData ? this.sumOfArrayy(this.props.userData.irpfInc) : null,
+    totalTaxes = userData ? this.sumOfArrayy(this.props.userData.inc)  : null, //- this.sumOfArrayy(this.props.userData.exp)
+    totalIrpf = userData ? this.calculateIRPF(incQtr,expQtr, this.props.userData.irpfExp) : null;
+    // console.log("Total retention:",totalret);
+    // console.log("Total taxes:",totalTaxes);
+    // console.log("Total irpf:",totalIrpf);
+    // console.log("Total iva:",totalIva);
+
    
     return (
       <div>
@@ -178,12 +204,12 @@ class Graphs extends Component {
                                 <select
                                   className="select2 browser-default form-control"
                                   style={{ width: "150px", color: "black" }} 
-                                  onChange={(event)=> {this.updateSelectValue(event.target.value, incQtr, expQtr)}}
+                                  onChange={(event)=> this.setState({optionValue : event.target.value})  }
                                 >
-                                  <option value="1"> 1T 2020</option>
-                                  <option value="2"> 2T 2020</option>
-                                  <option value="3"> 3T 2020</option>
-                                  <option value="4"> 4T 2020</option>
+                                  <option value="0"> 1T 2020</option>
+                                  <option value="1"> 2T 2020</option>
+                                  <option value="2"> 3T 2020</option>
+                                  <option value="3"> 4T 2020</option>
                                 </select>
                               </span>
                             </div>
@@ -233,11 +259,12 @@ class Graphs extends Component {
                                 <select
                                   className="select2 browser-default form-control"
                                   style={{ width: "150px", color: "black" }}
+                                  onChange={(event)=> this.setState({taxesQtr : event.target.value})}
                                 >
-                                  <option> 1T 2020</option>
-                                  <option> 2T 2020</option>
-                                  <option> 3T 2020</option>
-                                  <option> 4T 2020</option>
+                                  <option value="0"> 1T 2020</option>
+                                  <option value="1"> 2T 2020</option>
+                                  <option value="2"> 3T 2020</option>
+                                  <option value="3"> 4T 2020</option>
                                 </select>
                               </span>
                             </div>
@@ -264,7 +291,7 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    0
+                                    {totalTaxes ? totalTaxes[this.state.taxesQtr] : null}
                                 </td>
                                 </tr>
                                 <tr style={{ borderBottom: "0px" }}>
@@ -285,7 +312,8 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    0
+                                  {totalIva ? totalIva[this.state.taxesQtr] : null}
+
                                 </td>
                                 </tr>
                                 <tr style={{ borderBottom: "0px" }}>
@@ -306,7 +334,7 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    0
+                                  {totalIrpf ? totalIrpf[this.state.taxesQtr]: null}
                                 </td>
                                 </tr>
                                 <tr style={{ borderBottom: "0px" }}>
@@ -327,7 +355,8 @@ class Graphs extends Component {
                                       paddingRight: "10px"
                                     }}
                                   >
-                                    0
+                                  {totalret ? totalret[this.state.taxesQtr] : null}
+
                                 </td>
                                 </tr>
                               </tbody>

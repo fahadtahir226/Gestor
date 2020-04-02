@@ -12,8 +12,6 @@ componentDidMount(){
 }
 render() {
     var {contacts} = this.props;
-    console.log("Contacts -> render -> contacts", contacts)
-    console.log(contacts);
   return (
     <>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>

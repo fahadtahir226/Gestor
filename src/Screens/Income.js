@@ -159,7 +159,7 @@ const Month = (props) => {
 
       <ul className="collection" style={{margin: 0}}>
         {usrs.map((entry, key) => 
-          <Link to={"income/recipt/"+ entry.ticketNo }>
+          <Link to={"income/recipt?id="+ entry.ticketNo }>
             <Entry ticketNo={entry.ticketNo} key={key} concept={entry.concept} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status} isDoc={entry.isDoc} docAddr={entry.docAddr}/>
           </Link>
         )}
