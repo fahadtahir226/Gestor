@@ -7,22 +7,68 @@ import {database} from '../Firebase/database'
 export default class Chat extends Component {
     constructor(props){
         super(props);
-        this.state = {messages : messages};
+        var msgs = []
+        this.state = {uid : this.props.uid, msgs: []}
+        // database.ref('Users/' + this.props.uid).on('value', function(snapshot) {
+        //     let data = snapshot.val();
+        //     Object.keys(data).forEach((property, index) => {
+        //         if(data[property].uid = props.uid){
+        //             data[property].self = true;
+        //         }
+        //         else{
+        //             data[property].self = false;
+        //         }
+        //         msgs.push(data[property]);
+        //     })
+        // })
+        // this.state = {msgs};
+        // console.log(this.state.msgs);
     }
-  componentDidMount(){
+    componentDidMount(){
     var elems = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(elems);
+    let uid = this.state.uid;
+    let msgs = [];
+    database.ref('Users/' + this.state.uid).on('value', function(snapshot) {
+        let data = snapshot.val();
+        console.log(data);
+        Object.keys(data).forEach((property, index) => {
+            console.log(data[property].uid,' ')
+            if(data[property].uid === uid){
+                data[property].self = true;
+            }
+            else{
+                data[property].self = false;
+            }
+            msgs.push(data[property]);
+            })
+    })
+    this.setState({msgs : msgs});
+    console.log(msgs);
 
-    var msgs = database.ref('Users/123');
-    msgs.on('value', function(snapshot) {
-        // let arry = this.state.msgs;
-        console.log(snapshot.val())
-        // this.state({postElement, snapshot.val()});
-      }); 
-  }  
 
-    render() {
-        let userName = "Marry"
+    // database.ref('Users/' + this.uid)
+    // .on('value', function(snapshot) {
+    //     let msgs = [];
+    //     let data = snapshot.val();
+    //     console.log(data);
+    //     if(data){
+    //     Object.keys(data).forEach((property, index) => {
+    //         if(data[property].uid = this.uid){
+    //             data[property].self = true;
+    //         }
+    //         else{
+    //             data[property].self = false;
+    //         }
+    //         msgs.push(data[property]);
+    //     })
+    // }
+
+        // console.log(data);
+    // });
+}  
+render() {
+        let { uid , name } = this.props;
         return (
             <div>
                   <div className="mycontainerbox clearfix">
@@ -31,7 +77,7 @@ export default class Chat extends Component {
                         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
                         
                         <div className="chat-about">
-                        <div className="chat-with">Vincent Porter</div>
+                        <div className="chat-with">Costumer Support</div>
                         </div>
                         <i className="fa fa-star"></i>
                     </div> 
@@ -39,15 +85,15 @@ export default class Chat extends Component {
                     <div className="chat-history">
                         <ul>
                             {
-                                this.state.messages.map(msg => 
-                                    <li className={msg.self ? 'clearfix' : null}>
+                                this.state.msgs.map((msg, key) => 
+                                    <li key={key} className={msg.self ? 'clearfix' : null}>
                                         <div className={msg.self ? "message-data align-right" : 'message-data'}>
                                         <span className="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
-                                        <span className="message-data-name" >{userName}</span> <i className="fa fa-circle me"></i>
+                                        <span className="message-data-name" >{name}</span> <i className="fa fa-circle me"></i>
 
                                         </div>
                                         <div className={msg.self ? "message other-message float-right" : 'message  my-message'}>
-                                            {msg.content}
+                                            {msg.message}
                                         {/* Hi Vincent, how are you? How is the project coming along? */}
                                         </div>
                                     </li>
@@ -64,7 +110,7 @@ export default class Chat extends Component {
                         <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
                         <i className="fa fa-file-image-o"></i>
                         
-                        <button onClick={() => writeUserData('123',document.getElementById('message-to-send').value)} >Send</button>
+                        <button onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} >Send</button>
 
                     </div> 
                     

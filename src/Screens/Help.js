@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom'
 class Help extends Component {
 
 render() {
@@ -15,6 +15,9 @@ render() {
             <br />help@thegestor.com or call us directly at
             </p>
         </div>
+      </div>
+      <div className='container-fluid' >
+        <Link to='/home/chat' ><div style={styleBox.savebtn} className="btn-flat">COSTUMER SUPPORT</div></Link>
       </div>
     </div>
 );
@@ -40,6 +43,15 @@ const styleBox = {
   content: {
     padding: 10,
     margin: 15
+  },
+  savebtn: {
+    background: "linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%)",
+    borderRadius : "25px",
+    width:190,
+    fontWeight:"bold",
+    color: "white",
+    margin: 10,
+    textAlign: 'center'
   }
 }
 

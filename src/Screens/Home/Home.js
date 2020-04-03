@@ -63,9 +63,8 @@ class Home extends Component {
   var { userInfo , userData} = this.props;
     if(this.state.loading == true){
       this.getprops(this.props.userData);
-    } else{
-      console.log("Gestor -> render -> this.props", this.props.userData)
-
+    } 
+    else{
       var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
       setTimeout(() => {
         if(this.props.isAuthenticated == false){
@@ -131,7 +130,7 @@ class Home extends Component {
                   <Route path="/home/help" exact ><Help /> </Route>
                   <Route path="/home/income/recipt/:id" exact ><Recipt userInfo={userInfo} userData={userData} incData={incData} heading='INCOME'/></Route>
                   <Route path="/home/expense/recipt/:id" exact><Recipt userInfo={userInfo} userData={userData} expData={expData} heading='EXPENSE'/></Route>
-                  <Route path="/home/chat" component={Chat} />
+                  <Route path="/home/chat"  ><Chat uid={userInfo.uid} name={userInfo.displayName} /></Route>
                 </Switch>
                 </div>
               </div>

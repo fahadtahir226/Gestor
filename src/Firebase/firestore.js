@@ -35,7 +35,7 @@ export const loadExpenses = (user, year, updateExpData, updateExpHis) => {
           }
       })
       if(month === 'DECEMBER') {
-        console.log(expenseData)
+
         updateExpData(expenseData);
         updateExpHis(expenseData);
       }
@@ -96,7 +96,6 @@ export const updateProfileData = (user) => {
   db.collection("Users").doc(user.userid).set(user)
   .then(function() {
       window.location.replace('./mygestor')
-      console.log("Document successfully updated!");
   })
   .catch((error) => console.log("Error: ", error) )
 }

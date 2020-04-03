@@ -4,10 +4,11 @@ export var database = firebase.database();
 
 
 export const writeUserData = (userId, msg) => {
-    database.ref('Users/' + userId).set({
+    let msgs = database.ref('Users/' + userId).push()
+    msgs.set({
       uid: userId,
       message: msg,
-    });
+    })
   }
 
 // var starCountRef = database.ref('posts/' + postId + '/starCount');
