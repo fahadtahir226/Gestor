@@ -7,7 +7,6 @@ import SignIn from "../Screens/Authentication/SignIn";
 import SignUp from "../Screens/Authentication/SignUp";
 import ForgetPassWord from "../Screens/Authentication/ForgetPass";
 import NewPass from "../Screens/Authentication/NewPass";
-import Chat from "../Screens/Chat";
 
 const AppRouter = (props) => {
   var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = props;
@@ -32,6 +31,7 @@ const AppRouter = (props) => {
         <Route path="/signup"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
         <Route path="/resetpasword" render={() => <ForgetPassWord   isAuthenticated={isAuthenticated} /> } />
         <Route path="/newPass/" component={NewPass} isAuthenticated={isAuthenticated} />
+
       </Switch>
     </BrowserRouter>
   );

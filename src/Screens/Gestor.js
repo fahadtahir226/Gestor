@@ -4,28 +4,31 @@ import keyIcon from "../images/men-image.png"
 import sbmtbtn from "../images/text-background.png"
 import {profileUpload} from "../Firebase/storage"
 import { updateProfileData } from "../Firebase/firestore"
-
+import Loader from 'react-loader-spinner'
+import "../css/style.css"
 class Gestor extends Component {
   constructor(props){
     super(props);
-    this.state = {reupdate: null}
+    this.state = {loading : true}
   }
   componentDidMount(){
   var elems = document.querySelectorAll('select');
   M.FormSelect.init(elems);
-  this.updateState();
+  // this.updateState();
   }
   updateDropDown(){
     document.getElementById('dropDown').innerHtml =  "";
   }
-  updateState(){
-    if(document.getElementById("professionDropDown").value) {
-      document.getElementById("professionDropDown").value= this.props.userData.profession ? this.props.userData.profession : ''
-    }
-    setTimeout(() => {
-    this.setState({reupdate: 1})
-    }, 2000)
-  }
+  // updateState(){
+  //   if(this.state.loading == false){
+  //     if(document.getElementById("professionDropDown").value ) {
+  //       document.getElementById("professionDropDown").value= this.props.userData.profession ? this.props.userData.profession : ''
+  //     }
+  //   }
+  //   setTimeout(() => {
+  //   this.setState({reupdate: 1})
+  //   }, 2000)
+  // }
 
   submitForm(event, userData){
     event.preventDefault(); 
@@ -38,13 +41,44 @@ class Gestor extends Component {
     // console.log({ uid, fname , lname, nif, pnumber, email, profession});
     updateProfileData(userData);
   }
+  getdata = async (data) => {
+    return await data; 
+  }
+  getprops  = async (data) =>{
+    if (await this.getdata(data)){
+      this.setState({loading: false})
+    }
+  }
 
   render() {
   var { userInfo , userData} = this.props;
-
-  console.log(userData)
+  if(this.state.loading == true){
+    this.getprops(this.props.userData);
+  } else{
+    console.log("Gestor -> render -> this.props", this.props.userData)
+  }
   return (
-    <div className="container-fluid card z-depth-1" style={styleBox.main}>
+    <div>
+      <div className="container-fluid card z-depth-1" style={styleBox.main}>
+      {
+
+      this.state.loading ? 
+      
+      <div className="completepage">
+        <div className="loaderbox">
+        <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+
+        />
+        </div>
+      </div>
+      
+      :    
+      
+      <div>
       <div className="row">
       <div className="col s12 m12 l12" style={styleBox.content}>
             <div style={styleBox.inputHeader}>
@@ -146,7 +180,14 @@ class Gestor extends Component {
           </div>
         </div>
       </div>
+
+      </div>
+
+      }
     </div>
+
+    </div>
+
     );
   }
 }

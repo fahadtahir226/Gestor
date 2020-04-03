@@ -29,21 +29,73 @@ import IncomeHis from '../History/incHistory';
 import Recipt from '../recipt';
 import { SignOut } from '../../Firebase/auth';
 import Chat from '../Chat';
+import Loader from 'react-loader-spinner'
+import "../../css/style.css"
 
 
 class Home extends Component {
   componentDidMount(){
-    document.getElementById('docPdf').style.display = 'none';  
+    if(this.state.loading == false ){
+      document.getElementById('docPdf').style.display = 'none'; 
+    } 
   }
+  
+  componentDidUpdate() {
+    if(this.state.loading == false ){
+      document.getElementById('docPdf').style.display = 'none'; 
+    }  
+  }
+
+  constructor(props){
+    super(props);
+    this.state = {loading : true}
+  }
+  getdata = async (data) => {
+    return await data; 
+  }
+  getprops  = async (data) =>{
+    if (await this.getdata(data)){
+      this.setState({loading: false})
+    }
+  }
+
   render() {
-    var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
-    setTimeout(() => {
-          if(this.props.isAuthenticated == false){
-            window.location.replace("/");
-          }
-        }, 5000)
+  var { userInfo , userData} = this.props;
+    if(this.state.loading == true){
+      this.getprops(this.props.userData);
+    } else{
+      console.log("Gestor -> render -> this.props", this.props.userData)
+
+      var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
+      setTimeout(() => {
+        if(this.props.isAuthenticated == false){
+          window.location.replace("/");
+        }
+      }, 5000)
+    }
     return (
-    <div style={styleBox.main}>
+
+
+      <div>
+      {
+
+      this.state.loading ? 
+      
+      <div className="completepage">
+        <div className="mainpageloaderbox">
+        <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+
+        />
+        </div>
+      </div>
+      
+      :    
+
+      <div style={styleBox.main}>
       <div className="container-fluid">
         <div className="row " style={{marginBottom: 0}}>
 
@@ -80,7 +132,6 @@ class Home extends Component {
                   <Route path="/home/income/recipt/:id" exact ><Recipt userInfo={userInfo} userData={userData} incData={incData} heading='INCOME'/></Route>
                   <Route path="/home/expense/recipt/:id" exact><Recipt userInfo={userInfo} userData={userData} expData={expData} heading='EXPENSE'/></Route>
                   <Route path="/home/chat" component={Chat} />
-
                 </Switch>
                 </div>
               </div>
@@ -89,6 +140,9 @@ class Home extends Component {
         </div>
       </div>
     </div>
+      
+      }
+      </div>
     );
   }
 }
