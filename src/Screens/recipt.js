@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import '../App.css'
 import {calculateMonth} from './Popup/AddIncome' 
 
+import Loader from 'react-loader-spinner'
+import "../css/style.css"
 
 class Recipt extends Component {
   constructor(props){
@@ -10,9 +12,13 @@ class Recipt extends Component {
 
     this.url = window.location.toString().split('/');
     this.url = this.url[this.url.length - 1]
-
+    this.state = {
+      loading : true, 
+      url : this.url[this.url.length - 1]
+    }
   }
   filterData(data){
+    console.log("Recipt -> filterData -> data", data)
     let recipt = {},months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTUBER','NOVEMBER','DECEMBER']
     for(let i in months){
         recipt = data[months[i]].filter(mon => {
@@ -31,13 +37,49 @@ class Recipt extends Component {
       window.location.replace('/home/expense');
     }
   }
+
+  getdata = async (data) => {
+    return await data; 
+  }
+  getprops  = async (data) =>{
+    if (await this.getdata(data)){
+      this.setState({loading: false})
+    }
+  }
+
   render() {
-    let data = {}
-    this.props.heading === 'INCOME' ? data = this.props.incData : data = this.props.expData;
-    data = this.filterData(data);
-    console.log(this.props.heading,"and Data is", data);
+  var { userInfo , userData} = this.props;
+  let data = {}
+    if(this.state.loading == true){
+      this.props.heading === 'INCOME' ? this.getprops(this.props.incData) : this.getprops(this.props.expData);
+    } else{
+      this.props.heading === 'INCOME' ? data = this.props.incData : data = this.props.expData;
+      data = this.filterData(data);
+      console.log(this.props.heading,"and Data is", data);
+    }
     return (
-    <div className="container-fluid card z-depth-1" style={styleBox.main}>
+
+      <div>
+        
+      {
+
+      this.state.loading ? 
+
+      <div className="completepage">
+        <div className="loaderbox">
+        <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+
+        />
+        </div>
+      </div>
+
+      :    
+
+      <div className="container-fluid card z-depth-1" style={styleBox.main}>
         <div style={styleBox.content}>
            {this.props.heading}
         </div>
@@ -101,6 +143,12 @@ class Recipt extends Component {
         <a href="#!" onClick={(e)=>this.onBack(this.props.heading)} style={styleBox.savebtn} className="btn-flat">BACK</a>
       </div>
     </div>
+
+
+
+      }
+      </div>
+
     )
 }
 }
