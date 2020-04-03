@@ -2,7 +2,7 @@
  *, *:before, *:after {
 	 box-sizing: border-box;
 }
- .container {
+ .mycontainerbox {
 	 margin: 0 auto;
 	 width: 95%;
 	 background: #444753;
