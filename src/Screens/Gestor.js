@@ -13,14 +13,15 @@ class Gestor extends Component {
   componentDidMount(){
   var elems = document.querySelectorAll('select');
   M.FormSelect.init(elems);
-    document.getElementById("professionDropDown").value = this.props.userData.profession ? this.props.userData.profession : ''
-
-    this.updateState();
+  this.updateState();
   }
   updateDropDown(){
     document.getElementById('dropDown').innerHtml =  "";
   }
   updateState(){
+    if(document.getElementById("professionDropDown").value) {
+      document.getElementById("professionDropDown").value= this.props.userData.profession ? this.props.userData.profession : ''
+    }
     setTimeout(() => {
     this.setState({reupdate: 1})
     }, 2000)
