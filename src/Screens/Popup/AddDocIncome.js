@@ -43,8 +43,8 @@ class AddDocIncome extends React.Component {
             }
             <div className="row" style={{marginBottom: 0}}>
               <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
-                <label htmlFor='datePickerExp' >DATE</label>
-                <input type="text" id='datePickerExp' className="datepicker" />
+                <label htmlFor='datePickerDocInc' >DATE</label>
+                <input type="text" id='datePickerDocInc' className="datepicker" />
               </div>
             </div>
             <Select contacts={contacts} />
@@ -106,16 +106,16 @@ return (
 )
 }
 const addNewIncome = (userInfo) => {
-    let client = document.getElementById('clientDocInc').value.value.split('/')[1],
+    let client = document.getElementById('clientDocInc').value.split('/')[1],
         concept = document.getElementById('conceptDocInc').value,
-        date = document.getElementById('datePickerExp').value.split(' '),
+        date = document.getElementById('datePickerDocInc').value.split(' '),
         docAddr = document.getElementById('docAddrInc').files[0],
         note = document.getElementById('noteDocInc').value,
         iva = parseInt(document.getElementById('ivaDocInc').value),
         amount = parseInt(document.getElementById('amountDocInc').value),
         irpf = parseInt(document.getElementById('irpfDocInc').value),
         retentions = parseInt(document.getElementById('retentionDocInc').value),
-        nif = document.getElementById('clientExp').value.split('/')[0],
+        nif = document.getElementById('clientDocInc').value.split('/')[0],
         taxable = amount + iva + irpf - retentions,
         monthInNum = calculateMonth(date[2].toUpperCase());
 
@@ -134,6 +134,7 @@ const addNewIncome = (userInfo) => {
               db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
                 client: client,
                 concept : concept,
+                nif : nif,
                 date : date[0],
                 day : date[1].toUpperCase(),
                 month : date[2].toUpperCase(),
@@ -144,6 +145,7 @@ const addNewIncome = (userInfo) => {
                 irpf: irpf,
                 retentions: retentions, 
                 status : "PENDING",
+                note: note,
                 isDoc : true,
                 docAddr : url
 
