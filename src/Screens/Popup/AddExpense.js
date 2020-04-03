@@ -108,7 +108,7 @@ const Select = (props) => {
         <select id='clientExp'>
         <option value="">CLIENTS</option>  
         {clients.map((client, key)=> 
-            <option className={key}>{client}</option>  
+          <option key={key} value={client.nif  + '/' + client.name}>{client.name}</option>  
         )}
         </select>
       </div>
@@ -117,16 +117,18 @@ const Select = (props) => {
 }
 const addNewExpense = (userInfo) => {
 
-    let client = document.getElementById('clientExp').value,
+    let client = document.getElementById('clientExp').value.value.split('/')[1],
         concept = document.getElementById('conceptExp').value,
         date = document.getElementById('datePickerExp').value.split(' '),
         docAddr = document.getElementById('docAddrExp').files[0],
         note = document.getElementById('noteExp').value,
-        amount = parseInt(document.getElementById('amountExp').value),
         iva = parseInt(document.getElementById('ivaExp').value),
+        amount = parseInt(document.getElementById('amountExp').value),
         irpf = parseInt(document.getElementById('irpfExp').value),
         retentions = parseInt(document.getElementById('retentionExp').value),
+        nif = document.getElementById('clientExp').value.split('/')[0],
         taxable = amount + iva + irpf - retentions,
+
         monthInNum = calculateMonth(date[2].toUpperCase());
         
         if(!client || !concept || !date || !note || !amount || !docAddr || !iva || !irpf || !retentions ){
@@ -145,6 +147,7 @@ const addNewExpense = (userInfo) => {
               db.collection("Users").doc(userInfo.uid).collection('expense').doc().set({
                 client: client,
                 concept : concept,
+                nif : nif,
                 date : date[0],
                 day : date[1].toUpperCase(),
                 month : date[2].toUpperCase(),

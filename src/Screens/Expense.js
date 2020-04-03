@@ -41,7 +41,7 @@ class Expense extends Component {
 render() {
     var {userInfo, contacts} = this.props;
     var expenseData = this.props.expData;
-    console.log("Expense -> render -> this.props.expData", this.props.expData)
+    console.log(expenseData);
     var d = new Date();
     var months = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
     let result = Object.values(expenseData? expenseData : {a : []}).every(data =>{
@@ -129,7 +129,9 @@ const Month = (props) => {
       <div style={{background: "#e0e0e0", textAlign: "center", marginTop: 0, color: "grey"}}> {props.mon} {props.expenseData.year}</div>
       <ul className="collection" style={{margin: 0}}>
         {usrs.map((entry, key) => 
+          <Link to={"expense/recipt/"+ entry.ticketNo } key={key}>
             <Entry key={key} amount = {entry.amount} concept = {entry.concept} day={entry.day} date={entry.date} status={entry.status} docAddr={entry.docAddr} />
+          </Link>
         )}
       </ul>
     </>

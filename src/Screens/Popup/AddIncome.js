@@ -11,19 +11,22 @@ class AddIncome extends React.Component {
     super(props);  
     this.state = {reupdate: 0}
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
     componentDidMount(){
       var modal = document.querySelectorAll('.modal'),
       picker = document.querySelectorAll('.datepicker');
       
       this.instance = M.Modal.init(modal);
       M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
-      this.updateState();
+      // this.updateState();
     }
-    updateState(){
-      setTimeout(() => {
-      this.setState({reupdate: 1})
-      }, 2000)
-    }
+    // updateState(){
+    //   setTimeout(() => {
+    //   this.setState({reupdate: 1})
+    //   }, 2000)
+    // }
     render(){
       var ins = this.instance;
       var {userInfo, contacts} = this.props;
@@ -85,8 +88,8 @@ return (
     <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
       <select id='clientInc'>
       <option value="">CLIENTS</option>  
-      {contacts ? contacts.map((client)=> 
-          <option>{client.name}</option>  
+      {contacts ? contacts.map((client, key)=> 
+          <option key={key} value={client.nif  + '/' + client.name}>{client.name}</option>  
       ): null
       }
       </select>
@@ -96,7 +99,7 @@ return (
 }
 
 const addNewIncome = (userInfo) => {
-    let client = document.getElementById('clientInc').value,
+    let client = document.getElementById('clientInc').value.split('/')[1],
         concept = document.getElementById('conceptInc').value,
         retention = parseInt(document.getElementById('retentionInc').value),
         irpf = parseInt(document.getElementById('irpfInc').value),
@@ -105,6 +108,7 @@ const addNewIncome = (userInfo) => {
         taxable = amount + irpf + iva - retention, 
         date = document.getElementById('datePickerInc').value.split(' '),
         note = document.getElementById('noteInc').value,
+        nif = document.getElementById('clientInc').value.split('/')[0],
         monthInNum = calculateMonth(date[2].toUpperCase());
     
 
@@ -115,6 +119,7 @@ const addNewIncome = (userInfo) => {
         db.collection("Users").doc(userInfo.uid).collection('income').doc().set({
           client : client,
           concept : concept,
+          nif : nif.toUpperCase(),
           date : date[0],
           day : date[1].toUpperCase(),
           month : date[2].toUpperCase(),
@@ -147,7 +152,7 @@ const addNewIncome = (userInfo) => {
 
 }
 
-const calculateMonth = mon => {
+export const calculateMonth = mon => {
   switch (mon) {
     case "JANUARY":
       return 0;

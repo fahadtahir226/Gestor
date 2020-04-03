@@ -49,7 +49,6 @@ class Graphs extends Component {
   render() {
     let {userData} = this.props;
     // let {ivaInc, irpfInc, retInc, ivaExp, irpfExp, retExp } = userData;
- console.log(userData ? userData.ivaInc: null);
 
     let incQtr = [],expQtr = [];
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];

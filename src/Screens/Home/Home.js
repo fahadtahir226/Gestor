@@ -76,8 +76,8 @@ class Home extends Component {
                   <Route path="/home/faq" exact ><FAQ/> </Route>
                   <Route path="/home/security" exact ><Security/></Route>
                   <Route path="/home/help" exact ><Help /> </Route>
-                  <Route path="/home/income/recipt/:id" exact ><Recipt userData={userData} incData={incData}  heading='INCOME'/></Route>
-                  <Route path="/home/expense/recipt/:id" exact ><Recipt userData={userData} expData={expData} heading='EXPENSE'/></Route>
+                  <Route path="/home/income/recipt/:id" exact ><Recipt userInfo={userInfo} userData={userData} incData={incData} heading='INCOME'/></Route>
+                  <Route path="/home/expense/recipt/:id" exact><Recipt userInfo={userInfo} userData={userData} expData={expData} heading='EXPENSE'/></Route>
                 </Switch>
                 </div>
               </div>
@@ -131,19 +131,19 @@ const styleBox = {
 
 const Header = (props) =>{
   var { userInfo, userData} = props;
-  var elems = document.querySelectorAll('.dropdown-trigger');
+  var elems = document.getElementById('signOutDropDown');
   M.Dropdown.init(elems, {hover: true, constrainWidth: false});    
   return (
     <div className="row" style={styleBox.header}>
       <div className="col s5 m7 l9"></div>
         <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
         <div  className="col s2 m2 l1">
-        <a class='dropdown-trigger' href='#' data-target='signout'>
+        <a id="signOutDropDown" className='dropdown-trigger' href='#' data-target='signout'>
           <img style={styleBox.profile} className="imageRound" alt="" src={userData ? userData.profilepic : "//image.freepik.com/free-vector/people-profile-icon_24877-40756.jpg"} />
           </a>
         </div>
         <ul style={styleBox.profileDropDown} id='signout' className='dropdown-content'>
-            <li><a href="#!" style={{color: 'darkgrey'}}><i className='material-icons' >perm_identity</i> <Link style={{color: 'darkgrey'}} to='/home/mygestor'>PROFILE</Link></a></li>
+            <li><a href="#!" ><i className='material-icons'style={{color: 'darkgrey'}} >perm_identity</i> <Link style={{color: 'darkgrey'}} to='/home/mygestor'>PROFILE</Link></a></li>
             <li onClick={()=>SignOut()} ><a href="#!" style={{color: 'darkgrey'}}><i className='material-icons'>lock</i>LOG OUT</a></li>
           </ul>
     </div>

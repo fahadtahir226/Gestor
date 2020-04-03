@@ -64,9 +64,12 @@ class Configuration extends Component {
             <div className="divider" style={{marginBottom: 10}}></div>
             <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">
+              MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you retained the IRPF of other professionals, employees or businessmen, check this box. (Double Click To select)" style={styleBox.options}>MODEL 111 <i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you retained the IRPF of other professionals, employees or businessmen, check this box. (Double Click To select)" style={styleBox.options}>
+              MODEL 111 
+              <i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
             <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you have operations with other EU countries, check this box (Double Click To select)" style={styleBox.options}>MODEL 349<i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>

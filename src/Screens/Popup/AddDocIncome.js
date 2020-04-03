@@ -17,7 +17,7 @@ class AddDocIncome extends React.Component {
     picker = document.querySelectorAll('.datepicker');
     this.instance = M.Modal.init(modal);
     M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
-    this.updateState();
+    // this.updateState();
   }
   updateState(){
     setTimeout(() => {
@@ -96,8 +96,8 @@ return (
     <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
       <select id='clientDocInc'>
       <option value="">CLIENTS</option>  
-      {contacts ? contacts.map((client)=> 
-          <option>{client.name}</option>  
+      {contacts ? contacts.map((client, key)=> 
+        <option key={key} value={client.nif  + '/' + client.name}>{client.name}</option>
       ): null
       }
       </select>
@@ -106,14 +106,16 @@ return (
 )
 }
 const addNewIncome = (userInfo) => {
-    let client = document.getElementById('clientDocInc').value,
+    let client = document.getElementById('clientDocInc').value.value.split('/')[1],
         concept = document.getElementById('conceptDocInc').value,
         date = document.getElementById('datePickerExp').value.split(' '),
         docAddr = document.getElementById('docAddrInc').files[0],
+        note = document.getElementById('noteDocInc').value,
         iva = parseInt(document.getElementById('ivaDocInc').value),
-        irpf = parseInt(document.getElementById('irpfDocInc').value),
         amount = parseInt(document.getElementById('amountDocInc').value),
+        irpf = parseInt(document.getElementById('irpfDocInc').value),
         retentions = parseInt(document.getElementById('retentionDocInc').value),
+        nif = document.getElementById('clientExp').value.split('/')[0],
         taxable = amount + iva + irpf - retentions,
         monthInNum = calculateMonth(date[2].toUpperCase());
 

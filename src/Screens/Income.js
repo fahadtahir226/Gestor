@@ -29,13 +29,13 @@ class Income extends Component {
 
       document.getElementById('addIncome').style.display = 'none';      
       document.getElementById('addDocIncome').style.display = 'none';      
-      this.updateState();
+      // this.updateState();
     }
-    updateState(){
-      setTimeout(() => {
-        this.setState({reupdate: 1});
-      }, 2000);
-    }
+    // updateState(){
+    //   setTimeout(() => {
+    //     this.setState({reupdate: 1});
+    //   }, 2000);
+    // }
   
   handleClick(e,select){
     this.setState({qtr: select.value});
@@ -45,7 +45,6 @@ class Income extends Component {
   }
 render() {
     var { userInfo, contacts} = this.props;
-    console.log("User Info:",userInfo);
     var incomeData = this.props.incData;
     var d = new Date();
     var months = ["JANUARy", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
@@ -149,8 +148,6 @@ const Month = (props) => {
   if(props.incomeData==null) return null;
   if(props.incomeData[props.mon].length === 0) return null;
   let usrs = props.incomeData[props.mon];
-  console.log(props.location)
-
   usrs.sort((i,iPlus) => i.date - iPlus.date);
   return (
     <>
@@ -159,8 +156,8 @@ const Month = (props) => {
 
       <ul className="collection" style={{margin: 0}}>
         {usrs.map((entry, key) => 
-          <Link to={"income/recipt?id="+ entry.ticketNo }>
-            <Entry ticketNo={entry.ticketNo} key={key} concept={entry.concept} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status} isDoc={entry.isDoc} docAddr={entry.docAddr}/>
+          <Link to={"income/recipt/" + entry.ticketNo } key={key}>
+            <Entry ticketNo={entry.ticketNo}  concept={entry.concept} day={entry.day} date={entry.date} amount={entry.amount}  status={entry.status} isDoc={entry.isDoc} docAddr={entry.docAddr}/>
           </Link>
         )}
       </ul>

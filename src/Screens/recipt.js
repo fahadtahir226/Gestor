@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 // import M from 'materialize-css';
 import '../App.css'
-
+import {calculateMonth} from './Popup/AddIncome' 
 
 
 class Recipt extends Component {
   constructor(props){
     super(props);
-    console.log(this.props);
+
+    this.url = window.location.toString().split('/');
+    this.url = this.url[this.url.length - 1]
+
+  }
+  filterData(data){
+    let recipt = {},months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTUBER','NOVEMBER','DECEMBER']
+    for(let i in months){
+        recipt = data[months[i]].filter(mon => {
+          return mon.ticketNo === this.url;
+        })
+      if(recipt.length > 0) break;
+    }
+    // console.log("RECIPT: ",recipt);
+    return recipt[0];
   }
   onBack(whereTo){
     if(whereTo === 'INCOME'){
@@ -18,7 +32,10 @@ class Recipt extends Component {
     }
   }
   render() {
-    // console.log(this.props.location)
+    let data = {}
+    this.props.heading === 'INCOME' ? data = this.props.incData : data = this.props.expData;
+    data = this.filterData(data);
+    console.log(this.props.heading,"and Data is", data);
     return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
         <div style={styleBox.content}>
@@ -30,19 +47,19 @@ class Recipt extends Component {
             <tbody>
               <tr>
                 <td>CLIENT</td>
-                <td>JOSEPH</td>
+                <td>{data.client}</td>
               </tr>
               <tr>
                 <td>NIF</td>
-                <td>RBS12C</td>
+                <td>{data.nif}</td>
               </tr>
               <tr>
                 <td>DATE</td>
-                <td>06.01.2020</td>
+                <td>{calculateMonth(data.month) + 1}.{data.date}.{data.year}</td>
               </tr>
               <tr>
                 <td>CONCEPT </td>
-                <td>IE MARCH(Training)</td>
+                <td>{data.concept}</td>
               </tr>
             </tbody>
         </table>
@@ -52,19 +69,19 @@ class Recipt extends Component {
         <tbody>
           <tr>
             <td>TAXABLE</td>
-            <td>290.54</td>
+            <td>{data.taxable}</td>
           </tr>
           <tr>
             <td>IVA</td>
-            <td>120.34</td>
+            <td>{data.iva}</td>
           </tr>
           <tr>
             <td>IRPF</td>
-            <td>20.00</td>
+            <td>-{data.irpf}</td>
           </tr>
           <tr> 
             <td>TOTAL</td>
-            <td>150.24</td>
+            <td>{data.amount}</td>
           </tr>
         </tbody>
       </table>
@@ -75,8 +92,8 @@ class Recipt extends Component {
       <div className="container">
         <h5>NOTE</h5>    
         <p className='container-fluid'>
-          Cupidatat occaecat occaecat labore deserunt tempor anim. Tempor dolor qui exercitation officia anim amet pariatur cillum. Proident occaecat reprehenderit id veniam dolor pariatur elit proident nulla nostrud nulla do. Est dolor et consectetur duis labore cupidatat tempor voluptate velit fugiat eu cupidatat.
-            {/* {this.props.note} */}
+
+            {data.note}
         </p>
 
         </div>    

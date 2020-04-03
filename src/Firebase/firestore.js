@@ -31,10 +31,11 @@ export const loadExpenses = (user, year, updateExpData, updateExpHis) => {
           if(report) {
             let data = report.data();
             data.ticketNo = report.id;
-            expenseData[month].push();   
+            expenseData[month].push(data);   
           }
       })
       if(month === 'DECEMBER') {
+        console.log(expenseData)
         updateExpData(expenseData);
         updateExpHis(expenseData);
       }
