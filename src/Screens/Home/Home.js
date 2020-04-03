@@ -28,6 +28,7 @@ import ExpenseHis from '../History/expHistory';
 import IncomeHis from '../History/incHistory';
 import Recipt from '../recipt';
 import { SignOut } from '../../Firebase/auth';
+import Chat from '../Chat';
 
 
 class Home extends Component {
@@ -78,6 +79,8 @@ class Home extends Component {
                   <Route path="/home/help" exact ><Help /> </Route>
                   <Route path="/home/income/recipt/:id" exact ><Recipt userInfo={userInfo} userData={userData} incData={incData} heading='INCOME'/></Route>
                   <Route path="/home/expense/recipt/:id" exact><Recipt userInfo={userInfo} userData={userData} expData={expData} heading='EXPENSE'/></Route>
+                  <Route path="/home/chat" component={Chat} />
+
                 </Switch>
                 </div>
               </div>
