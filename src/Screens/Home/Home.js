@@ -40,7 +40,7 @@ class Home extends Component {
           if(this.props.isAuthenticated == false){
             window.location.replace("/");
           }
-        }, 2000)
+        }, 5000)
     return (
     <div style={styleBox.main}>
       <div className="container-fluid">
