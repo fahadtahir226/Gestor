@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import M from'materialize-css';
-import {nextFiling} from './Graphs';
+import { nextFiling } from './Graphs';
 import "../css/style.css"
 
 class Configuration extends Component {
-
+constructor(props){
+  super(props);
+  this.state = {data: nextFiling}
+  console.log( this.state );
+}
   componentDidMount(){
     var elems = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(elems);
-    this.state = {data: nextFiling}
   }
 
   lastTarget= null;
 
   handleclick(key){
-    if(key != '303' && key != '130' && key != '390'){
-      let data = this.state.data;
+    let data = this.state.data;
+    console.log(data, key)
+    if(data[key].name != '303' && data[key].name != '130' && data[key].name != '390'){
       data[key].status = false;
-      this.setState({data});
+      this.setState( { data } );
     }
     // let element = e.target
     // let display = element.children[0].style.display;
@@ -62,9 +66,10 @@ class Configuration extends Component {
           <div className="container">
             <div className="row" style={styleBox.headins}>TAXES:</div>
             {this.state.data.map((model, key) =>
-            <><div className="row optionBox tooltipped" onClick={(key)=> this.handleclick(key)} style={styleBox.options}  data-position="left" data-tooltip="If you have office/local, check this box." >
-            MODEL {model.name} {model.check ? <i className="material-icons right" style={{color: "green"}} >check</i>: null}</div>
-            <div className="divider" style={{marginBottom: 10}}></div></>
+              <><div className="row optionBox tooltipped" onClick={() => this.handleclick(key)} 
+                style={styleBox.options}  data-position="left" data-tooltip="If you have office/local, check this box." >
+                MODEL {model.name} {model.status ? <i className="material-icons right" style={{color: "green"}} >check</i>: null}</div>
+              <div className="divider" style={{marginBottom: 10}}></div></>
             )}
 
             {/* <div className="row optionBox tooltipped"  style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">
