@@ -94,6 +94,23 @@ class Recipt extends Component {
         })
   }
 
+  emailPDF = async  (data) =>{
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(await this.filterData(data))
+  }
+    fetch('https://us-central1-practice-project-269707.cloudfunctions.net/function-2', requestOptions)
+        .then(response => response.json())
+        .then(data =>{
+          if(data.status == "200" ||data.status == 200){
+            M.toast({html: 'Email Sent Successfully!'})
+          } else {
+            M.toast({html: 'Email Not Sent !'})
+          }
+        });
+   }
+
   render() {
   var { userInfo , userData} = this.props;
   let data = {}
@@ -193,7 +210,7 @@ class Recipt extends Component {
           <a style={{float: "right", marginRight: 30}} onClick={ ()=>{this.generatePDF(this.props.heading === 'INCOME' ? data = this.props.incData : data = this.props.expData)} } className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
             <i style={{ color: "#1e88e5"}} className="material-icons">cloud_download</i>
           </a>
-          <a style={{float: "right", marginRight: 30}}  className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
+          <a style={{float: "right", marginRight: 30}} onClick={ ()=>{this.emailPDF(this.props.heading === 'INCOME' ? data = this.props.incData : data = this.props.expData)} }  className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
             <i style={{ color: "#1e88e5"}} className="material-icons">email</i>
           </a>
         </div>
