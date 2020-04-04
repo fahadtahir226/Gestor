@@ -106,6 +106,7 @@ class Recipt extends Component {
           if(data.status == "200" ||data.status == 200){
             M.toast({html: 'Email Sent Successfully!'})
           } else {
+            console.log(data);
             M.toast({html: 'Email Not Sent !'})
           }
         });

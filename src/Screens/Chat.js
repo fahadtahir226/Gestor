@@ -20,7 +20,7 @@ export default class Chat extends Component {
                 console.log('Message ID',data[msg].uid,'Own id',this.state.uid)
               if(data[msg].uid === this.state.uid)  data[msg].self = true;
               else data[msg].self = false;
-              msgs.push(data[msg]);  
+              msgs.push(data[msg]);
             })
           }
           this.setState({msgs});
@@ -30,14 +30,12 @@ export default class Chat extends Component {
     var elems = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(elems);
 
-    // while(element.height > )
     setTimeout(() => {
         var ul = document.getElementById("ul-msgs");
         var element = document.getElementById("chat-history");
         element.scrollTo(0, ul.childElementCount * 128 );
 
     }, 1000);
-    // }, 100);
     }
 render() {
         let { uid , name } = this.props;
@@ -68,7 +66,6 @@ render() {
                                         </div>
                                         <div className={msg.self ? "message other-message float-right" : 'message  my-message'}>
                                             {msg.message}
-                                        {/* Hi Vincent, how are you? How is the project coming along? */}
                                         </div>
                                     </li>
                                 ): null
@@ -124,28 +121,3 @@ render() {
         )
     }
 }
-
-
-const messages = [
-    {
-        self: true,
-        content: "Hey How Are You?"
-    },
-    {
-        self: false,
-        content: "I'm great! How Are You?"
-    },
-    {
-        self: true,
-        content: "I'am good too"
-    },
-    {
-        self: false,
-        content: "Whats the plan"
-    },
-    {
-        self: false,
-        content: "Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?"
-    }
-
-]
