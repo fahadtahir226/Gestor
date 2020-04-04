@@ -79,13 +79,16 @@ render() {
                     </div>
                     
                     <div className="chat-message clearfix row" style={{marginBottom: 0}}>
-                    <textarea className='col s11 m11 l11' name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                        <div className="col s11 m11 l11">
+                            <textarea className='sendbutton' style={{ backgroundColor: "white", boxShadow: "rgb(206, 238, 242) 0px 1px 2px 2px" }} name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                        </div>
 
                                 
                         {/* <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
                         <i className="fa fa-file-image-o"></i> */}
-                        
-                        <button className='col s1 m1 l1' onClick={() => writeUserData(uid, name ,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
+                        <div className="col s1 m1 l1">
+                            <button className='sendbutton' style={{ borderRadius: "25px",background: "#52a9fa", color: "white" ,padding: "6px 30px"}} onClick={() => writeUserData(uid, name ,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
+                        </div>
 
                     </div> 
                     

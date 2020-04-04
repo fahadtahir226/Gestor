@@ -166,6 +166,6 @@ button .sendbutton{
 }
 
 textarea .chattext{
+	background-color: white;
 	box-shadow: rgb(206, 238, 242) 0px 1px 2px 2px !important;
-
 }
