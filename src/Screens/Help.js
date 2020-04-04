@@ -17,7 +17,7 @@ render() {
         </div>
       </div>
       <div className='container-fluid' >
-        <Link to='/home/chat' ><div style={styleBox.savebtn} className="btn-flat">COSTUMER SUPPORT</div></Link>
+        <Link to='/home/chat' ><div style={styleBox.savebtn} className="btn-flat">CUSTOMER SUPPORT</div></Link>
       </div>
     </div>
 );
