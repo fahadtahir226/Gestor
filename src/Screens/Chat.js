@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
 import "../css/chatstyle.css"
-import {writeUserData} from '../Firebase/database'
+import {writeUserData, putAWatchForNewMessage} from '../Firebase/database'
 import {database} from '../Firebase/database'
 
 export default class Chat extends Component {
@@ -56,7 +56,7 @@ render() {
                         <i className="fa fa-star"></i>
                     </div> 
                     
-                    <div id='chat-history' className="chat-history" style={{height: 320}}>
+                    <div id='chat-history' className="chat-history" style={{height: 360}}>
                         <ul id='ul-msgs'>
                             {this.state.msgs ? 
                                 this.state.msgs.map((msg, key) => 
@@ -79,13 +79,13 @@ render() {
                     </div>
                     
                     <div className="chat-message clearfix row" style={{marginBottom: 0}}>
+                    <textarea className='col s11 m11 l11' name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
 
-                        <div className="col s11 m11 l11">
-                            <textarea className='chattext' style={{ borderRadius: "25px", background : "white", boxShadow: "inset 0 0 4px rgba(0,0,0,.3)" }} name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-                        </div>
-                        <div className="col s1 m1 l1">
-                            <button className='sendbutton' style={{ borderRadius: "25px", background: "#52a9fa",color: "white", padding: "6px 30px" }} onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
-                        </div>
+                                
+                        {/* <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                        <i className="fa fa-file-image-o"></i> */}
+                        
+                        <button className='col s1 m1 l1' onClick={() => writeUserData(uid, name ,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
 
                     </div> 
                     
