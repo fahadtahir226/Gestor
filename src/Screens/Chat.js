@@ -37,19 +37,19 @@ render() {
         let msgs = this.state.msgs;
        console.log("From Render ",msgs)
         return (
-            <div>
+            <div style={{ height : "100%" }}>
                   <div className="mycontainerbox clearfix">
                     <div className="chat">
                     <div className="chat-header clearfix">
                         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
                         
                         <div className="chat-about">
-                        <div className="chat-with">Costumer Support</div>
+                        <div className="chat-with">Customer Support</div>
                         </div>
                         <i className="fa fa-star"></i>
                     </div> 
                     
-                    <div className="chat-history" style={{height: 320}}>
+                    <div className="chat-history" style={{height: "360px"}}>
                         <ul>
                             {msgs ? 
                                 msgs.map((msg, key) => 
@@ -72,12 +72,13 @@ render() {
                     </div>
                     
                     <div className="chat-message clearfix row" style={{marginBottom: 0}}>
-                        <textarea className='col s11 m11 l11' name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
-                                
-                        {/* <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                        <i className="fa fa-file-image-o"></i> */}
-                        
-                        <button className='col s1 m1 l1' onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
+
+                        <div className="col s11 m11 l11">
+                            <textarea className='chattext' style={{ background : "white", boxShadow: "inset 0 0 4px rgba(0,0,0,.3)" }} name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                        </div>
+                        <div className="col s1 m1 l1">
+                            <button className='sendbutton' style={{ borderRadius: "25px", background: "#52a9fa",color: "white", padding: "6px 30px" }} onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
+                        </div>
 
                     </div> 
                     
