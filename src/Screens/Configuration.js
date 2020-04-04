@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import M from'materialize-css';
+import {nextFiling} from './Graphs';
 import "../css/style.css"
 
 class Configuration extends Component {
@@ -7,30 +8,31 @@ class Configuration extends Component {
   componentDidMount(){
     var elems = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(elems);
+    this.state = {data: nextFiling}
   }
 
   lastTarget= null;
 
-  handleClick(e){
-    let allElements = Array.from(document.querySelectorAll('.optionBox'))
-    for (let element of allElements) {
-      element.classList.remove('confoptionactive')
+  handleclick(key){
+    if(key != '303' && key != '130' && key != '390'){
+      let data = this.state.data;
+      data[key].status = false;
+      this.setState({data});
     }
-    e.target.classList.add('confoptionactive')
-    e.preventDefault();
+    // let element = e.target
+    // let display = element.children[0].style.display;
+    // if(display === "" || display === "block") {
+      // element.children[0].style.display = "none";
+      // element.classList.remove('confoptionactive')
+      
+    // } else {
+      // element.children[0].style.display = "block"
+      // element.classList.remove('confoptionactive');
+    // }
   }
-  dblclick(e){
-    let display = e.target.children[0].style.display;
-    if(display === "" || display === "block") {
-      e.target.children[0].style.display = "none";
-      e.target.classList.remove('confoptionactive')
-    } else {
-      e.target.children[0].style.display = "block"
-      e.target.classList.remove('confoptionactive');
-    }
-    console.log("Configuration -> dblclick -> e.target.children[0].style.display", e.target.children[0].style.display)
+  handleSave(){
+
   }
-  
   
   render() {
     // var {isAuthenticated, userInfo} = this.props;
@@ -59,27 +61,37 @@ class Configuration extends Component {
         <div className="col s12 m12 l6" >
           <div className="container">
             <div className="row" style={styleBox.headins}>TAXES:</div>
-                
-            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you have office/local, check this box." >MODEL 115 <i className="material-icons right" style={{color: "green"}} >check</i></div>
+            {this.state.data.map((model, key) =>
+            <><div className="row optionBox tooltipped" onClick={(key)=> this.handleclick(key)} style={styleBox.options}  data-position="left" data-tooltip="If you have office/local, check this box." >
+            MODEL {model.name} {model.check ? <i className="material-icons right" style={{color: "green"}} >check</i>: null}</div>
+            <div className="divider" style={{marginBottom: 10}}></div></>
+            )}
+
+            {/* <div className="row optionBox tooltipped"  style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">
+              MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
+
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">MODEL 390<i className="material-icons right" style={{color: "green"}} >check</i></div>
-            <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onClick={this.handleClick} style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">
+            <div className="row optionBox tooltipped"  style={styleBox.options} data-position="left" data-tooltip="If you retained VAT check this box.">
               MODEL 303<i className="material-icons right" style={{color: "green"}} >check</i></div>
+
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you retained the IRPF of other professionals, employees or businessmen, check this box. (Double Click To select)" style={styleBox.options}>
-              MODEL 111 
-              <i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped"  data-position="left" data-tooltip="If you retained the IRPF of other professionals, employees or businessmen, check this box." style={styleBox.options}>
+              MODEL 111 <i className="material-icons right" style={{color: "green"}} >check</i></div>
+
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you have operations with other EU countries, check this box (Double Click To select)" style={styleBox.options}>MODEL 349<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onClick={this.handleclick} data-position="left" data-tooltip="If you have operations with other EU countries, check this box" style={styleBox.options}>
+              MODEL 349<i className="material-icons right" style={{color: "green"}} >check</i></div>
+
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox tooltipped" onDoubleClick={this.dblclick} onClick={this.handleClick} data-position="left" data-tooltip="If you made operations over the amount 3005,06€ with 3rd parties, check this box. (Double Click To select)" style={styleBox.options}>MODEL 347<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox tooltipped" onClick={this.handleclick} data-position="left" data-tooltip="If you made operations over the amount 3005,06€ with 3rd parties, check this box." style={styleBox.options}>
+              MODEL 347<i className="material-icons right" style={{color: "green"}} >check</i></div> */}
+
 
           </div>
         </div>
 
         <div className="center-align">
-          <a href="#!" style={styleBox.savebtn} className="btn">Save</a>
+          <a href="#!" style={styleBox.savebtn} onClick={this.handleSave} className="btn">Save</a>
         </div>
 
       </div>

@@ -199,8 +199,14 @@ const Header = (props) =>{
           </a>
         </div>
         <ul style={styleBox.profileDropDown} id='signout' className='dropdown-content'>
-            <li><a href="#!" ><i className='material-icons'style={{color: 'darkgrey'}} >perm_identity</i> <Link style={{color: 'darkgrey'}} to='/home/mygestor'>PROFILE</Link></a></li>
-            <li onClick={()=>SignOut()} ><a href="#!" style={{color: 'darkgrey'}}><i className='material-icons'>lock</i>LOG OUT</a></li>
+            <li style={{padding: 10}}>
+              <i className='material-icons'style={{color: 'dimgrey', display: 'inline'}} >perm_identity</i> 
+              <Link style={{color: 'darkgrey', display : 'inline', color: 'dimgrey'}} to='/home/mygestor'>PROFILE</Link>
+            </li>
+            <li style={{ padding: 10, }} onClick={()=>SignOut()} >
+              <i className='material-icons' style={{color: 'dimgrey'}}>lock</i>
+              <span style={{display: 'inline', padding: 15, color: 'dimgrey'}}>LOG OUT</span>
+            </li>
           </ul>
     </div>
    )

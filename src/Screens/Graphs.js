@@ -382,43 +382,33 @@ class Graphs extends Component {
                             </h4>
                           </div>
                           <br />
-                          <table>
-                            <br />
+                          <table><br />
                             <tbody>
-                              <tr>
+                              {nextFiling.map(model => {
+                                if(model.status === true)
+                              return <tr>
                                 <td>
-                                  <div
-                                    style={styleBox.box}
-                                  >
-                                    <div>27</div>
+                                  <div style={styleBox.box}>
+                                    <div>{model.days}</div>
                                     <div>Days</div>
                                   </div>
                                 </td>
                                 <td>
-                                  <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
-                                  >
-                                    IRPF (IT 2020)
+                                  <div style={{ color: "#4aa4ef", fontWeight: "bold !important"}}>
+                                    {model.qtr}
                                   </div>
-                                  <div>Model 303</div>
+                                  <div>Model {model.name}</div>
                                 </td>
-
                                 <td className="right right-align">
-                                  <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
-                                  >
-                                    130.00 &euro;
-                                  </div>
+                                  <div style={{ color: "#4aa4ef", fontWeight: "bold !important" }}> {model.amount} &euro;</div>
                                   <div>15.01.20</div>
                                 </td>
                               </tr>
-                              <tr>
+                              }
+                                )
+                              }
+
+                              {/* <tr>
                                 <td>
                                   <div
                                     style={styleBox.box}
@@ -472,7 +462,7 @@ class Graphs extends Component {
                                   <div>15.01.20</div>
                                 </td>
                                 
-                              </tr>
+                              </tr> */}
                             </tbody>
                           </table>
                         </div>
@@ -532,5 +522,49 @@ const styleBox = {
     margin: "0"
   }
 }
+export const nextFiling = [
+  {
+    name: '303',
+    days: '27',
+    amount: 130.00,
+    qtr: 'IRPF (IT 2020)',
+    status: true,
+  },
+  {
+    name: '130',
+    days: '24',
+    amount: 170.00,
+    qtr: 'IRPF (IT 2020)',
+    status: true,
+  },
+  {
+    name: '390',
+    days: '21',
+    amount: 210.00,
+    qtr: 'Annual IVA (2020)',
+    status: true,
+  },
+  {
+    name: '111',
+    days: '21',
+    amount: 130.00,
+    qtr: 'VAT 2020',
+    status: true,
+  },
+  {
+    name: '349',
+    days: '12',
+    amount: 170.00,
+    qtr: 'IRPF (IT 2020)',
+    status: true,
+  },
+  {
+    name: '347',
+    days: '21',
+    amount: 210.00,
+    qtr: 'Annual IVA (2020)',
+    status: true,
+  }
+]
 
 export default Graphs;

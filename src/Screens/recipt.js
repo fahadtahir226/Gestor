@@ -4,7 +4,7 @@ import M from 'materialize-css';
 import '../App.css'
 import {calculateMonth} from './Popup/AddIncome' 
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 import Loader from 'react-loader-spinner'
 
 class Recipt extends Component {

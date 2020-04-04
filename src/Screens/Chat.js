@@ -29,15 +29,23 @@ export default class Chat extends Component {
     componentDidMount(){
     var elems = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(elems);
-    // putAWatchForNewMessage(this.props.uid, (msgs) => this.updateState(msgs));
 
+    // while(element.height > )
+    setTimeout(() => {
+        var ul = document.getElementById("ul-msgs");
+        var element = document.getElementById("chat-history");
+        element.scrollTo(0, ul.childElementCount * 128 );
+
+    }, 1000);
+    // }, 100);
     }
 render() {
         let { uid , name } = this.props;
-        let msgs = this.state.msgs;
-       console.log("From Render ",msgs)
+
+       console.log("From Render ",this.state.msgs)
         return (
             <div>
+                <p></p>
                   <div className="mycontainerbox clearfix">
                     <div className="chat">
                     <div className="chat-header clearfix">
@@ -49,13 +57,13 @@ render() {
                         <i className="fa fa-star"></i>
                     </div> 
                     
-                    <div className="chat-history" style={{height: 320}}>
-                        <ul>
-                            {msgs ? 
-                                msgs.map((msg, key) => 
+                    <div id='chat-history' className="chat-history" style={{height: 320}}>
+                        <ul id='ul-msgs'>
+                            {this.state.msgs ? 
+                                this.state.msgs.map((msg, key) => 
                                     <li key={key} className={msg.self ? 'clearfix' : null}>
                                         <div className={msg.self ? "message-data align-right" : 'message-data'}>
-                                        <span className="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
+                                        <span className="message-data-time" >{msg.time}</span> &nbsp; &nbsp;
                                         <span className="message-data-name" >{name}</span> <i className="fa fa-circle me"></i>
 
                                         </div>
@@ -77,7 +85,7 @@ render() {
                         {/* <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
                         <i className="fa fa-file-image-o"></i> */}
                         
-                        <button className='col s1 m1 l1' onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
+                        <button className='col s1 m1 l1' onClick={() => writeUserData(uid, name ,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
 
                     </div> 
                     
@@ -100,7 +108,7 @@ render() {
                 <script id="message-response-template" type="text/x-handlebars-template">
                 <li>
                     <div className="message-data">
-                    <span className="message-data-name"><i className="fa fa-circle online"></i> Vincent</span>
+                    <span className="message-data-name">Vincent</span>
                     <span className="message-data-time">time, Today</span>
                     </div>
                     <div className="message my-message">
