@@ -166,7 +166,7 @@ class Gestor extends Component {
                 <div className="left" style={{verticalAlign: 'bottom'}} >PROFESSION: </div>
                 <div className="right" >
                   <div className="col s12 validate" style={{ marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
-                    <select id='professionDropDown' style={{color: 'darkgrey',}} >
+                    <select id='professionDropDown' style={{color: 'darkgrey', display : "block"}} >
                       <option value="">CHOOSE PROFESSION</option>  
                       <option value="ARTIST">ARTIST</option>  
                       <option value="DATA ANALYST">DATA ANALYST</option>  
