@@ -1,74 +1,41 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
 import "../css/chatstyle.css"
-import {writeUserData} from '../Firebase/database'
+import {writeUserData, putAWatchForNewMessage} from '../Firebase/database'
 import {database} from '../Firebase/database'
 
 export default class Chat extends Component {
     constructor(props){
         super(props);
-        var msgs = []
         this.state = {uid : this.props.uid, msgs: []}
-        // database.ref('Users/' + this.props.uid).on('value', function(snapshot) {
-        //     let data = snapshot.val();
-        //     Object.keys(data).forEach((property, index) => {
-        //         if(data[property].uid = props.uid){
-        //             data[property].self = true;
-        //         }
-        //         else{
-        //             data[property].self = false;
-        //         }
-        //         msgs.push(data[property]);
-        //     })
-        // })
-        // this.state = {msgs};
-        // console.log(this.state.msgs);
     }
+    componentWillMount() {
+        let msgs;
+        database.ref('Users/' + this.props.uid).on("value", function(dataSnapshot) {
+            msgs = [];
+            console.log(dataSnapshot.val());
+            let data = dataSnapshot.val();
+          if(data){
+            Object.keys(data).forEach((msg, value) => {
+                console.log('Message ID',data[msg].uid,'Own id',this.state.uid)
+              if(data[msg].uid === this.state.uid)  data[msg].self = true;
+              else data[msg].self = false;
+              msgs.push(data[msg]);  
+            })
+          }
+          this.setState({msgs});
+        }.bind(this));
+      }
     componentDidMount(){
     var elems = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(elems);
-    let uid = this.state.uid;
-    let msgs = [];
-    database.ref('Users/' + this.state.uid).on('value', function(snapshot) {
-        let data = snapshot.val();
-        console.log(data);
-        Object.keys(data).forEach((property, index) => {
-            console.log(data[property].uid,' ')
-            if(data[property].uid === uid){
-                data[property].self = true;
-            }
-            else{
-                data[property].self = false;
-            }
-            msgs.push(data[property]);
-            })
-    })
-    this.setState({msgs : msgs});
-    console.log(msgs);
+    // putAWatchForNewMessage(this.props.uid, (msgs) => this.updateState(msgs));
 
-
-    // database.ref('Users/' + this.uid)
-    // .on('value', function(snapshot) {
-    //     let msgs = [];
-    //     let data = snapshot.val();
-    //     console.log(data);
-    //     if(data){
-    //     Object.keys(data).forEach((property, index) => {
-    //         if(data[property].uid = this.uid){
-    //             data[property].self = true;
-    //         }
-    //         else{
-    //             data[property].self = false;
-    //         }
-    //         msgs.push(data[property]);
-    //     })
-    // }
-
-        // console.log(data);
-    // });
-}  
+    }
 render() {
         let { uid , name } = this.props;
+        let msgs = this.state.msgs;
+       console.log("From Render ",msgs)
         return (
             <div>
                   <div className="mycontainerbox clearfix">
@@ -82,10 +49,10 @@ render() {
                         <i className="fa fa-star"></i>
                     </div> 
                     
-                    <div className="chat-history">
+                    <div className="chat-history" style={{height: 320}}>
                         <ul>
-                            {
-                                this.state.msgs.map((msg, key) => 
+                            {msgs ? 
+                                msgs.map((msg, key) => 
                                     <li key={key} className={msg.self ? 'clearfix' : null}>
                                         <div className={msg.self ? "message-data align-right" : 'message-data'}>
                                         <span className="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
@@ -97,20 +64,20 @@ render() {
                                         {/* Hi Vincent, how are you? How is the project coming along? */}
                                         </div>
                                     </li>
-                                )
+                                ): null
                             }
                         
                         </ul>
                         
                     </div>
                     
-                    <div className="chat-message clearfix">
-                        <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                    <div className="chat-message clearfix row" style={{marginBottom: 0}}>
+                        <textarea className='col s11 m11 l11' name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
                                 
-                        <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                        <i className="fa fa-file-image-o"></i>
+                        {/* <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                        <i className="fa fa-file-image-o"></i> */}
                         
-                        <button onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} >Send</button>
+                        <button className='col s1 m1 l1' onClick={() => writeUserData(uid,document.getElementById('message-to-send').value)} ><i className='material-icons small'>send </i></button>
 
                     </div> 
                     
