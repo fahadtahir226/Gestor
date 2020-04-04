@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import M from 'materialize-css';
+import M from 'materialize-css';
+
 import '../App.css'
 import {calculateMonth} from './Popup/AddIncome' 
-
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import Loader from 'react-loader-spinner'
-import "../css/style.css"
 
 class Recipt extends Component {
   constructor(props){
@@ -46,6 +47,52 @@ class Recipt extends Component {
       this.setState({loading: false})
     }
   }
+  generatePDF = async  (data) =>{
+    let tempData = await this.filterData(data)
+    data = {
+      "Client Name" : tempData.client,
+      "Amount" : tempData.amount,
+      "Date" : tempData.day + ", " +tempData.date + " " +tempData.month+ " " +tempData.year,
+      "IVA" : tempData.iva,
+      "IRPF" : tempData.irpf,
+      "Taxable" : tempData.taxable,
+      "Concept" : tempData.concept,
+      "NIF" : tempData.nif,
+      "Retention" : tempData.retention,
+      "Note" : tempData.note
+    }
+  let myHtml = `
+  <center style="text-align:center">
+  <table style="text-align:center">
+  <h1 style="text-align:center">Income Invoice<h1>
+  <tr style="text-align:center">
+  <td style="text-align:center"> Fields </td>
+  <td style="text-align:center"> Data </td>
+  </tr>
+  `;
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        myHtml += `
+        <tr style="text-align:center">
+        <td style="text-align:center"> ` + key+`</td>
+        <td style="text-align:center"> ` + data[key] + `</td>
+        </tr>
+        `;
+            // console.log(key + " -> " + data[key]);
+        }
+    }
+    myHtml += "</table></center>";
+  
+        var doc = new jsPDF();
+        doc.setFontSize(5);
+        doc.fromHTML(myHtml, 25, 1, {
+          width:80, // text container width (or) page width by default
+          align:'center' // right, center , left (default)
+          }, function() {
+          doc.save('test')
+          M.toast({html: 'PDF Downloaded Successfully!'})
+        })
+  }
 
   render() {
   var { userInfo , userData} = this.props;
@@ -78,8 +125,8 @@ class Recipt extends Component {
       </div>
 
       :    
-
-      <div className="container-fluid card z-depth-1" style={styleBox.main}>
+        <div>
+          <div className="container-fluid card z-depth-1" style={styleBox.main}>
         <div style={styleBox.content}>
            {this.props.heading}
         </div>
@@ -143,9 +190,13 @@ class Recipt extends Component {
         <a href="#!" onClick={(e)=>this.onBack(this.props.heading)} style={styleBox.savebtn} className="btn-flat">BACK</a>
       </div>
     </div>
-
-
-
+          <a style={{float: "right", marginRight: 30}} onClick={ ()=>{this.generatePDF(this.props.heading === 'INCOME' ? data = this.props.incData : data = this.props.expData)} } className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
+            <i style={{ color: "#1e88e5"}} className="material-icons">cloud_download</i>
+          </a>
+          <a style={{float: "right", marginRight: 30}}  className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
+            <i style={{ color: "#1e88e5"}} className="material-icons">email</i>
+          </a>
+        </div>
       }
       </div>
 

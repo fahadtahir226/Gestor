@@ -7,6 +7,7 @@ import SignIn from "../Screens/Authentication/SignIn";
 import SignUp from "../Screens/Authentication/SignUp";
 import ForgetPassWord from "../Screens/Authentication/ForgetPass";
 import NewPass from "../Screens/Authentication/NewPass";
+import "../css/style.css"
 
 const AppRouter = (props) => {
   var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = props;

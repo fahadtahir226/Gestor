@@ -96,3 +96,9 @@
 	top: 45%;
 	left : 45%;
 }
+#toast-container {
+	top: auto !important;
+	right: auto !important;
+	bottom: 5%;
+	left:2%;  
+  }
