@@ -8,7 +8,8 @@ export const writeUserData = (userId, msg) => {
     msgs.set({
       uid: userId,
       message: msg,
+      // self: true,
     })
+    document.getElementById('message-to-send').value = '';
   }
 
-// var starCountRef = database.ref('posts/' + postId + '/starCount');
