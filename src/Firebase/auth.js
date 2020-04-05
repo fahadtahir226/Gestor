@@ -14,7 +14,7 @@ export const SignUpCall = () => {
     if ((fname.length && lname.length && email.length && pass.length) !== 0) {
 
             auth.createUserWithEmailAndPassword(email, pass)
-            .then(async () => {
+            .then( () => {
                 console.log(auth.currentUser.email);
 
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
@@ -52,7 +52,7 @@ export const SignInCall = () => {
     const pass = document.getElementById("login-pass").value;
 
     auth.signInWithEmailAndPassword(email, pass)
-        .then(async res => {
+        .then( res => {
             if (res) {
                 
                 window.location.replace("/home");
