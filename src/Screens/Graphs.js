@@ -19,7 +19,12 @@ import "../css/style.css"
 class Graphs extends Component {
   constructor(props) {
     super(props);
-    this.state = { optionValue : 0,taxesQtr: 0 };
+    let now = new Date().getMonth(), toShow;
+    if(now < 3) toShow = 0
+    else if(now < 6) toShow = 1
+    else if(now < 9) toShow = 2
+    else if(now < 12) toShow = 3
+    this.state = { optionValue : toShow,taxesQtr: toShow };
   }
 
   calculateIRPF(incQtr,expQtr, irpfExp){
@@ -47,7 +52,8 @@ class Graphs extends Component {
     return total;
   }
   render() {
-    let {userData} = this.props;
+    let {userData, models} = this.props;
+    console.log(models);
     // let {ivaInc, irpfInc, retInc, ivaExp, irpfExp, retExp } = userData;
 
     let incQtr = [],expQtr = [];
@@ -203,6 +209,7 @@ class Graphs extends Component {
                                 <select
                                   className="select2 browser-default form-control"
                                   style={{ width: "150px", color: "black" }} 
+                                  defaultValue={this.state.optionValue}
                                   onChange={(event)=> this.setState({optionValue : event.target.value})  }
                                 >
                                   <option value="0"> 1T 2020</option>
@@ -258,6 +265,7 @@ class Graphs extends Component {
                                 <select
                                   className="select2 browser-default form-control"
                                   style={{ width: "150px", color: "black" }}
+                                  defaultValue={this.state.taxesQtr}
                                   onChange={(event)=> this.setState({taxesQtr : event.target.value})}
                                 >
                                   <option value="0"> 1T 2020</option>
@@ -384,7 +392,7 @@ class Graphs extends Component {
                           <br />
                           <table><br />
                             <tbody>
-                              {nextFiling.map(model => {
+                              {models.map(model => {
                                 if(model.status === true)
                               return <tr>
                                 <td>
@@ -404,65 +412,9 @@ class Graphs extends Component {
                                   <div>15.01.20</div>
                                 </td>
                               </tr>
-                              }
-                                )
+                              })
                               }
 
-                              {/* <tr>
-                                <td>
-                                  <div
-                                    style={styleBox.box}
-                                  >
-                                    <div>27</div>
-                                    <div>Days</div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div
-                                    style={styleBox.heading}
-                                  >
-                                    IRPF (IT 2020)
-                                  </div>
-                                  <div>Model 303</div>
-                                </td>
-
-                                <td className="right right-align">
-                                  <div
-                                    style={styleBox.heading}
-                                  >
-                                    290.00 &euro;
-                                  </div>
-                                  <div>15.01.20</div>
-                                </td>
-                              </tr>
-                              <tr style={{ borderBottom: "0px" }}>
-                                <td>
-                                  <div style={styleBox.box}>
-                                    <div>27</div>
-                                    <div>Days</div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div
-                                    style={styleBox.heading}
-                                  >
-                                    Annual IVA (2020)
-                                  </div>
-                                  <div>Model 390</div>
-                                </td>
-                                <td className="right right-align">
-                                  <div
-                                    style={{
-                                      color: "#4aa4ef",
-                                      fontWeight: "bold !important"
-                                    }}
-                                  >
-                                    0.00 &euro;
-                                  </div>
-                                  <div>15.01.20</div>
-                                </td>
-                                
-                              </tr> */}
                             </tbody>
                           </table>
                         </div>

@@ -20,24 +20,14 @@ class AddExpense extends React.Component {
     this.instance = M.Modal.init(modal);
     M.Datepicker.init(picker, {maxDate: new Date(), format: 'dd dddd mmmm yyyy'});
     M.Dropdown.init(dropdown);
-    this.updateState();
+
   }
-  updateState(){
-    setTimeout(() => {
-    this.setState({reupdate: 1})
-    }, 2000)
-  }
+
     render(){
-      let clientArray = [];
       var ins = this.instance;
       var {userInfo, clients} = this.props;
-      if(clients != null){
-        clients.map((eachClient) =>{
-          clientArray.push(eachClient["name"]);
-        })
-      }else{
-        clientArray = [];
-      }
+      // var {clients} = this.props ? this.props : [];
+
       // console.log(clientArray);
   return(
     <div id="addExpense" style={styleBox.main} className='modal z-depth-5' >
@@ -58,7 +48,7 @@ class AddExpense extends React.Component {
                 <input type="text" id='datePickerExp' className="datepicker" />
               </div>
             </div>
-            <Select clientArray={clientArray} />
+            <Select clients={clients} />
           </form>
           <form className="col s12 m6 l6">
             {
@@ -101,7 +91,8 @@ const InputItem = (props) => {
 const Select = (props) => {
     var elems = document.querySelectorAll('select');
     M.FormSelect.init(elems);
-    var clients = props.clientArray ? props.clientArray: null;
+    var clients = props.clients ? props.clients: [];
+    console.log(clients);
   return (
     <div className="row" style={{marginBottom: 0}}>
       <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
@@ -117,7 +108,7 @@ const Select = (props) => {
 }
 const addNewExpense = (userInfo) => {
 
-    let client = document.getElementById('clientExp').value.value.split('/')[1],
+    let client = document.getElementById('clientExp').value.split('/')[1],
         concept = document.getElementById('conceptExp').value,
         date = document.getElementById('datePickerExp').value.split(' '),
         docAddr = document.getElementById('docAddrExp').files[0],

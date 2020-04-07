@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 
 import AppRouter from './Router/routes';
-import { auth, SignOut }  from './Firebase/auth';
-import { loadExpenses, loadIncomes, loadContact, loadProfile } from './Firebase/firestore';
+import { auth }  from './Firebase/auth';
+import { loadExpenses, loadIncomes, loadContact, loadProfile , loadModels} from './Firebase/firestore';
 import { loadDocument } from './Firebase/storage';
 
 class App extends Component {
@@ -19,11 +19,12 @@ class App extends Component {
       contacts: null,
       doc: null,
       userData: null,
+      models : []
       }
       // SignOut();
   }
   render() {
-    var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc, userData} = this.state;
+    var {isAuthenticated, userInfo, expData, expHis, incData, incHis, contacts, doc, userData, models} = this.state;
     return (
       <div className='App' >
 
@@ -38,8 +39,9 @@ class App extends Component {
         updateIncHis = {this.updateIncHis }
         contacts = { contacts }
         uploadDoc = { this.uploadDocData }
-        doc={ doc } 
-        userData={ userData }
+        doc = { doc } 
+        userData= { userData }
+        models = { models }
         />
       </div>
     );
@@ -63,6 +65,7 @@ class App extends Component {
   updateContactData = (contacts) => {
     this.setState({contacts})
   }
+// User Data
   updateUserData = (userData) => {
     this.setState({userData})
   }
@@ -71,6 +74,10 @@ class App extends Component {
   updateDocData = (doc) => {
     this.setState({doc});
   }
+// Configuration
+updateModelState = (models) => {
+  this.setState({models});
+}
 
 
 componentDidMount() {     
@@ -83,8 +90,9 @@ componentDidMount() {
           userInfo: user,
         })
         loadDocument(user, (document) => this.updateDocData(document));
-        loadProfile(user, (userData) => this.updateUserData(userData));
+        loadProfile (user, (userData) => this.updateUserData(userData));
         loadContact (user, (contacts) => this.updateContactData(contacts));
+        loadModels  (user, (models)   => this.updateModelState(models));
         loadExpenses(user, new Date().getFullYear(), (exp) => this.updateExpData(exp), (expHis) => this.updateExpHis(expHis));
         loadIncomes (user, new Date().getFullYear(), (inc) => this.updateIncData(inc), (incHis) => this.updateIncHis(incHis));
       }else {

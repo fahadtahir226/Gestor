@@ -10,7 +10,7 @@ import NewPass from "../Screens/Authentication/NewPass";
 import "../css/style.css"
 
 const AppRouter = (props) => {
-  var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = props;
+  var {isAuthenticated, userInfo, expData, expHis,updateExpHis, incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData, models} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -28,6 +28,7 @@ const AppRouter = (props) => {
           uploadDoc={uploadDoc}
           doc={doc}
           userData={userData}
+          models={models}
            /> }  />
         <Route path="/signup"  render={() => <SignUp isAuthenticated={isAuthenticated} userInfo={userInfo} />} exact />
         <Route path="/resetpasword" render={() => <ForgetPassWord   isAuthenticated={isAuthenticated} /> } />

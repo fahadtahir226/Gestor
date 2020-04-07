@@ -29,19 +29,14 @@ class Expense extends Component {
       M.Collapsible.init(elems);
       M.FloatingActionButton.init(fixdbtn, {direction:"bottom"});
       M.FormSelect.init(select);
-
       document.getElementById('addExpense').style.display = 'none';      
-      // this.updateState();
     }
-    // updateState(){
-    //   setTimeout(() => {
-    //     this.setState({reupdate: 1});
-    //   }, 2000);
-    // }
+
 render() {
     var {userInfo, contacts} = this.props;
+    
     var expenseData = this.props.expData;
-    console.log(expenseData);
+    console.log(contacts);
     var d = new Date();
     var months = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTUBER", "NOVEMBER", "DECEMBER"];
     let result = Object.values(expenseData? expenseData : {a : []}).every(data =>{
@@ -61,7 +56,7 @@ render() {
     </center>
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <div className="row" style={{marginBottom: 0}}>
-      <h5 className="col s12 m12 l4 " style={styleBox.mainHeading}> NET EXPENSE 600€<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
+      <h5 className="col s12 m12 l4 " style={styleBox.mainHeading}> NET EXPENSE <br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
       <div className="col s6 m5 l3 right" style={{textAlign: "right" ,padding: 30, paddingBottom: 0,paddingLeft: 0}}>
           {/* <img alt="" src={history} style={styleBox.HeaderIcons}/> */}
           <Link to='expense/history'><img alt="" src={history} style={styleBox.HeaderIcons}/></Link>

@@ -67,7 +67,7 @@ render() {
     <AddIncome userInfo={userInfo} contacts={contacts}/>
     </center>
       <div className="row" style={{marginBottom: 0}}>
-      <h5 className="col s12 m8 l4 " style={styleBox.mainHeading}>NET INCOME 1500€<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
+      <h5 className="col s12 m8 l4 " style={styleBox.mainHeading}>NET INCOME<br /><span style={{color: "grey", fontSize: 20}}>{this.state.qtr} {new Date().getFullYear()}</span></h5>
       <div className="col s6 m5 l3 right" style={{textAlign: "right" ,padding: 30, paddingBottom: 0,paddingLeft: 0}}>
       <Link to='income/history'><img alt="" src={history} style={styleBox.HeaderIcons}/></Link>
           {/* <img alt="" src={mail} style={styleBox.HeaderIcons}/> */}

@@ -80,6 +80,18 @@ export const loadContact = (user, updateContactState) => {
   .catch((error) => console.log("Error: ", error) )
 }
 
+let models = [];
+export const loadModels = (user, updateModelState) => {
+  db.collection("Users").doc(user.uid).collection("models").get()
+  .then((data) => {
+    data.forEach((report) => {
+      if(report.data()) models.push(report.data());
+    })
+    updateModelState(models);
+  })
+  .catch((error) => console.log("Error: ", error) )
+}
+
 
 export const loadProfile = (user, updateProfile) => {
   db.collection("Users").doc(user.uid).get()

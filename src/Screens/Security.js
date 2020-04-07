@@ -8,12 +8,17 @@ handleClick(){
     let newPass = document.getElementById("newChangePass").Value, 
         conPass = document.getElementById("conChangePass").value;
     if(newPass === conPass){
-        this.props.userInfo.updatePassword(newPass).then(function() {
-            M.toast({html: "Your Password is Changed Sucessfully!"})
-          }).catch(function(error) {
+        this.props.userInfo.updatePassword(newPass)
+        .then(() => {
+            M.toast({html: "Your Password is Changed Sucessfully!"});
+            window.location.replace('/mygestor');
+          })
+          .catch((error) => {
             M.toast({html: error})
             console(error);
+            return;
           });
+          M.toast({html: "Your Password is Changed Sucessfully!"})
     }
 }
 render() {

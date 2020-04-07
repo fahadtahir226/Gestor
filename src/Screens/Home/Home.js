@@ -65,7 +65,7 @@ class Home extends Component {
       this.getprops(this.props.userData);
     } 
     else{
-      var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData} = this.props;
+      var {isAuthenticated, userInfo, expData, expHis,updateExpHis , incData, incHis, updateIncHis, contacts, uploadDoc, doc, userData, models} = this.props;
       setTimeout(() => {
         if(this.props.isAuthenticated == false){
           window.location.replace("/");
@@ -111,7 +111,7 @@ class Home extends Component {
                 <DocPdf url=''/>
                 <Switch>
 
-                  <Route path="/home/"  exact ><Graphs userData={userData}/> </Route>
+                  <Route path="/home/"  exact ><Graphs userData={userData} models={models}/> </Route>
                   <Route path="/home/mygestor"  exact ><Gestor userData={userData} isAuthenticated={isAuthenticated} userInfo={userInfo} /> </Route>
 
                   <Route path="/home/expense" exact ><Expense contacts={contacts} isAuthenticated={isAuthenticated} userInfo={userInfo} expData={expData} /></Route>
@@ -123,7 +123,7 @@ class Home extends Component {
                   <Route path="/home/contacts/newContact" exact><NewContact userInfo={userInfo} /></Route>
 
                   <Route path="/home/subscription" exact><Subscription /></Route>
-                  <Route path="/home/configure" exact ><Configuration /></Route>
+                  <Route path="/home/configure" exact ><Configuration models={models} userInfo={userInfo} /></Route>
                   <Route path="/home/doc" exact ><Documents userInfo={userInfo} uploadDoc={uploadDoc} doc={doc}/></Route>
                   <Route path="/home/faq" exact ><FAQ/> </Route>
                   <Route path="/home/security" exact ><Security/></Route>
@@ -186,13 +186,13 @@ const styleBox = {
 
 
 const Header = (props) =>{
-  var { userInfo, userData} = props;
+  var { userData} = props;
   var elems = document.getElementById('signOutDropDown');
   M.Dropdown.init(elems, {hover: true, constrainWidth: false});    
   return (
     <div className="row" style={styleBox.header}>
       <div className="col s5 m7 l9"></div>
-        <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userInfo.displayName}</div>
+        <div className="col hide-on-small-only m3 l2" style={styleBox.name}>{userData.fname + ' ' + userData.lname}</div>
         <div  className="col s2 m2 l1">
         <a id="signOutDropDown" className='dropdown-trigger' href='#' data-target='signout'>
           <img style={styleBox.profile} className="imageRound" alt="" src={userData ? userData.profilepic : "//image.freepik.com/free-vector/people-profile-icon_24877-40756.jpg"} />
