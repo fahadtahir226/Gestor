@@ -9,14 +9,19 @@ render() {
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
       <h4 className="col s12 m12 l12 " style={styleBox.mainHeading} >FAQs</h4>
       <div className="row">
+        <div className="col l12 m12 s12">
+        <QuesParas heading="THE MANAGER"  questions={data.TheManager}/>
+        </div>
+      </div>
+      <div className="row">
         <div className="col s12 m12 l6" >
-          <QuestionList heading="Gestor" questions={data.Gestor} />
-          <QuestionList heading="Subscription" questions={data.Subscription} />
-          <QuestionList heading="Pricing" questions={data.Pricing} />
+          <QuestionList heading="BASIC PLANS" questions={data.BasicPlan} />
+          <QuestionList heading="TAXES" questions={data.Taxes} />
+          <QuestionList heading="START WITH THE MANAGER" questions={data.StartWithTheManager} />
         </div>
         <div className="col s12 m12 l6" >
-          <QuestionList heading="Misc" questions={data.Misc} />
-
+          <QuestionList heading="PRO PLANS" questions={data.ProPlan} />
+          <QuestionList heading="DATA" questions={data.Data} />
         </div>
       </div>
     </div>
@@ -41,6 +46,22 @@ const QuestionList = (data) =>{
         ))}
       </ul>
     )
+}
+const QuesParas = (data) =>{
+  {console.log(data.questions)}
+  return(
+    <ul className="collection with-header" style={styleBox.listheader} >
+      <li className="collection-header" style={styleBox.listItem}><h5>{data.heading}</h5></li>
+      {data.questions.map((que,key)=>(
+        <>
+          <li className="collection-item" style={styleBox.listItem} key={key} >
+            <div>{que[0]}</div>
+            <div style={{paddingLeft: 30}} >{que[1]}</div>
+          </li>
+            </>
+      ))}
+    </ul>
+  )
 }
 const styleBox = {
   main: {

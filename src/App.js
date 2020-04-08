@@ -48,6 +48,7 @@ class App extends Component {
   }
   // Expense Related
   updateExpData = (expData) => {
+    console.log(expData)
     this.setState({expData})
   }
   updateExpHis = (expHis) => {
@@ -56,6 +57,7 @@ class App extends Component {
 
 // Income Related
   updateIncData = (incData) => {
+    console.log(incData)
     this.setState({incData})
   }
   updateIncHis = (incHis) => {
@@ -63,19 +65,23 @@ class App extends Component {
   }
 // Contact
   updateContactData = (contacts) => {
+    console.log(contacts)
     this.setState({contacts})
   }
 // User Data
   updateUserData = (userData) => {
+    console.log("User Data",userData)
     this.setState({userData})
   }
 
 // Document Related
   updateDocData = (doc) => {
+    console.log(doc)
     this.setState({doc});
   }
 // Configuration
 updateModelState = (models) => {
+  console.log(models)
   this.setState({models});
 }
 

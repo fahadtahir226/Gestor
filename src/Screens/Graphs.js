@@ -474,49 +474,6 @@ const styleBox = {
     margin: "0"
   }
 }
-export const nextFiling = [
-  {
-    name: '303',
-    days: '27',
-    amount: 130.00,
-    qtr: 'IRPF (IT 2020)',
-    status: true,
-  },
-  {
-    name: '130',
-    days: '24',
-    amount: 170.00,
-    qtr: 'IRPF (IT 2020)',
-    status: true,
-  },
-  {
-    name: '390',
-    days: '21',
-    amount: 210.00,
-    qtr: 'Annual IVA (2020)',
-    status: true,
-  },
-  {
-    name: '111',
-    days: '21',
-    amount: 130.00,
-    qtr: 'VAT 2020',
-    status: true,
-  },
-  {
-    name: '349',
-    days: '12',
-    amount: 170.00,
-    qtr: 'IRPF (IT 2020)',
-    status: true,
-  },
-  {
-    name: '347',
-    days: '21',
-    amount: 210.00,
-    qtr: 'Annual IVA (2020)',
-    status: true,
-  }
-]
+
 
 export default Graphs;

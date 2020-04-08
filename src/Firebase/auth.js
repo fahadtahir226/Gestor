@@ -15,8 +15,6 @@ export const SignUpCall = () => {
 
             auth.createUserWithEmailAndPassword(email, pass)
             .then( () => {
-                console.log(auth.currentUser.email);
-
                 auth.currentUser.updateProfile({displayName: fname + " " + lname});
                 db.collection('Users').doc(auth.currentUser.uid).set({
                     userid: auth.currentUser.uid,
@@ -34,10 +32,19 @@ export const SignUpCall = () => {
                     retInc: [0,0,0,0,0,0,0,0,0,0,0,0],
                     ivaInc: [0,0,0,0,0,0,0,0,0,0,0,0],
                     irpfInc: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    
                 })
-                .then(() => {
+                // .then(() => {
+                    db.collection('Users').doc(auth.currentUser.uid).doc('303').set({ name: '303', days: '27', amount: 130.00, qtr: 'IRPF (IT 2020)', status: true});
+                    db.collection('Users').doc(auth.currentUser.uid).doc('130').set({ name: '130', days: '24', amount: 170.00, qtr: 'IRPF (IT 2020)', status: true});
+                    db.collection('Users').doc(auth.currentUser.uid).doc('303').set({ name: '390', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: true});
+                    db.collection('Users').doc(auth.currentUser.uid).doc('303').set({ name: '111', days: '21', amount: 130.00, qtr: 'VAT 2020', status: false },);
+                    db.collection('Users').doc(auth.currentUser.uid).doc('303').set({ name: '349', days: '12',amount: 170.00, qtr: 'IRPF (IT 2020)', status: false});
+                    db.collection('Users').doc(auth.currentUser.uid).doc('347').set({ name: '347', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: false});        
                     M.toast({html: "User Added!"})
-                    window.location.replace('/home')})
+                    // window.location.replace('/homes')})
+                // })
+                .catch((error) => {console.log(error, error.message)})
             })
 
     } else {
@@ -54,7 +61,6 @@ export const SignInCall = () => {
     auth.signInWithEmailAndPassword(email, pass)
         .then( res => {
             if (res) {
-                
                 window.location.replace("/home");
                 console.log(auth.currentUser);
             }
@@ -104,3 +110,6 @@ export const SignOut = () => {
     })
 }
 
+export const nextFiling = [
+
+  ]

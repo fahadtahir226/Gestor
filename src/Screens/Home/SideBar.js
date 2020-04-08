@@ -44,7 +44,7 @@ class SideBar extends React.Component {
             <i style={styleBox.icon} className="material-icons">lock</i>Security</Link></li>
         <li style={styleBox.Li} className="collection-item"><Link to="/home/help" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons">live_help</i>Help</Link></li>
-        <li style={styleBox.Li} className="collection-item"><Link to="/home/" style={{color: "dimgray"}}>
+        <li style={styleBox.Li} className="collection-item"><Link to="/home/termsAndCond" style={{color: "dimgray"}}>
             <i style={styleBox.icon} className="material-icons">report</i>T{"&"}C</Link></li>
       </ul>
     )

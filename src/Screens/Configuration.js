@@ -58,7 +58,7 @@ constructor(props){
           <div className="container">
             <div className="row" style={styleBox.headins}>TAXES:</div>
             {models.map((model, key) =>
-              <><div key={key} className="row optionBox tooltipped" onClick={() => this.handleclick(model)} 
+              <><div className="row optionBox tooltipped" onClick={() => this.handleclick(model)} 
                 style={styleBox.options}  data-position="left" data-tooltip="If you have office/local, check this box." >
                 MODEL {model.name} {model.status ? <i className="material-icons right" style={{color: "green"}} >check</i>: null}</div>
               <div className="divider" style={{marginBottom: 10}}></div></>

@@ -31,6 +31,7 @@ import { SignOut } from '../../Firebase/auth';
 import Chat from '../Chat';
 import Loader from 'react-loader-spinner'
 import "../../css/style.css"
+import TermsAndCond from '../termsAndCond';
 
 
 class Home extends Component {
@@ -128,6 +129,7 @@ class Home extends Component {
                   <Route path="/home/faq" exact ><FAQ/> </Route>
                   <Route path="/home/security" exact ><Security/></Route>
                   <Route path="/home/help" exact ><Help /> </Route>
+                  <Route path="/home/termsAndCond" exact ><TermsAndCond /> </Route>
                   <Route path="/home/income/recipt/:id" exact ><Recipt userInfo={userInfo} userData={userData} incData={incData} heading='INCOME'/></Route>
                   <Route path="/home/expense/recipt/:id" exact><Recipt userInfo={userInfo} userData={userData} expData={expData} heading='EXPENSE'/></Route>
                   <Route path="/home/chat"  ><Chat uid={userInfo.uid} name={userInfo.displayName} /></Route>
