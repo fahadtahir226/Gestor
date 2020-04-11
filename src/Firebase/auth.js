@@ -1,6 +1,7 @@
 import firebase from "./firebase"
 import M from 'materialize-css'
 import { db } from "./firestore";
+import { getCookie } from "../cookies";
 export const auth = firebase.auth();
 
 // user Sign Up 
@@ -41,9 +42,15 @@ export const SignUpCall = () => {
                 await db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').add({ name: '349', days: '12',amount: 170.00, qtr: 'IRPF (IT 2020)', status: false});
                 await db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('347').add({ name: '347', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: false});        
                 M.toast({html: "User Added!"})
-                window.location.replace('/homes')
-                .catch((error) => {console.log(error, error.message)})
+                if(getCookie("language") == "spanish"){
+                    window.location.replace('/es/home')
+                }
+                else{
+                    window.location.replace('/home')
+                }
+
             })
+            .catch((error) => {console.log(error, error.message)})
 
     } else {
             M.toast({html: 'Every Field is Mandatory!'})
@@ -59,7 +66,12 @@ export const SignInCall = () => {
     auth.signInWithEmailAndPassword(email, pass)
         .then( res => {
             if (res) {
-                window.location.replace("/home");
+                if(getCookie("language") == "spanish"){
+                    window.location.replace('/es/home')
+                }
+                else{
+                    window.location.replace('/home')
+                }
                 console.log(auth.currentUser);
             }
         }).catch(err => {
@@ -84,7 +96,12 @@ export const NewPassword = (oobCode) => {
 
         auth.confirmPasswordReset(oobCode, newPassword)
             .then(function() {
-              window.location.replace("/home");
+                if(getCookie("language") == "spanish"){
+                    window.location.replace('/es/home')
+                }
+                else{
+                    window.location.replace('/home')
+                }
             })
             .catch(function(error) {
                 console.log(error);
@@ -102,6 +119,12 @@ export const SignOut = () => {
         M.toast({html: 'LOGGING OUT'})        
         setTimeout(() => {
             M.toast({html: 'You\'re Logged Out Successfully'})
+            if(getCookie("language") == "spanish"){
+                window.location.replace('/es')
+            }
+            else{
+                window.location.replace('/')
+            }
         }, 1000);
     }).catch(err => {
         M.toast({html: err.message})

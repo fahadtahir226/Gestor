@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import { getCookie } from '../cookies';
 export const facebookLogin = (event) => {
     event.preventDefault();
     var provider = new firebase.auth.FacebookAuthProvider();
@@ -9,6 +10,11 @@ export const facebookLogin = (event) => {
         // The signed-in user info.
         // var user = result.user;
         // ...
-        window.location.replace('/home');
+        if(getCookie("language") == "spanish"){
+            window.location.replace('/es/home')
+        }
+        else{
+            window.location.replace('/home')
+        }
     });
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import M from 'materialize-css';
 import {db} from '../../Firebase/firestore'
+import { getCookie } from '../../cookies';
 
 class NewContact extends Component {
 
@@ -25,7 +26,14 @@ class NewContact extends Component {
 
       db.collection("Users").doc(user).collection("contacts").add(contact)
       .then(res =>{
-        window.location.replace('/home/clients');
+        if(getCookie("language") == "spanish"){
+            window.location.replace('/es/home/clients')
+        }
+        else{
+            window.location.replace('/home/clients')
+        }
+
+
       })
       .catch(err => console.log(err))
         // M.toast({html: err.message}))

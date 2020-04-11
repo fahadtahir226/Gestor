@@ -40,3 +40,7 @@ code {
 .datepicker-date-display {
   background: #1e88e5
 }
+
+.selectborder{
+  border-bottom: 1px solid #9e9e9e !important
+}

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Component5-1.png";
 import {PassReset} from "../../Firebase/auth"
+import { getCookie } from '../../cookies';
 
 
 class ForgetPassWord extends Component {
@@ -12,7 +13,12 @@ class ForgetPassWord extends Component {
     var {isAuthenticated, userInfo} = this.props;
     setTimeout(() => {
       if(this.props.isAuthenticated == true){
-        window.location.replace("/home");
+        if(getCookie("language") == "spanish"){
+            window.location.replace('/es/home')
+        }
+        else{
+            window.location.replace('/home')
+        }      
       }
     }, 2000)
     return (

@@ -6,6 +6,7 @@ import {calculateMonth} from './Popup/AddIncome'
 import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
 import Loader from 'react-loader-spinner'
+import { getCookie } from '../cookies';
 
 class Recipt extends Component {
   constructor(props){
@@ -32,10 +33,20 @@ class Recipt extends Component {
   }
   onBack(whereTo){
     if(whereTo === 'INCOME'){
-      window.location.replace('/home/income');
+      if(getCookie("language") == "spanish"){
+          window.location.replace('/es/home/income')
+      }
+      else{
+          window.location.replace('/home/income')
+      }
     }
     else{
-      window.location.replace('/home/expense');
+      if(getCookie("language") == "spanish"){
+          window.location.replace('/es/home/expense')
+      }
+      else{
+          window.location.replace('/home/expense')
+      }
     }
   }
 

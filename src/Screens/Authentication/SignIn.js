@@ -10,13 +10,21 @@ import twitr from "../../images/twitter.png";
 import { SignInCall } from "../../Firebase/auth";
 import { facebookLogin }from '../../Firebase/facebookAuth'
 import { googleLogin } from '../../Firebase/google'
+import { getCookie } from '../../cookies';
 
 class SignIn extends Component {
   render() {
     var {isAuthenticated, userInfo} = this.props;
     setTimeout(() => {
       if(this.props.isAuthenticated == true){
-        window.location.replace("/home");
+
+        if(getCookie("language") == "spanish"){
+            window.location.replace('/es/home')
+        }
+        else{
+            window.location.replace('/home')
+        }
+
       }
     }, 2000)
     return (

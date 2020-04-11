@@ -45,7 +45,7 @@ class AddExpense extends React.Component {
             <div className="row" style={{marginBottom: 0}}>
               <div className="input-field col s12" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
                 <label htmlFor='datePickerExp' >DATE</label>
-                <input type="text" id='datePickerExp' className="datepicker" />
+                <input type="text" id='datePickerExp' className="datepicker" required />
               </div>
             </div>
             <Select clients={clients} />
@@ -60,10 +60,10 @@ class AddExpense extends React.Component {
             <div className="file-field input-field">
               <div className="btn">
                 <span>UPLOAD</span>
-                <input id='docAddrExp' type="file" />
+                <input id='docAddrExp' type="file"  required />
               </div>
               <div className="file-path-wrapper">
-                <input className="file-path validate" type="text" />
+                <input className="file-path validate" type="text"  required />
               </div>
             </div>
   
@@ -82,7 +82,7 @@ const InputItem = (props) => {
     return (
       <div className="row" style={{marginBottom: 0}}>
         <div className="input-field col s12" style={{marginBottom: 0}}>
-          <input id={ props.id }  type={ props.type ? props.type : "text" } className="validate" />
+          <input id={ props.id }  type={ props.type ? props.type : "text" }  required className="validate" />
           <label htmlFor={ props.id }>{props.title}</label>
         </div>
       </div>
@@ -95,8 +95,8 @@ const Select = (props) => {
     console.log(clients);
   return (
     <div className="row" style={{marginBottom: 0}}>
-      <div className="col s12 validate" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
-        <select id='clientExp'>
+      <div className="col s12 validate selectborder" style={{marginBottom: 0, paddingLeft: 10.5, paddingRight: 10.5}}>
+        <select id='clientExp'  required> 
         <option value="">CLIENTS</option>  
         {clients.map((client, key)=> 
           <option key={key} value={client.nif  + '/' + client.name}>{client.name}</option>  
@@ -107,7 +107,10 @@ const Select = (props) => {
   )
 }
 const addNewExpense = (userInfo) => {
-
+    if(document.getElementById('clientExp').value == ""){
+      M.toast({html: "Client Name is Required"})
+      return;
+    }
     let client = document.getElementById('clientExp').value.split('/')[1],
         concept = document.getElementById('conceptExp').value,
         date = document.getElementById('datePickerExp').value.split(' '),

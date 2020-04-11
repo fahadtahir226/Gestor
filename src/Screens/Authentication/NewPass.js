@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import bkground from "../../images/maskgroup.png";
 import signInPoster from "../../images/drawable/Component5-1.png";
 import {NewPassword} from "../../Firebase/auth"
+import { getCookie } from '../../cookies';
 
 class NewPass extends Component {
     componentDidMount(){
@@ -14,8 +15,13 @@ class NewPass extends Component {
     var {isAuthenticated, userInfo} = this.props;
     setTimeout(() => {
       if(this.props.isAuthenticated == true){
-        window.location.replace("/home");
+        if(getCookie("language") == "spanish"){
+          window.location.replace('/es/home')
       }
+      else{
+          window.location.replace('/home')
+      }
+    }
     }, 2000)
 
     let { oobCode } = this.props.location.search.split('=')[2].split('&')[0];
