@@ -35,12 +35,12 @@ export const SignUpCall = () => {
                     
                 })
                 // .then(() => {
-                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').set({ name: '303', days: '27', amount: 130.00, qtr: 'IRPF (IT 2020)', status: true});
-                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('130').set({ name: '130', days: '24', amount: 170.00, qtr: 'IRPF (IT 2020)', status: true});
-                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').set({ name: '390', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: true});
-                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').set({ name: '111', days: '21', amount: 130.00, qtr: 'VAT 2020', status: false },);
-                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').set({ name: '349', days: '12',amount: 170.00, qtr: 'IRPF (IT 2020)', status: false});
-                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('347').set({ name: '347', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: false});        
+                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').add({ name: '303', days: '27', amount: 130.00, qtr: 'IRPF (IT 2020)', status: true});
+                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('130').add({ name: '130', days: '24', amount: 170.00, qtr: 'IRPF (IT 2020)', status: true});
+                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').add({ name: '390', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: true});
+                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').add({ name: '111', days: '21', amount: 130.00, qtr: 'VAT 2020', status: false },);
+                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('303').add({ name: '349', days: '12',amount: 170.00, qtr: 'IRPF (IT 2020)', status: false});
+                    db.collection('Users').doc(auth.currentUser.uid).collection("models").doc('347').add({ name: '347', days: '21', amount: 210.00, qtr: 'Annual IVA (2020)', status: false});        
                     M.toast({html: "User Added!"})
                     // window.location.replace('/homes')})
                 // })
