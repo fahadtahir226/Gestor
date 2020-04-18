@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import {
-  G2,
   Chart,
   Geom,
   Axis,
-  Tooltip,
-  Coord,
-  Label,
-  Legend,
-  View,
-  Guide,
-  Shape,
-  Facet,
-  Util
+  Tooltip
 } from "bizcharts";
 import "../css/style.css"
 
@@ -33,9 +24,6 @@ class Graphs extends Component {
     irpf[1] = Math.round((0.2 * (incQtr[1] - expQtr[1]) + irpfExpense[1]) + Number.EPSILON * 100) / 100;
     irpf[2] = Math.round((0.2 * (incQtr[2] - expQtr[2]) + irpfExpense[2]) + Number.EPSILON * 100) / 100;
     irpf[3] = Math.round((0.2 * (incQtr[3] - expQtr[3]) + irpfExpense[3]) + Number.EPSILON * 100) / 100;
-    
-
-
     return irpf;
   }
 
@@ -126,9 +114,9 @@ class Graphs extends Component {
             <div className="col s12">
               <div style={{ width: "90%", margin: "auto" }}>
                 <div className="section">
-                  <div className="row vertical-modern-dashboard">
+                  <div className="row vertical-modern-dashboard"  style={{ display : "flex" }}>
                     {/* First Start */}
-                    <div className="col s12 m12 l6">
+                    <div className="col s12 m12 l6" style={{ flex : "1" }}>
                       <div className="card" style={styleBox.cardstyle}>
                         <div className="card-content">
                           <div className="row" style={{ marginBottom: "0px" }}>
@@ -186,7 +174,7 @@ class Graphs extends Component {
                     </div>
                     {/* First End */}
                     {/* Second Start */}
-                    <div className="col s12 m12 l6 animate fadeRight">
+                    <div className="col s12 m12 l6 animate fadeRight"  style={{ flex : "1" }}>
                       <div
                         className="card user-statistics-card animate fadeLeft"
                         style={styleBox.cardstyle}
@@ -243,9 +231,9 @@ class Graphs extends Component {
                     {/* Second End */}
                   </div>
 
-                  <div className="row">
+                  <div className="row" style={{ display : "flex" }}>
                     {/* Third Start */}
-                    <div className="col s12 m12 l6">
+                    <div className="col s12 m12 l6" style={{ flex : "1"}}>
                       <div className="card" style={styleBox.bottomcardstyle}>
                         <div className="card-content">
                           <div className="row" style={{ marginBottom: "0px" }}>
@@ -376,7 +364,7 @@ class Graphs extends Component {
                     </div>
                     {/* Third End */}
                     {/* Fourth Start */}
-                    <div className="col s12 m12 l6 animate fadeRight">
+                    <div className="col s12 m12 l6 animate fadeRight" style={{ flex : "1" }}>
                       <div
                         className="card user-statistics-card animate fadeLeft"
                         style={styleBox.bottomcardstyle}
@@ -449,9 +437,11 @@ const styleBox = {
 
   bottomcardstyle: {
     minHeight: 390,
-    maxHeight: 390,
+    maxHeight: 450,
     overflow: "auto",
-    borderRadius: "20px"
+    borderRadius: "20px",
+    width : "100%",
+    height : "100%"
   },
   box: {
     width: "50px",

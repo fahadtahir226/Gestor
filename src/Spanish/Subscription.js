@@ -11,9 +11,9 @@ class Subscription extends Component {
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
         <h5 className="row" style={styleBox.mainHeading}>SUBSCRIPTION</h5>
-      <div className="row">
+      <div className="row" style={{ display: "flex" }}>
 
-        <div className="col s12 m12 l6">
+        <div className="col s12 m12 l6" style={{ flex: "1" }}>
             <div className="card" style={styleBox.PlanBox}>
               <div style={styleBox.bluishHeading} >
                 Basic Plan (Free)
@@ -23,7 +23,7 @@ class Subscription extends Component {
               </div>
             </div>
         </div>
-        <div className="col s12 m12 l6 right" >
+        <div className="col s12 m12 l6 right"  style={{ flex: "1" }}>
           <div className="card" style={styleBox.PlanBox}>
               <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
               <div className="container">
@@ -88,7 +88,9 @@ const styleBox = {
       borderRadius: 5,
       border: "2px solid rgb(76,177,233)",
       paddingBottom: "45px !important",
-      minHeight: 300
+      minHeight: 300,
+      height : "100%",
+      width : "100%"
     },
     plan: {
         display: "flex"
@@ -100,6 +102,10 @@ const styleBox = {
     discContainer: {
         flex: 1
     },
+    flexcolumn: {
+      flex: "1"
+    },
+
 
   }
 

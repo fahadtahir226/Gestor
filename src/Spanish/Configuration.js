@@ -20,12 +20,18 @@ constructor(props){
   changelanguage(lang){
     if(lang == "en"){
       setCookie("language", "english",30)
-      window.location.replace("/home/configure");
+      M.toast({html: 'English is updated as the default language of your App.'})
+      setInterval(() => {
+        window.location.replace("/home/configure");
+      }, 2500);
     }
     else
     {
       setCookie("language", "spanish",30)
-      window.location.replace("/es/home/configure");
+      M.toast({html: 'El español se actualiza como el idioma predeterminado de su aplicación'})
+      setInterval(() => {
+        window.location.replace("/es/home/configure");
+      }, 2500);
     }
   }
   handleclick(model){
