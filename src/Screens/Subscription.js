@@ -4,6 +4,17 @@ import React, { Component } from 'react';
 import tickIcon from "../images/drawable/Path.png"
 import sbmtbtn from "../images/text-background.png"
 
+
+import CardActionArea  from '@material-ui/core/CardActionArea';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
+
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+
 class Subscription extends Component {
 
   render() {
@@ -11,27 +22,65 @@ class Subscription extends Component {
   return (
     <div className="container-fluid card z-depth-1" style={styleBox.main}>
         <h5 className="row" style={styleBox.mainHeading}>SUBSCRIPTION</h5>
-      <div className="row" style={{ display  :"flex" }}>
 
-        <div className="col s12 m12 l6" style={{ flex  :"1" }}>
-            <div className="card" style={styleBox.PlanBox}>
-              <div style={styleBox.bluishHeading} >
-                Basic Plan (Free)
-              </div>
-              <div className="container" >
-                  {basicPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
-              </div>
-            </div>
-        </div>
-        <div className="col s12 m12 l6 right" style={{ flex  :"1" }}>
-          <div className="card" style={styleBox.PlanBox}>
-              <div style={styleBox.bluishHeading} >Premium plan (39€/mo)</div>
-              <div className="container">
-                  {premiumPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
-              </div>
-          </div>
-        </div>
+      <div style={{ display: "flex", margin: 24 }}>
+      <Grid  container
+        direction="row"
+        justify="space-around"
+        alignItems="stretch"
+        spacing={4}
+        >
+
+          <Grid item xs={12} xs={12} md={6} lg={6} style={{ flex: "1", width: "100%" }}>
+            <CardActionArea style={{ background: "white", height: "100%", width: "100%" }} href="#">
+                <Card style={styleBox.PlanBox}>
+                  <Typography variant="h5" component="h2" style={styleBox.bluishHeading}>
+                  Basic Plan (Free)
+                  </Typography>
+                  <CardContent  style={{ background: "white", height: "100%", width: "100%" }}>
+                    <Container xs="12" sm="12" md="12" lg="12">
+                      {basicPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
+                    </Container>
+                  </CardContent>
+                </Card>
+            </CardActionArea>
+          </Grid>
+
+
+          <Grid item xs={12} xs={12} md={6} lg={6} style={{ flex: "1", width: "100%" }}>
+            <CardActionArea style={{ background: "white", height: "100%", width: "100%" }}  href="https://dynamic-form-72bea.firebaseapp.com/" >
+                <Card style={styleBox.PlanBox}>
+                  <Typography variant="h5" component="h2" style={styleBox.bluishHeading}>
+                  Monthly plan (39€/mo)
+                  </Typography>
+                  <CardContent  style={{ background: "white", height: "100%", width: "100%" }}>
+                    <Container xs="12" sm="12" md="12" lg="12">
+                    {premiumPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
+                    </Container>
+                  </CardContent>
+                </Card>
+            </CardActionArea>
+          </Grid>
+
+          <Grid item xs={12} xs={12} md={6} lg={6} style={{ flex: "1", width: "100%" }}>
+            <CardActionArea style={{ background: "white", height: "100%", width: "100%" }}  href="https://dynamic-form-72bea.firebaseapp.com/" >
+                <Card style={styleBox.PlanBox}>
+                  <Typography variant="h5" component="h2" style={styleBox.bluishHeading}>
+                  Yearly plan (390€/mo)
+                  </Typography>
+                  <CardContent  style={{ background: "white", height: "100%", width: "100%" }}>
+                    <Container xs="12" sm="12" md="12" lg="12">
+                    {premiumPlan.map((plan, key)=><Plan key={key} discription={plan}></Plan>)}
+                    </Container>
+                  </CardContent>
+                </Card>
+            </CardActionArea>
+          </Grid>
+
+        </Grid>
+
       </div>
+      
     </div>
     );
   }
@@ -40,13 +89,11 @@ class Subscription extends Component {
 const Plan = (props) =>{
     return(
         <div style={styleBox.plan}>
-            <div style={styleBox.iconContainer}>
-                <img alt="" src={tickIcon} 
-                style={{width: 16,
-                height: 16
-                }}/>
-            </div>
-            <div style={styleBox.discContainer}>{props.discription}</div>
+            <DoneAllIcon style={{ color: "green", marginRight : 10 }}></DoneAllIcon>
+            <Typography variant="h6" component="p" style={{ color : "dimgray" }}>
+              {props.discription}
+            </Typography>
+            
         </div>
 )}
 
@@ -67,16 +114,16 @@ const styleBox = {
     },
 
     bluishHeading: {
-        color: "white",
-        padding: 7,
-        paddingLeft: 15,
-        background: `url(${sbmtbtn}) no-repeat center/cover`,
-        width: 270,
-        height: 35,
-        display: "inline-block",
-        marginLeft: -20,
-        marginBottom: 10
-    },
+      color: "white",
+      padding: 7,
+      paddingLeft: 15,
+      background: `url(${sbmtbtn}) no-repeat center/cover`,
+      width: "inherit",
+      height: 35,
+      display: "inline-block",
+      marginLeft: -20,
+      marginBottom: 10
+  },
     mainHeading: {
       marginBottom: 0,
       fontWeight: "bold",
@@ -84,13 +131,13 @@ const styleBox = {
       paddingLeft: "15px"
     },
     PlanBox:{
-      width :"100%",
-      height :"100%",
       padding: 20,
       borderRadius: 5,
       border: "2px solid rgb(76,177,233)",
       paddingBottom: "45px !important",
-      minHeight: 300
+      minHeight: 300,
+      height : "100%",
+      width : "100%"
     },
     plan: {
         display: "flex"
@@ -102,6 +149,10 @@ const styleBox = {
     discContainer: {
         flex: 1
     },
+    flexcolumn: {
+      flex: "1"
+    },
+
 
   }
 

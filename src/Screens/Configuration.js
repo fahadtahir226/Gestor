@@ -75,7 +75,7 @@ constructor(props){
           <div className="container-fluid" style={{ marginLeft: 35 }}>
             <div className="row" style={styleBox.headins}>LANGUAGE:</div>
             
-            <div className="row optionBox" onClick={() => this.changelanguage("es")}  style={styleBox.options}>SPANISH <i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox" onClick={() => this.changelanguage("es")}  style={styleBox.options}>SPANISH</div>
             <div className="divider" style={{marginBottom: 10}}></div>
             <div className="row optionBox" onClick={() => this.changelanguage("en")} style={styleBox.options}>ENGLISH<i className="material-icons right" style={{color: "green"}} >check</i></div>
 

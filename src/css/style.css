@@ -109,15 +109,11 @@ body {
   }
 
 .expandable{
-	border-radius : 25px  !important ;
-	margin: 10px;
 }
 .expandable-heading{
-	border-radius : 25px  !important ;
 }
 
 .expandable-heading:hover{
-	border-radius : 25px  !important ;
 	background: linear-gradient(90deg, rgba(15,213,245,1) 0%, rgba(115,0,255,0.7321564749385534) 100%) !important;
 	color: white !important;
 	transition: 0.55s;
@@ -139,13 +135,20 @@ body {
 }
 
 .expandable-description{
-	border-radius : 25px !important ;
 
 }
 .MuiListItem-root {
     padding-top: 2px !important;
     padding-bottom: 2px !important;
 }
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (min-width : 500px) and (max-width: 1000px) {
+	.sidebar{
+		width : 30% !important
+	}
+}
+
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (min-width : 1000px) and (max-width: 1300px) {

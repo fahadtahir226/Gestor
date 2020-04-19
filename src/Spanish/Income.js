@@ -97,7 +97,7 @@ render() {
         </div>
       </div>
     </div>
-      <a onClick={()=>PopupCard('addIncome', false)} style={{float: "right", marginRight: 30}} href="#addIncome" className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
+    <a onClick={()=>M.toast({html: "Sorry! This functionality is not enabled right now"})} style={{float: "right", marginRight: 30}} className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
         <i style={{ color: "#1e88e5"}} className="material-icons">add</i></a>
       <a onClick={()=>PopupCard('addDocIncome', false)} style={{float: "right", marginRight: 30}} href="#addDocIncome" className="container-fluid btn-floating btn-large waves-effect waves-light white modal-trigger">
         <i style={{ color: "#1e88e5"}} className="material-icons">file_upload</i></a>

@@ -60,7 +60,7 @@ constructor(props){
             
             <div className="row optionBox" onClick={() =>this.changelanguage("es")}  style={styleBox.options}>SPANISH <i className="material-icons right" style={{color: "green"}} >check</i></div>
             <div className="divider" style={{marginBottom: 10}}></div>
-            <div className="row optionBox " onClick={() =>this.changelanguage("en")} style={styleBox.options}>ENGLISH<i className="material-icons right" style={{color: "green"}} >check</i></div>
+            <div className="row optionBox " onClick={() =>this.changelanguage("en")} style={styleBox.options}>ENGLISH</div>
 
             <div className="divider" style={{marginBottom: 10}}></div>
 
