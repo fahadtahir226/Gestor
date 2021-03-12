@@ -12,7 +12,7 @@
     "firebase": "^7.9.3",
     "firebase-tools": "^7.16.2",
     "html2canvas": "^1.0.0-rc.5",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "materialize-css": "^1.0.0-rc.2",
     "puppeteer": "^2.1.1",
     "react": "^16.13.0",
